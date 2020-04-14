@@ -5,13 +5,17 @@ from models.quantizer import VectorQuantizer
 from models.decoder import Decoder
 from models.encoder import Encoder
 
+import logging
+
+log = logging.getLogger(__name__)
+
 #Need to change to word embeddings
 class VQVAE(nn.Module):
     def __init__(self, h_dim, res_h_dim, n_res_layers,
                  n_embeddings, embedding_dim, beta, save_img_embedding_map=False):
         super(VQVAE, self).__init__()
         # encode image into continuous latent space
-        self.encoder = Encoder(384, h_dim, n_res_layers, res_h_dim)
+        self.encoder = Encoder(in_dim=384, hdim=h_dim, n_res_layers=n_res_layers, res_h_dim=res_h_dim)
         self.pre_quantization_conv = nn.Conv1d(
             h_dim, embedding_dim, kernel_size=1, stride=1)
         # pass continuous latent vector through discretization bottleneck

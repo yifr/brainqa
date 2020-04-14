@@ -6,28 +6,38 @@ import torch.nn as nn
 from torch.nn import CrossEntropyLoss
 import numpy as np
 
-#Do we want an encoder, decoder arch?
+import logging
+
+log = logging.getLogger(__name__)
 
 class BrainQA(BertPreTrainedModel):
     def __init__(self, config):
         super(BrainQA, self).__init__(config)
         self.num_labels = config.num_labels
 
+        # Set up BERT encoder
         self.config_enc = config.to_dict()
         self.config_enc['output_hidden_states'] = True
         self.config_enc = BertConfig.from_dict(self.config_enc)
+        self.bert_enc = BertModel(self.config_enc)
 
-        self.bert = BertModel(self.config_enc)
+        # VQVAE for external memory
+        self.vqvae_model= VQVAE(h_dim=config.hidden_size, 
+                                res_h_dim=32, 
+                                n_res_layers=2, 
+                                n_embeddings=64, 
+                                embedding_dim=512, 
+                                beta=.25)
+
+        # Set up BERT decoder
         self.config_dec = config.to_dict()
         self.config_dec['is_decoder'] = True
         self.config_dec = BertConfig.from_dict(self.config_dec)
-        
         self.bert_dec = BertModel(self.config_dec)
+
+        # Question answer layer to output spans of question answers
         self.qa_outputs = nn.Linear(config.hidden_size, config.num_labels)
         
-        #number of clusters = 4th
-        self.vqvae_model= VQVAE(config.hidden_size, 32, 2, 64, 512, .25)
-
         self.init_weights()
     
     def forward(
@@ -41,8 +51,8 @@ class BrainQA(BertPreTrainedModel):
         start_positions=None,
         end_positions=None,
     ):
-        #encoder bert
-        #outputs_encoder = (last_hidden_state, pooler_output, hidden_states, attentions)
+        #B = Batch Size, S = Sequence Length, H = Hidden Size
+        #outputs_encoder = (last_hidden_state: (BxSxH), pooler_output:(BxH), hidden_states: (BxSxH))
         outputs_encoder = self.bert(
                 input_ids,
                 attention_mask=attention_mask,
@@ -51,12 +61,18 @@ class BrainQA(BertPreTrainedModel):
                 head_mask=head_mask,
                 inputs_embeds=inputs_embeds,
             )
+        last_hidden_state, pooler_output, hidden_states = outputs_encoder
+        log.info('BERT Encoder hidden State shape: ', last_hidden_state.shape)
 
-        #give to VQVAE
-        #outputs embedding loss, x_hat (encoded embedding?), ppl
-        #concat x_hat with hidden states
-        outputs_VQVAE = self.vqvae_model(outputs_encoder[0])
+        outputs_VQVAE = self.vqvae_model(last_hidden_state)
+        vq_embedding_loss, x_hat, vqvae_ppl = outputs_VQVAE
+        
+        vq_recon_loss = torch.mean((x_hat - x)**2) / x_train_var
+        vq_vae_loss = vq_recon_loss + vq_embedding_loss
 
+        log.info('VQVAE Loss: ', vq_vae_loss, 'VQVAE ppl: ', ppl, 'x_hat dim: ', x_hat.shape)
+        
+        # Concatenate clustered memory representations with current sentence embeddings
         vqvae_hidden_states = torch.cat((outputs_encoder[2][0], outputs_VQVAE[1]), dim=1) # TODO
 
         #decoder bert
@@ -69,9 +85,10 @@ class BrainQA(BertPreTrainedModel):
                 inputs_embeds=inputs_embeds,
                 encoder_hidden_states = vqvae_hidden_states
             )
-        # hidden states = outputs[2]
-        # attention = outputs[3]
-        sequence_output = outputs_decoder[0]
+       
+       
+        sequence_output, dec_pooler_output, dec_hidden_states = outputs_decoder
+        log.info('BERT Decoder hidden State shape: ', sequence_output.shape)
 
         logits = self.qa_outputs(sequence_output)
         start_logits, end_logits = logits.split(1, dim=-1)

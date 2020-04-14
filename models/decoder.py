@@ -5,6 +5,10 @@ import torch.nn.functional as F
 import numpy as np
 from models.residual import ResidualStack
 
+import logging
+
+log = logging.getLogger(__name__)
+
 
 class Decoder(nn.Module):
     """
