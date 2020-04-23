@@ -35,20 +35,10 @@ class Decoder(nn.Module):
             nn.ConvTranspose1d(h_dim, h_dim // 2,
                                kernel_size=kernel, stride=stride, padding=1),
             nn.ReLU(),
-            nn.ConvTranspose1d(h_dim//2, 3, kernel_size=kernel,
+            nn.ConvTranspose1d(h_dim//2, 384, kernel_size=kernel,
                                stride=stride, padding=1)
         )
 
     def forward(self, x):
         return self.inverse_conv_stack(x)
 
-
-if __name__ == "__main__":
-    # random data
-    x = np.random.random_sample((3, 40, 40, 200))
-    x = torch.tensor(x).float()
-
-    # test decoder
-    decoder = Decoder(40, 128, 3, 64)
-    decoder_out = decoder(x)
-    print('Dncoder out shape:', decoder_out.shape)

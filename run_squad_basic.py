@@ -127,7 +127,6 @@ def train(args, train_dataset, model, tokenizer):
         "  Total train batch size (w. parallel, distributed & accumulation) = %d",
         args.train_batch_size
         * args.gradient_accumulation_steps
-        * (torch.distributed.get_world_size()),
     )
     logger.info("  Gradient Accumulation steps = %d", args.gradient_accumulation_steps)
     logger.info("  Total optimization steps = %d", t_total)
@@ -183,15 +182,14 @@ def train(args, train_dataset, model, tokenizer):
             outputs = model(**inputs)
             # model outputs are always tuple in transformers (see doc)
             loss = outputs[0]
-
             if args.n_gpu > 1:
                 loss = loss.mean()  # mean() to average on multi-gpu parallel (not distributed) training
             if args.gradient_accumulation_steps > 1:
                 loss = loss / args.gradient_accumulation_steps
-
-            
+                
             loss.backward()
 
+            logger.info('[BRAINQA] Loss: {}'.format(loss.item()))
             tr_loss += loss.item()
             if (step + 1) % args.gradient_accumulation_steps == 0:
                 torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
@@ -643,7 +641,7 @@ def main():
         level=logging.INFO,
     )
     logger.warning(
-        "Device: %s, n_gpu: %s,
+        "Device: %s, n_gpu: %s",
         device,
         args.n_gpu
     )
@@ -661,18 +659,9 @@ def main():
         do_lower_case=args.do_lower_case,
         cache_dir=args.cache_dir if args.cache_dir else None,
     )
-    #CHANGE MODEL TO BRAINQA
-    # model = AutoModelForQuestionAnswering.from_pretrained(
-    #     args.model_name_or_path,
-    #     from_tf=bool(".ckpt" in args.model_name_or_path),
-    #     config=config,
-    #     cache_dir=args.cache_dir if args.cache_dir else None,
-    # )
+
     model = BrainQA(config=config)
-    #Now model is BertForQuestionAnswering
-
     model.to(args.device)
-
     logger.info("Training/evaluation parameters %s", args)
 
     # Training
@@ -681,8 +670,6 @@ def main():
         global_step, tr_loss = train(args, train_dataset, model, tokenizer)
         logger.info(" global_step = %s, average loss = %s", global_step, tr_loss)
 
-    # Save the trained model and the tokenizer
-    if args.do_train:
         # Create output directory if needed
         if not os.path.exists(args.output_dir):
             os.makedirs(args.output_dir)

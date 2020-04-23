@@ -53,7 +53,7 @@ class BrainQA(BertPreTrainedModel):
     ):
         #B = Batch Size, S = Sequence Length, H = Hidden Size
         #outputs_encoder = (last_hidden_state: (BxSxH), pooler_output:(BxH), hidden_states: (BxSxH))
-        outputs_encoder = self.bert(
+        outputs_encoder = self.bert_enc(
                 input_ids,
                 attention_mask=attention_mask,
                 token_type_ids=token_type_ids,
@@ -62,16 +62,20 @@ class BrainQA(BertPreTrainedModel):
                 inputs_embeds=inputs_embeds,
             )
         last_hidden_state, pooler_output, hidden_states = outputs_encoder
-        log.info('BERT Encoder hidden State shape: ', last_hidden_state.shape)
 
         outputs_VQVAE = self.vqvae_model(last_hidden_state)
         vq_embedding_loss, x_hat, vqvae_ppl = outputs_VQVAE
+        log.info('VQVAE emb_loss: {}\tppl: {}'.format(vq_embedding_loss, vqvae_ppl))
         
-        vq_recon_loss = torch.mean((x_hat - x)**2) / x_train_var
+        '''
+        ##############################################################
+        # NOTE: THIS IS THE LOSS FUNCTION WE NEED TO COMPUTE FOR VQVAE
+        ##############################################################
+        vq_recon_loss = torch.mean((x_hat - last_hidden_state)**2) / np.var(last_hidden_state, axis=1)
         vq_vae_loss = vq_recon_loss + vq_embedding_loss
+        log.info('VQVAE Loss: {}'.format(vqvae_loss))
+        '''
 
-        log.info('VQVAE Loss: ', vq_vae_loss, 'VQVAE ppl: ', ppl, 'x_hat dim: ', x_hat.shape)
-        
         # Concatenate clustered memory representations with current sentence embeddings
         vqvae_hidden_states = torch.cat((outputs_encoder[2][0], outputs_VQVAE[1]), dim=1) # TODO
 
@@ -87,8 +91,7 @@ class BrainQA(BertPreTrainedModel):
             )
        
        
-        sequence_output, dec_pooler_output, dec_hidden_states = outputs_decoder
-        log.info('BERT Decoder hidden State shape: ', sequence_output.shape)
+        sequence_output, dec_pooler_output = outputs_decoder
 
         logits = self.qa_outputs(sequence_output)
         start_logits, end_logits = logits.split(1, dim=-1)
