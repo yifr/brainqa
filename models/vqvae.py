@@ -44,4 +44,4 @@ class VQVAE(nn.Module):
             print('recon data shape:', x_hat.shape)
             assert x.shape == x_hat.shape
 
-        return embedding_loss, x_hat, perplexity
+        return embedding_loss, x_hat, perplexity, z_q

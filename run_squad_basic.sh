@@ -40,5 +40,6 @@ else
         --output_dir ./wwm_cased_finetuned_squad/ \
         --per_gpu_eval_batch_size=2  \
         --per_gpu_train_batch_size=2   \
-        --save_steps 5000
+        --save_steps 5000 \
+        --logging_steps 10
 fi

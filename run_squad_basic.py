@@ -181,17 +181,21 @@ def train(args, train_dataset, model, tokenizer):
             #HERE WE DO FORWARD OF MODEL
             outputs = model(**inputs)
             # model outputs are always tuple in transformers (see doc)
-            loss = outputs[0]
+            loss = outputs[0][0]
+            vqvae_loss = outputs[0][1]
             if args.n_gpu > 1:
                 loss = loss.mean()  # mean() to average on multi-gpu parallel (not distributed) training
+                vqvae_loss = vqvae_loss.mean()
             if args.gradient_accumulation_steps > 1:
                 loss = loss / args.gradient_accumulation_steps
+                vqvae_loss = vqvae_loss / args.gradient_accumulation_steps
                 
             loss.backward()
+            vqvae_loss.backward()
 
             logger.info('[BRAINQA] Loss: {}'.format(loss.item()))
             tr_loss += loss.item()
-            if (step + 1) % args.gradient_accumulation_steps == 0:
+            if (step + 1) % args.gradient_accumulation_steps == 0: #CLCP
                 torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
 
                 optimizer.step()
@@ -208,6 +212,8 @@ def train(args, train_dataset, model, tokenizer):
                             tb_writer.add_scalar("eval_{}".format(key), value, global_step)
                     tb_writer.add_scalar("lr", scheduler.get_lr()[0], global_step)
                     tb_writer.add_scalar("loss", (tr_loss - logging_loss) / args.logging_steps, global_step)
+                    logger.info('[BRAINQA] Eval loss: %.3f' % float((tr_loss - logging_loss) / args.logging_steps))
+
                     logging_loss = tr_loss
 
                 # Save model checkpoint
@@ -589,7 +595,7 @@ def main():
         help="language id of input for language-specific xlm models (see tokenization_xlm.PRETRAINED_INIT_CONFIGURATION)",
     )
 
-    parser.add_argument("--logging_steps", type=int, default=500, help="Log every X updates steps.")
+    parser.add_argument("--logging_steps", type=int, default=100, help="Log every X updates steps.")
     parser.add_argument("--save_steps", type=int, default=500, help="Save checkpoint every X updates steps.")
     parser.add_argument(
         "--eval_all_checkpoints",
@@ -652,7 +658,7 @@ def main():
     args.model_type = args.model_type.lower()
     config = AutoConfig.from_pretrained(
         args.config_name if args.config_name else args.model_name_or_path,
-        cache_dir=args.cache_dir if args.cache_dir else None,
+        cache_dir=args.cache_dir if args.cache_dir else None, early_stopping=True
     )
     tokenizer = AutoTokenizer.from_pretrained(
         args.tokenizer_name if args.tokenizer_name else args.model_name_or_path,

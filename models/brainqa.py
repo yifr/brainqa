@@ -64,21 +64,18 @@ class BrainQA(BertPreTrainedModel):
         last_hidden_state, pooler_output, hidden_states = outputs_encoder
 
         outputs_VQVAE = self.vqvae_model(last_hidden_state)
-        vq_embedding_loss, x_hat, vqvae_ppl = outputs_VQVAE
-        log.info('VQVAE emb_loss: {}\tppl: {}'.format(vq_embedding_loss, vqvae_ppl))
+        vq_embedding_loss, hidden_state_reconstructed, vqvae_ppl, latent_states = outputs_VQVAE    
+
+        log.info('Reconstructed shape: {} Latent state shape: {}'.format(hidden_state_reconstructed.shape, latent_states.shape))    
+
+        vq_recon_loss = torch.mean((hidden_state_reconstructed - last_hidden_state)**2) # VQVAE divides this by variance of total training data 
+        log.info('Recon loss: ')
+        vqvae_loss = vq_recon_loss + vq_embedding_loss        
         
-        '''
-        ##############################################################
-        # NOTE: THIS IS THE LOSS FUNCTION WE NEED TO COMPUTE FOR VQVAE
-        ##############################################################
-        vq_recon_loss = torch.mean((x_hat - last_hidden_state)**2) / np.var(last_hidden_state, axis=1)
-        vq_vae_loss = vq_recon_loss + vq_embedding_loss
-        log.info('VQVAE Loss: {}'.format(vqvae_loss))
-        '''
 
         # Concatenate clustered memory representations with current sentence embeddings
-        vqvae_hidden_states = torch.cat((outputs_encoder[2][0], outputs_VQVAE[1]), dim=1) # TODO
-
+        vqvae_hidden_states = torch.cat((last_hidden_state, hidden_state_reconstructed), dim=1) # TODO
+        
         #decoder bert
         outputs_decoder = self.bert_dec(
                 input_ids,
@@ -113,7 +110,10 @@ class BrainQA(BertPreTrainedModel):
             loss_fct = CrossEntropyLoss(ignore_index=ignored_index)
             start_loss = loss_fct(start_logits, start_positions)
             end_loss = loss_fct(end_logits, end_positions)
-            total_loss = (start_loss + end_loss) / 2
-            outputs = (total_loss,) + outputs
+            total_loss = (start_loss + end_loss) / 2 + vqvae_loss
+            outputs = (total_loss,vqvae_loss,) + outputs
+        log.info('Total Loss: {}'.format(total_loss - vqvae_loss))
+        log.info('VQVAE emb_loss: {}\tppl: {}'.format(vq_embedding_loss, vqvae_ppl))
+        log.info('VQVAE Loss: {}'.format(vqvae_loss))
 
         return outputs  # (loss), start_logits, end_logits, (hidden_states), (attentions)
