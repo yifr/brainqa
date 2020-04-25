@@ -1,0 +1,1885 @@
+2020-04-25 00:32:31.151848: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer.so.6'; dlerror: libnvinfer.so.6: cannot open shared object file: No such file or directory
+2020-04-25 00:32:31.151997: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer_plugin.so.6'; dlerror: libnvinfer_plugin.so.6: cannot open shared object file: No such file or directory
+2020-04-25 00:32:31.152013: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:30] Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+04/25/2020 00:32:32 - WARNING - __main__ -   Device: cuda, n_gpu: 8
+04/25/2020 00:32:32 - INFO - transformers.configuration_utils -   loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-config.json from cache at /cortex/users/jif24/.cache/torch/transformers/4dad0251492946e18ac39290fcfe91b89d370fee250efe9521476438fe8ca185.7156163d5fdc189c3016baca0775ffce230789d7fa2a42ef516483e4ca884517
+04/25/2020 00:32:32 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "_num_labels": 2,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": null,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": true,
+  "eos_token_id": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "min_length": 0,
+  "model_type": "bert",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30522,
+  "xla_device": null
+}
+
+04/25/2020 00:32:32 - INFO - transformers.configuration_utils -   loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-config.json from cache at /cortex/users/jif24/.cache/torch/transformers/4dad0251492946e18ac39290fcfe91b89d370fee250efe9521476438fe8ca185.7156163d5fdc189c3016baca0775ffce230789d7fa2a42ef516483e4ca884517
+04/25/2020 00:32:32 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "_num_labels": 2,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": null,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": false,
+  "eos_token_id": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "min_length": 0,
+  "model_type": "bert",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30522,
+  "xla_device": null
+}
+
+04/25/2020 00:32:32 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt from cache at /cortex/users/jif24/.cache/torch/transformers/26bc1ad6c0ac742e9b52263248f6d0f00068293b33709fae12320c0e35ccfbbb.542ce4285a40d23a559526243235df47c5f75c197f04f37d1a0c124c32c9a084
+04/25/2020 00:32:32 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "_num_labels": 2,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": null,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": true,
+  "eos_token_id": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "min_length": 0,
+  "model_type": "bert",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": true,
+  "output_past": true,
+  "pad_token_id": 0,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30522,
+  "xla_device": null
+}
+
+04/25/2020 00:32:34 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "_num_labels": 2,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": null,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": true,
+  "eos_token_id": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": true,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "min_length": 0,
+  "model_type": "bert",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30522,
+  "xla_device": null
+}
+
+04/25/2020 00:32:43 - INFO - __main__ -   Training/evaluation parameters Namespace(adam_epsilon=1e-08, cache_dir='', config_name='', data_dir=None, device=device(type='cuda'), do_eval=True, do_lower_case=False, do_train=True, doc_stride=128, eval_all_checkpoints=False, evaluate_during_training=False, gradient_accumulation_steps=1, lang_id=0, learning_rate=3e-05, logging_steps=100, max_answer_length=30, max_grad_norm=1.0, max_query_length=64, max_seq_length=384, max_steps=-1, model_name_or_path='bert-base-uncased', model_type='bert', n_best_size=20, n_gpu=8, no_cuda=False, null_score_diff_threshold=0.0, num_train_epochs=4.0, output_dir='./wwm_cased_finetuned_squad/', overwrite_cache=False, overwrite_output_dir=False, per_gpu_eval_batch_size=2, per_gpu_train_batch_size=2, predict_file='/ml/jif24/squad/dev-v2.0.json', save_steps=5000, seed=42, server_ip='', server_port='', tokenizer_name='', train_file='/ml/jif24/squad/train-v2.0.json', verbose_logging=False, version_2_with_negative=True, warmup_steps=0, weight_decay=0.0)
+04/25/2020 00:32:43 - INFO - __main__ -   Loading features from cached file ./cached_train_bert-base-uncased_384
+04/25/2020 00:33:13 - INFO - __main__ -   ***** Running training *****
+04/25/2020 00:33:13 - INFO - __main__ -     Num examples = 131572
+04/25/2020 00:33:13 - INFO - __main__ -     Num Epochs = 4
+04/25/2020 00:33:13 - INFO - __main__ -     Instantaneous batch size per GPU = 2
+04/25/2020 00:33:13 - INFO - __main__ -     Total train batch size (w. parallel, distributed & accumulation) = 16
+04/25/2020 00:33:13 - INFO - __main__ -     Gradient Accumulation steps = 1
+04/25/2020 00:33:13 - INFO - __main__ -     Total optimization steps = 32896
+Epoch:   0%|          | 0/4 [00:00<?, ?it/s]
+Iteration:   0%|          | 0/8224 [00:00<?, ?it/s][A04/25/2020 00:33:13 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:13 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:13 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:13 - INFO - models.brainqa -   Total Loss: 4.849002838134766
+04/25/2020 00:33:13 - INFO - models.brainqa -   VQVAE emb_loss: 0.003497553523629904	ppl: 47.945396423339844
+04/25/2020 00:33:13 - INFO - models.brainqa -   Recon loss: 1.111655831336975
+04/25/2020 00:33:13 - INFO - models.brainqa -   VQVAE Loss: 1.115153431892395
+04/25/2020 00:33:14 - INFO - __main__ -   [BRAINQA] Loss: 5.964156150817871
+
+Iteration:   0%|          | 1/8224 [00:01<2:55:55,  1.28s/it][A04/25/2020 00:33:14 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:14 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:14 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:14 - INFO - models.brainqa -   Total Loss: 3.7156126499176025
+04/25/2020 00:33:14 - INFO - models.brainqa -   VQVAE emb_loss: 0.0032866173423826694	ppl: 47.618106842041016
+04/25/2020 00:33:14 - INFO - models.brainqa -   Recon loss: 1.110893726348877
+04/25/2020 00:33:14 - INFO - models.brainqa -   VQVAE Loss: 1.114180326461792
+04/25/2020 00:33:15 - INFO - __main__ -   [BRAINQA] Loss: 4.8297929763793945
+
+Iteration:   0%|          | 2/8224 [00:02<2:46:03,  1.21s/it][A04/25/2020 00:33:15 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:15 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:15 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:15 - INFO - models.brainqa -   Total Loss: 3.450922966003418
+04/25/2020 00:33:15 - INFO - models.brainqa -   VQVAE emb_loss: 0.0030588184017688036	ppl: 47.17597198486328
+04/25/2020 00:33:15 - INFO - models.brainqa -   Recon loss: 1.1109471321105957
+04/25/2020 00:33:15 - INFO - models.brainqa -   VQVAE Loss: 1.1140059232711792
+04/25/2020 00:33:16 - INFO - __main__ -   [BRAINQA] Loss: 4.564929008483887
+
+Iteration:   0%|          | 3/8224 [00:03<2:39:18,  1.16s/it][A04/25/2020 00:33:16 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:16 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:16 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:16 - INFO - models.brainqa -   Total Loss: 4.252805233001709
+04/25/2020 00:33:16 - INFO - models.brainqa -   VQVAE emb_loss: 0.002836969681084156	ppl: 50.01879119873047
+04/25/2020 00:33:16 - INFO - models.brainqa -   Recon loss: 1.1110292673110962
+04/25/2020 00:33:16 - INFO - models.brainqa -   VQVAE Loss: 1.1138662099838257
+04/25/2020 00:33:17 - INFO - __main__ -   [BRAINQA] Loss: 5.366671562194824
+
+Iteration:   0%|          | 4/8224 [00:04<2:34:15,  1.13s/it][A04/25/2020 00:33:17 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:17 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:17 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:17 - INFO - models.brainqa -   Total Loss: 3.259258270263672
+04/25/2020 00:33:18 - INFO - models.brainqa -   VQVAE emb_loss: 0.0026689607184380293	ppl: 48.262569427490234
+04/25/2020 00:33:18 - INFO - models.brainqa -   Recon loss: 1.1106855869293213
+04/25/2020 00:33:18 - INFO - models.brainqa -   VQVAE Loss: 1.1133545637130737
+04/25/2020 00:33:18 - INFO - __main__ -   [BRAINQA] Loss: 4.372612953186035
+
+Iteration:   0%|          | 5/8224 [00:05<2:30:44,  1.10s/it][A04/25/2020 00:33:18 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:18 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:18 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:19 - INFO - models.brainqa -   Total Loss: 2.9916067123413086
+04/25/2020 00:33:19 - INFO - models.brainqa -   VQVAE emb_loss: 0.0025275989901274443	ppl: 52.626468658447266
+04/25/2020 00:33:19 - INFO - models.brainqa -   Recon loss: 1.1113362312316895
+04/25/2020 00:33:19 - INFO - models.brainqa -   VQVAE Loss: 1.1138638257980347
+04/25/2020 00:33:19 - INFO - __main__ -   [BRAINQA] Loss: 4.105470657348633
+
+Iteration:   0%|          | 6/8224 [00:06<2:28:24,  1.08s/it][A04/25/2020 00:33:19 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:19 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:19 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:20 - INFO - models.brainqa -   Total Loss: 3.9075074195861816
+04/25/2020 00:33:20 - INFO - models.brainqa -   VQVAE emb_loss: 0.002386838663369417	ppl: 48.39238739013672
+04/25/2020 00:33:20 - INFO - models.brainqa -   Recon loss: 1.1106456518173218
+04/25/2020 00:33:20 - INFO - models.brainqa -   VQVAE Loss: 1.1130324602127075
+04/25/2020 00:33:20 - INFO - __main__ -   [BRAINQA] Loss: 5.0205397605896
+
+Iteration:   0%|          | 7/8224 [00:07<2:26:45,  1.07s/it][A04/25/2020 00:33:20 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:20 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:20 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:21 - INFO - models.brainqa -   Total Loss: 2.9180383682250977
+04/25/2020 00:33:21 - INFO - models.brainqa -   VQVAE emb_loss: 0.0022562965750694275	ppl: 49.09341812133789
+04/25/2020 00:33:21 - INFO - models.brainqa -   Recon loss: 1.1112858057022095
+04/25/2020 00:33:21 - INFO - models.brainqa -   VQVAE Loss: 1.113542079925537
+04/25/2020 00:33:21 - INFO - __main__ -   [BRAINQA] Loss: 4.031580448150635
+
+Iteration:   0%|          | 8/8224 [00:08<2:25:55,  1.07s/it][A04/25/2020 00:33:21 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:21 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:21 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:22 - INFO - models.brainqa -   Total Loss: 2.5351877212524414
+04/25/2020 00:33:22 - INFO - models.brainqa -   VQVAE emb_loss: 0.002139873569831252	ppl: 50.02397918701172
+04/25/2020 00:33:22 - INFO - models.brainqa -   Recon loss: 1.1112864017486572
+04/25/2020 00:33:22 - INFO - models.brainqa -   VQVAE Loss: 1.1134263277053833
+04/25/2020 00:33:22 - INFO - __main__ -   [BRAINQA] Loss: 3.648613929748535
+
+Iteration:   0%|          | 9/8224 [00:09<2:24:55,  1.06s/it][A04/25/2020 00:33:22 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:22 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:22 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:23 - INFO - models.brainqa -   Total Loss: 2.6747851371765137
+04/25/2020 00:33:23 - INFO - models.brainqa -   VQVAE emb_loss: 0.0020385694224387407	ppl: 49.80241394042969
+04/25/2020 00:33:23 - INFO - models.brainqa -   Recon loss: 1.1104257106781006
+04/25/2020 00:33:23 - INFO - models.brainqa -   VQVAE Loss: 1.1124643087387085
+04/25/2020 00:33:23 - INFO - __main__ -   [BRAINQA] Loss: 3.7872495651245117
+
+Iteration:   0%|          | 10/8224 [00:10<2:24:29,  1.06s/it][A04/25/2020 00:33:23 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:23 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:23 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:24 - INFO - models.brainqa -   Total Loss: 2.610762596130371
+04/25/2020 00:33:24 - INFO - models.brainqa -   VQVAE emb_loss: 0.0019505397649481893	ppl: 48.0556640625
+04/25/2020 00:33:24 - INFO - models.brainqa -   Recon loss: 1.1106337308883667
+04/25/2020 00:33:24 - INFO - models.brainqa -   VQVAE Loss: 1.1125842332839966
+04/25/2020 00:33:24 - INFO - __main__ -   [BRAINQA] Loss: 3.723346710205078
+
+Iteration:   0%|          | 11/8224 [00:11<2:23:57,  1.05s/it][A04/25/2020 00:33:24 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:24 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:24 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:25 - INFO - models.brainqa -   Total Loss: 3.1185309886932373
+04/25/2020 00:33:25 - INFO - models.brainqa -   VQVAE emb_loss: 0.0018469539936631918	ppl: 46.424468994140625
+04/25/2020 00:33:25 - INFO - models.brainqa -   Recon loss: 1.1106048822402954
+04/25/2020 00:33:25 - INFO - models.brainqa -   VQVAE Loss: 1.1124517917633057
+04/25/2020 00:33:25 - INFO - __main__ -   [BRAINQA] Loss: 4.230982780456543
+
+Iteration:   0%|          | 12/8224 [00:12<2:23:50,  1.05s/it][A04/25/2020 00:33:26 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:26 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:26 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:26 - INFO - models.brainqa -   Total Loss: 3.1975224018096924
+04/25/2020 00:33:26 - INFO - models.brainqa -   VQVAE emb_loss: 0.0017714034765958786	ppl: 47.34077835083008
+04/25/2020 00:33:26 - INFO - models.brainqa -   Recon loss: 1.110408067703247
+04/25/2020 00:33:26 - INFO - models.brainqa -   VQVAE Loss: 1.1121795177459717
+04/25/2020 00:33:26 - INFO - __main__ -   [BRAINQA] Loss: 4.309701919555664
+
+Iteration:   0%|          | 13/8224 [00:13<2:23:48,  1.05s/it][A04/25/2020 00:33:27 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:27 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:27 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:27 - INFO - models.brainqa -   Total Loss: 2.9809160232543945
+04/25/2020 00:33:27 - INFO - models.brainqa -   VQVAE emb_loss: 0.001686957897618413	ppl: 46.558204650878906
+04/25/2020 00:33:27 - INFO - models.brainqa -   Recon loss: 1.1103607416152954
+04/25/2020 00:33:27 - INFO - models.brainqa -   VQVAE Loss: 1.1120476722717285
+04/25/2020 00:33:28 - INFO - __main__ -   [BRAINQA] Loss: 4.092963695526123
+
+Iteration:   0%|          | 14/8224 [00:14<2:23:41,  1.05s/it][A04/25/2020 00:33:28 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:28 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:28 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:28 - INFO - models.brainqa -   Total Loss: 3.2672245502471924
+04/25/2020 00:33:28 - INFO - models.brainqa -   VQVAE emb_loss: 0.0016170954331755638	ppl: 47.89215850830078
+04/25/2020 00:33:28 - INFO - models.brainqa -   Recon loss: 1.1104236841201782
+04/25/2020 00:33:28 - INFO - models.brainqa -   VQVAE Loss: 1.1120407581329346
+04/25/2020 00:33:29 - INFO - __main__ -   [BRAINQA] Loss: 4.379265308380127
+
+Iteration:   0%|          | 15/8224 [00:15<2:23:52,  1.05s/it][A04/25/2020 00:33:29 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:29 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:29 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:29 - INFO - models.brainqa -   Total Loss: 2.3109331130981445
+04/25/2020 00:33:29 - INFO - models.brainqa -   VQVAE emb_loss: 0.0015522033208981156	ppl: 45.605106353759766
+04/25/2020 00:33:29 - INFO - models.brainqa -   Recon loss: 1.1102752685546875
+04/25/2020 00:33:29 - INFO - models.brainqa -   VQVAE Loss: 1.1118274927139282
+04/25/2020 00:33:30 - INFO - __main__ -   [BRAINQA] Loss: 3.422760486602783
+
+Iteration:   0%|          | 16/8224 [00:16<2:23:35,  1.05s/it][A04/25/2020 00:33:30 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:30 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:30 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:30 - INFO - models.brainqa -   Total Loss: 1.9983160495758057
+04/25/2020 00:33:30 - INFO - models.brainqa -   VQVAE emb_loss: 0.0014971381751820445	ppl: 46.482261657714844
+04/25/2020 00:33:30 - INFO - models.brainqa -   Recon loss: 1.1099051237106323
+04/25/2020 00:33:30 - INFO - models.brainqa -   VQVAE Loss: 1.1114022731781006
+04/25/2020 00:33:31 - INFO - __main__ -   [BRAINQA] Loss: 3.1097183227539062
+
+Iteration:   0%|          | 17/8224 [00:18<2:23:35,  1.05s/it][A04/25/2020 00:33:31 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:31 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:31 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:31 - INFO - models.brainqa -   Total Loss: 4.309986114501953
+04/25/2020 00:33:31 - INFO - models.brainqa -   VQVAE emb_loss: 0.0014409751165658236	ppl: 41.56502914428711
+04/25/2020 00:33:31 - INFO - models.brainqa -   Recon loss: 1.1094441413879395
+04/25/2020 00:33:31 - INFO - models.brainqa -   VQVAE Loss: 1.1108851432800293
+04/25/2020 00:33:32 - INFO - __main__ -   [BRAINQA] Loss: 5.420871257781982
+
+Iteration:   0%|          | 18/8224 [00:19<2:23:28,  1.05s/it][A04/25/2020 00:33:32 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:32 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:32 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:32 - INFO - models.brainqa -   Total Loss: 2.6517581939697266
+04/25/2020 00:33:32 - INFO - models.brainqa -   VQVAE emb_loss: 0.0013964803656563163	ppl: 42.75177001953125
+04/25/2020 00:33:32 - INFO - models.brainqa -   Recon loss: 1.1101363897323608
+04/25/2020 00:33:32 - INFO - models.brainqa -   VQVAE Loss: 1.1115329265594482
+04/25/2020 00:33:33 - INFO - __main__ -   [BRAINQA] Loss: 3.763291120529175
+
+Iteration:   0%|          | 19/8224 [00:20<2:23:40,  1.05s/it][A04/25/2020 00:33:33 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:33 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:33 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:33 - INFO - models.brainqa -   Total Loss: 2.804434299468994
+04/25/2020 00:33:33 - INFO - models.brainqa -   VQVAE emb_loss: 0.0013510684948414564	ppl: 41.75332260131836
+04/25/2020 00:33:33 - INFO - models.brainqa -   Recon loss: 1.110148310661316
+04/25/2020 00:33:33 - INFO - models.brainqa -   VQVAE Loss: 1.1114994287490845
+04/25/2020 00:33:34 - INFO - __main__ -   [BRAINQA] Loss: 3.915933847427368
+
+Iteration:   0%|          | 20/8224 [00:21<2:23:37,  1.05s/it][A04/25/2020 00:33:34 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:34 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:34 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:34 - INFO - models.brainqa -   Total Loss: 2.852937698364258
+04/25/2020 00:33:34 - INFO - models.brainqa -   VQVAE emb_loss: 0.001308692735619843	ppl: 40.592655181884766
+04/25/2020 00:33:34 - INFO - models.brainqa -   Recon loss: 1.1097303628921509
+04/25/2020 00:33:34 - INFO - models.brainqa -   VQVAE Loss: 1.1110390424728394
+04/25/2020 00:33:35 - INFO - __main__ -   [BRAINQA] Loss: 3.9639768600463867
+
+Iteration:   0%|          | 21/8224 [00:22<2:23:34,  1.05s/it][A04/25/2020 00:33:35 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:35 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:35 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:35 - INFO - models.brainqa -   Total Loss: 2.5788075923919678
+04/25/2020 00:33:35 - INFO - models.brainqa -   VQVAE emb_loss: 0.0012722630053758621	ppl: 39.45301055908203
+04/25/2020 00:33:35 - INFO - models.brainqa -   Recon loss: 1.1093782186508179
+04/25/2020 00:33:35 - INFO - models.brainqa -   VQVAE Loss: 1.1106505393981934
+04/25/2020 00:33:36 - INFO - __main__ -   [BRAINQA] Loss: 3.689458131790161
+
+Iteration:   0%|          | 22/8224 [00:23<2:23:54,  1.05s/it][A04/25/2020 00:33:36 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:36 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:36 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:36 - INFO - models.brainqa -   Total Loss: 2.525312900543213
+04/25/2020 00:33:36 - INFO - models.brainqa -   VQVAE emb_loss: 0.0012397891841828823	ppl: 37.778839111328125
+04/25/2020 00:33:36 - INFO - models.brainqa -   Recon loss: 1.109167218208313
+04/25/2020 00:33:36 - INFO - models.brainqa -   VQVAE Loss: 1.1104069948196411
+04/25/2020 00:33:37 - INFO - __main__ -   [BRAINQA] Loss: 3.6357197761535645
+
+Iteration:   0%|          | 23/8224 [00:24<2:24:03,  1.05s/it][A04/25/2020 00:33:37 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:37 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:37 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:37 - INFO - models.brainqa -   Total Loss: 2.688771963119507
+04/25/2020 00:33:37 - INFO - models.brainqa -   VQVAE emb_loss: 0.0012061948655173182	ppl: 36.59798812866211
+04/25/2020 00:33:37 - INFO - models.brainqa -   Recon loss: 1.1095714569091797
+04/25/2020 00:33:37 - INFO - models.brainqa -   VQVAE Loss: 1.1107776165008545
+04/25/2020 00:33:38 - INFO - __main__ -   [BRAINQA] Loss: 3.7995495796203613
+
+Iteration:   0%|          | 24/8224 [00:25<2:23:46,  1.05s/it][A04/25/2020 00:33:38 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:38 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:38 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:38 - INFO - models.brainqa -   Total Loss: 3.133171558380127
+04/25/2020 00:33:38 - INFO - models.brainqa -   VQVAE emb_loss: 0.0011832857271656394	ppl: 36.83427810668945
+04/25/2020 00:33:38 - INFO - models.brainqa -   Recon loss: 1.1090775728225708
+04/25/2020 00:33:38 - INFO - models.brainqa -   VQVAE Loss: 1.1102608442306519
+04/25/2020 00:33:39 - INFO - __main__ -   [BRAINQA] Loss: 4.243432521820068
+
+Iteration:   0%|          | 25/8224 [00:26<2:24:21,  1.06s/it][A04/25/2020 00:33:39 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:39 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:39 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:40 - INFO - models.brainqa -   Total Loss: 2.6886637210845947
+04/25/2020 00:33:40 - INFO - models.brainqa -   VQVAE emb_loss: 0.0011571128852665424	ppl: 35.638710021972656
+04/25/2020 00:33:40 - INFO - models.brainqa -   Recon loss: 1.1091238260269165
+04/25/2020 00:33:40 - INFO - models.brainqa -   VQVAE Loss: 1.110280990600586
+04/25/2020 00:33:40 - INFO - __main__ -   [BRAINQA] Loss: 3.7989447116851807
+
+Iteration:   0%|          | 26/8224 [00:27<2:24:24,  1.06s/it][A04/25/2020 00:33:40 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:40 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:40 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:41 - INFO - models.brainqa -   Total Loss: 2.657602071762085
+04/25/2020 00:33:41 - INFO - models.brainqa -   VQVAE emb_loss: 0.0011353007284924388	ppl: 35.72339630126953
+04/25/2020 00:33:41 - INFO - models.brainqa -   Recon loss: 1.1092793941497803
+04/25/2020 00:33:41 - INFO - models.brainqa -   VQVAE Loss: 1.110414743423462
+04/25/2020 00:33:41 - INFO - __main__ -   [BRAINQA] Loss: 3.768016815185547
+
+Iteration:   0%|          | 27/8224 [00:28<2:25:36,  1.07s/it][A04/25/2020 00:33:41 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:41 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:41 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:42 - INFO - models.brainqa -   Total Loss: 3.2083358764648438
+04/25/2020 00:33:42 - INFO - models.brainqa -   VQVAE emb_loss: 0.0011123028816655278	ppl: 33.672664642333984
+04/25/2020 00:33:42 - INFO - models.brainqa -   Recon loss: 1.1089383363723755
+04/25/2020 00:33:42 - INFO - models.brainqa -   VQVAE Loss: 1.1100506782531738
+04/25/2020 00:33:42 - INFO - __main__ -   [BRAINQA] Loss: 4.318386554718018
+
+Iteration:   0%|          | 28/8224 [00:29<2:25:22,  1.06s/it][A04/25/2020 00:33:42 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:42 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:42 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:43 - INFO - models.brainqa -   Total Loss: 2.349348545074463
+04/25/2020 00:33:43 - INFO - models.brainqa -   VQVAE emb_loss: 0.001091616228222847	ppl: 33.21128463745117
+04/25/2020 00:33:43 - INFO - models.brainqa -   Recon loss: 1.1092588901519775
+04/25/2020 00:33:43 - INFO - models.brainqa -   VQVAE Loss: 1.110350489616394
+04/25/2020 00:33:43 - INFO - __main__ -   [BRAINQA] Loss: 3.4596991539001465
+
+Iteration:   0%|          | 29/8224 [00:30<2:25:07,  1.06s/it][A04/25/2020 00:33:43 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:43 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:43 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:44 - INFO - models.brainqa -   Total Loss: 2.866812229156494
+04/25/2020 00:33:44 - INFO - models.brainqa -   VQVAE emb_loss: 0.0010754808317869902	ppl: 32.058494567871094
+04/25/2020 00:33:44 - INFO - models.brainqa -   Recon loss: 1.1092880964279175
+04/25/2020 00:33:44 - INFO - models.brainqa -   VQVAE Loss: 1.1103636026382446
+04/25/2020 00:33:44 - INFO - __main__ -   [BRAINQA] Loss: 3.977175712585449
+
+Iteration:   0%|          | 30/8224 [00:31<2:24:51,  1.06s/it][A04/25/2020 00:33:45 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:45 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:45 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:45 - INFO - models.brainqa -   Total Loss: 2.5493431091308594
+04/25/2020 00:33:45 - INFO - models.brainqa -   VQVAE emb_loss: 0.00105393142439425	ppl: 31.41750717163086
+04/25/2020 00:33:45 - INFO - models.brainqa -   Recon loss: 1.1088804006576538
+04/25/2020 00:33:45 - INFO - models.brainqa -   VQVAE Loss: 1.1099343299865723
+04/25/2020 00:33:45 - INFO - __main__ -   [BRAINQA] Loss: 3.6592774391174316
+
+Iteration:   0%|          | 31/8224 [00:32<2:26:17,  1.07s/it][A04/25/2020 00:33:46 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:46 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:46 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:46 - INFO - models.brainqa -   Total Loss: 2.4485621452331543
+04/25/2020 00:33:46 - INFO - models.brainqa -   VQVAE emb_loss: 0.0010362679604440928	ppl: 31.160484313964844
+04/25/2020 00:33:46 - INFO - models.brainqa -   Recon loss: 1.1090095043182373
+04/25/2020 00:33:46 - INFO - models.brainqa -   VQVAE Loss: 1.1100457906723022
+04/25/2020 00:33:47 - INFO - __main__ -   [BRAINQA] Loss: 3.558607816696167
+
+Iteration:   0%|          | 32/8224 [00:33<2:25:43,  1.07s/it][A04/25/2020 00:33:47 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:47 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:47 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:47 - INFO - models.brainqa -   Total Loss: 2.7600255012512207
+04/25/2020 00:33:47 - INFO - models.brainqa -   VQVAE emb_loss: 0.0010202936828136444	ppl: 29.613176345825195
+04/25/2020 00:33:47 - INFO - models.brainqa -   Recon loss: 1.1091352701187134
+04/25/2020 00:33:47 - INFO - models.brainqa -   VQVAE Loss: 1.1101555824279785
+04/25/2020 00:33:48 - INFO - __main__ -   [BRAINQA] Loss: 3.870181083679199
+
+Iteration:   0%|          | 33/8224 [00:35<2:26:16,  1.07s/it][A04/25/2020 00:33:48 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:48 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:48 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:48 - INFO - models.brainqa -   Total Loss: 2.7456753253936768
+04/25/2020 00:33:48 - INFO - models.brainqa -   VQVAE emb_loss: 0.0010041594505310059	ppl: 28.724445343017578
+04/25/2020 00:33:48 - INFO - models.brainqa -   Recon loss: 1.1081875562667847
+04/25/2020 00:33:48 - INFO - models.brainqa -   VQVAE Loss: 1.109191656112671
+04/25/2020 00:33:49 - INFO - __main__ -   [BRAINQA] Loss: 3.8548669815063477
+
+Iteration:   0%|          | 34/8224 [00:36<2:25:51,  1.07s/it][A04/25/2020 00:33:49 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:49 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:49 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:49 - INFO - models.brainqa -   Total Loss: 2.7589526176452637
+04/25/2020 00:33:49 - INFO - models.brainqa -   VQVAE emb_loss: 0.000989456893876195	ppl: 28.09168243408203
+04/25/2020 00:33:49 - INFO - models.brainqa -   Recon loss: 1.1079555749893188
+04/25/2020 00:33:49 - INFO - models.brainqa -   VQVAE Loss: 1.1089450120925903
+04/25/2020 00:33:50 - INFO - __main__ -   [BRAINQA] Loss: 3.8678975105285645
+
+Iteration:   0%|          | 35/8224 [00:37<2:25:53,  1.07s/it][A04/25/2020 00:33:50 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:50 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:50 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:50 - INFO - models.brainqa -   Total Loss: 2.6351122856140137
+04/25/2020 00:33:50 - INFO - models.brainqa -   VQVAE emb_loss: 0.0009762253612279892	ppl: 27.431507110595703
+04/25/2020 00:33:50 - INFO - models.brainqa -   Recon loss: 1.107576608657837
+04/25/2020 00:33:50 - INFO - models.brainqa -   VQVAE Loss: 1.1085528135299683
+04/25/2020 00:33:51 - INFO - __main__ -   [BRAINQA] Loss: 3.7436652183532715
+
+Iteration:   0%|          | 36/8224 [00:38<2:25:39,  1.07s/it][A04/25/2020 00:33:51 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:51 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:51 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:51 - INFO - models.brainqa -   Total Loss: 3.4162638187408447
+04/25/2020 00:33:51 - INFO - models.brainqa -   VQVAE emb_loss: 0.0009621704230085015	ppl: 26.022428512573242
+04/25/2020 00:33:51 - INFO - models.brainqa -   Recon loss: 1.1079853773117065
+04/25/2020 00:33:51 - INFO - models.brainqa -   VQVAE Loss: 1.108947515487671
+04/25/2020 00:33:52 - INFO - __main__ -   [BRAINQA] Loss: 4.525211334228516
+
+Iteration:   0%|          | 37/8224 [00:39<2:25:24,  1.07s/it][A04/25/2020 00:33:52 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:52 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:52 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:52 - INFO - models.brainqa -   Total Loss: 2.8027987480163574
+04/25/2020 00:33:52 - INFO - models.brainqa -   VQVAE emb_loss: 0.0009503767360001802	ppl: 24.962024688720703
+04/25/2020 00:33:52 - INFO - models.brainqa -   Recon loss: 1.1083027124404907
+04/25/2020 00:33:52 - INFO - models.brainqa -   VQVAE Loss: 1.1092530488967896
+04/25/2020 00:33:53 - INFO - __main__ -   [BRAINQA] Loss: 3.9120516777038574
+
+Iteration:   0%|          | 38/8224 [00:40<2:26:13,  1.07s/it][A04/25/2020 00:33:53 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:53 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:53 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:53 - INFO - models.brainqa -   Total Loss: 3.3439698219299316
+04/25/2020 00:33:53 - INFO - models.brainqa -   VQVAE emb_loss: 0.0009367704624310136	ppl: 24.809749603271484
+04/25/2020 00:33:53 - INFO - models.brainqa -   Recon loss: 1.1080785989761353
+04/25/2020 00:33:53 - INFO - models.brainqa -   VQVAE Loss: 1.1090153455734253
+04/25/2020 00:33:54 - INFO - __main__ -   [BRAINQA] Loss: 4.4529852867126465
+
+Iteration:   0%|          | 39/8224 [00:41<2:25:53,  1.07s/it][A04/25/2020 00:33:54 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:54 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:54 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:55 - INFO - models.brainqa -   Total Loss: 3.0446391105651855
+04/25/2020 00:33:55 - INFO - models.brainqa -   VQVAE emb_loss: 0.0009261462837457657	ppl: 23.904985427856445
+04/25/2020 00:33:55 - INFO - models.brainqa -   Recon loss: 1.1081409454345703
+04/25/2020 00:33:55 - INFO - models.brainqa -   VQVAE Loss: 1.1090670824050903
+04/25/2020 00:33:55 - INFO - __main__ -   [BRAINQA] Loss: 4.153706073760986
+
+Iteration:   0%|          | 40/8224 [00:42<2:25:44,  1.07s/it][A04/25/2020 00:33:55 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:55 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:55 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:56 - INFO - models.brainqa -   Total Loss: 2.524470806121826
+04/25/2020 00:33:56 - INFO - models.brainqa -   VQVAE emb_loss: 0.0009124117204919457	ppl: 22.976417541503906
+04/25/2020 00:33:56 - INFO - models.brainqa -   Recon loss: 1.107707142829895
+04/25/2020 00:33:56 - INFO - models.brainqa -   VQVAE Loss: 1.1086195707321167
+04/25/2020 00:33:56 - INFO - __main__ -   [BRAINQA] Loss: 3.6330904960632324
+
+Iteration:   0%|          | 41/8224 [00:43<2:26:58,  1.08s/it][A04/25/2020 00:33:56 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:56 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:56 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:57 - INFO - models.brainqa -   Total Loss: 3.0531086921691895
+04/25/2020 00:33:57 - INFO - models.brainqa -   VQVAE emb_loss: 0.0009045731858350337	ppl: 22.609033584594727
+04/25/2020 00:33:57 - INFO - models.brainqa -   Recon loss: 1.1071697473526
+04/25/2020 00:33:57 - INFO - models.brainqa -   VQVAE Loss: 1.1080743074417114
+04/25/2020 00:33:57 - INFO - __main__ -   [BRAINQA] Loss: 4.161182880401611
+
+Iteration:   1%|          | 42/8224 [00:44<2:26:39,  1.08s/it][A04/25/2020 00:33:57 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:57 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:57 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:58 - INFO - models.brainqa -   Total Loss: 2.408191204071045
+04/25/2020 00:33:58 - INFO - models.brainqa -   VQVAE emb_loss: 0.0008930683834478259	ppl: 20.841094970703125
+04/25/2020 00:33:58 - INFO - models.brainqa -   Recon loss: 1.1076050996780396
+04/25/2020 00:33:58 - INFO - models.brainqa -   VQVAE Loss: 1.108498215675354
+04/25/2020 00:33:58 - INFO - __main__ -   [BRAINQA] Loss: 3.5166893005371094
+
+Iteration:   1%|          | 43/8224 [00:45<2:26:15,  1.07s/it][A04/25/2020 00:33:58 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:33:58 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:33:58 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:33:59 - INFO - models.brainqa -   Total Loss: 2.2249138355255127
+04/25/2020 00:33:59 - INFO - models.brainqa -   VQVAE emb_loss: 0.0008836935739964247	ppl: 21.19749641418457
+04/25/2020 00:33:59 - INFO - models.brainqa -   Recon loss: 1.1070491075515747
+04/25/2020 00:33:59 - INFO - models.brainqa -   VQVAE Loss: 1.1079328060150146
+04/25/2020 00:33:59 - INFO - __main__ -   [BRAINQA] Loss: 3.3328466415405273
+
+Iteration:   1%|          | 44/8224 [00:46<2:25:59,  1.07s/it][A04/25/2020 00:34:00 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:00 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:00 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:00 - INFO - models.brainqa -   Total Loss: 3.223644256591797
+04/25/2020 00:34:00 - INFO - models.brainqa -   VQVAE emb_loss: 0.0008749158005230129	ppl: 20.087017059326172
+04/25/2020 00:34:00 - INFO - models.brainqa -   Recon loss: 1.1073777675628662
+04/25/2020 00:34:00 - INFO - models.brainqa -   VQVAE Loss: 1.1082526445388794
+04/25/2020 00:34:01 - INFO - __main__ -   [BRAINQA] Loss: 4.331896781921387
+
+Iteration:   1%|          | 45/8224 [00:47<2:27:27,  1.08s/it][A04/25/2020 00:34:01 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:01 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:01 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:01 - INFO - models.brainqa -   Total Loss: 2.6383700370788574
+04/25/2020 00:34:01 - INFO - models.brainqa -   VQVAE emb_loss: 0.0008678054437041283	ppl: 19.823780059814453
+04/25/2020 00:34:01 - INFO - models.brainqa -   Recon loss: 1.1072193384170532
+04/25/2020 00:34:01 - INFO - models.brainqa -   VQVAE Loss: 1.108087182044983
+04/25/2020 00:34:02 - INFO - __main__ -   [BRAINQA] Loss: 3.746457099914551
+
+Iteration:   1%|          | 46/8224 [00:48<2:26:42,  1.08s/it][A04/25/2020 00:34:02 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:02 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:02 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:02 - INFO - models.brainqa -   Total Loss: 2.6946659088134766
+04/25/2020 00:34:02 - INFO - models.brainqa -   VQVAE emb_loss: 0.0008603796013630927	ppl: 19.38404655456543
+04/25/2020 00:34:02 - INFO - models.brainqa -   Recon loss: 1.107434630393982
+04/25/2020 00:34:02 - INFO - models.brainqa -   VQVAE Loss: 1.10829496383667
+04/25/2020 00:34:03 - INFO - __main__ -   [BRAINQA] Loss: 3.8029608726501465
+
+Iteration:   1%|          | 47/8224 [00:50<2:27:27,  1.08s/it][A04/25/2020 00:34:03 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:03 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:03 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:03 - INFO - models.brainqa -   Total Loss: 2.4492368698120117
+04/25/2020 00:34:03 - INFO - models.brainqa -   VQVAE emb_loss: 0.0008511776104569435	ppl: 18.332460403442383
+04/25/2020 00:34:03 - INFO - models.brainqa -   Recon loss: 1.1073250770568848
+04/25/2020 00:34:03 - INFO - models.brainqa -   VQVAE Loss: 1.1081762313842773
+04/25/2020 00:34:04 - INFO - __main__ -   [BRAINQA] Loss: 3.557413101196289
+
+Iteration:   1%|          | 48/8224 [00:51<2:28:39,  1.09s/it][A04/25/2020 00:34:04 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:04 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:04 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:04 - INFO - models.brainqa -   Total Loss: 3.013369560241699
+04/25/2020 00:34:04 - INFO - models.brainqa -   VQVAE emb_loss: 0.0008444071281701326	ppl: 17.79233169555664
+04/25/2020 00:34:04 - INFO - models.brainqa -   Recon loss: 1.1066718101501465
+04/25/2020 00:34:04 - INFO - models.brainqa -   VQVAE Loss: 1.1075161695480347
+04/25/2020 00:34:05 - INFO - __main__ -   [BRAINQA] Loss: 4.120885848999023
+
+Iteration:   1%|          | 49/8224 [00:52<2:27:49,  1.08s/it][A04/25/2020 00:34:05 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:05 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:05 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:05 - INFO - models.brainqa -   Total Loss: 3.5047197341918945
+04/25/2020 00:34:05 - INFO - models.brainqa -   VQVAE emb_loss: 0.0008384711691178381	ppl: 17.685422897338867
+04/25/2020 00:34:05 - INFO - models.brainqa -   Recon loss: 1.1068342924118042
+04/25/2020 00:34:05 - INFO - models.brainqa -   VQVAE Loss: 1.1076728105545044
+04/25/2020 00:34:06 - INFO - __main__ -   [BRAINQA] Loss: 4.612392425537109
+
+Iteration:   1%|          | 50/8224 [00:53<2:28:03,  1.09s/it][A04/25/2020 00:34:06 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:06 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:06 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:06 - INFO - models.brainqa -   Total Loss: 2.911139488220215
+04/25/2020 00:34:06 - INFO - models.brainqa -   VQVAE emb_loss: 0.0008281468180939555	ppl: 17.049848556518555
+04/25/2020 00:34:06 - INFO - models.brainqa -   Recon loss: 1.106382966041565
+04/25/2020 00:34:06 - INFO - models.brainqa -   VQVAE Loss: 1.1072111129760742
+04/25/2020 00:34:07 - INFO - __main__ -   [BRAINQA] Loss: 4.018350601196289
+
+Iteration:   1%|          | 51/8224 [00:54<2:27:23,  1.08s/it][A04/25/2020 00:34:07 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:07 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:07 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:07 - INFO - models.brainqa -   Total Loss: 2.8958041667938232
+04/25/2020 00:34:07 - INFO - models.brainqa -   VQVAE emb_loss: 0.0008223915938287973	ppl: 16.121856689453125
+04/25/2020 00:34:07 - INFO - models.brainqa -   Recon loss: 1.1068352460861206
+04/25/2020 00:34:07 - INFO - models.brainqa -   VQVAE Loss: 1.1076576709747314
+04/25/2020 00:34:08 - INFO - __main__ -   [BRAINQA] Loss: 4.003461837768555
+
+Iteration:   1%|          | 52/8224 [00:55<2:26:58,  1.08s/it][A04/25/2020 00:34:08 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:08 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:08 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:09 - INFO - models.brainqa -   Total Loss: 2.7832517623901367
+04/25/2020 00:34:09 - INFO - models.brainqa -   VQVAE emb_loss: 0.0008175986586138606	ppl: 15.291743278503418
+04/25/2020 00:34:09 - INFO - models.brainqa -   Recon loss: 1.1064987182617188
+04/25/2020 00:34:09 - INFO - models.brainqa -   VQVAE Loss: 1.1073163747787476
+04/25/2020 00:34:09 - INFO - __main__ -   [BRAINQA] Loss: 3.890568256378174
+
+Iteration:   1%|          | 53/8224 [00:56<2:27:49,  1.09s/it][A04/25/2020 00:34:09 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:09 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:09 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:10 - INFO - models.brainqa -   Total Loss: 2.183535099029541
+04/25/2020 00:34:10 - INFO - models.brainqa -   VQVAE emb_loss: 0.0008094633230939507	ppl: 15.498790740966797
+04/25/2020 00:34:10 - INFO - models.brainqa -   Recon loss: 1.106497049331665
+04/25/2020 00:34:10 - INFO - models.brainqa -   VQVAE Loss: 1.1073064804077148
+04/25/2020 00:34:10 - INFO - __main__ -   [BRAINQA] Loss: 3.290841579437256
+
+Iteration:   1%|          | 54/8224 [00:57<2:26:51,  1.08s/it][A04/25/2020 00:34:10 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:10 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:10 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:11 - INFO - models.brainqa -   Total Loss: 2.6990325450897217
+04/25/2020 00:34:11 - INFO - models.brainqa -   VQVAE emb_loss: 0.0008037896477617323	ppl: 14.868826866149902
+04/25/2020 00:34:11 - INFO - models.brainqa -   Recon loss: 1.1061009168624878
+04/25/2020 00:34:11 - INFO - models.brainqa -   VQVAE Loss: 1.1069047451019287
+04/25/2020 00:34:11 - INFO - __main__ -   [BRAINQA] Loss: 3.8059372901916504
+
+Iteration:   1%|          | 55/8224 [00:58<2:26:25,  1.08s/it][A04/25/2020 00:34:11 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:11 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:11 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:12 - INFO - models.brainqa -   Total Loss: 3.034733772277832
+04/25/2020 00:34:12 - INFO - models.brainqa -   VQVAE emb_loss: 0.0007970197475515306	ppl: 14.429814338684082
+04/25/2020 00:34:12 - INFO - models.brainqa -   Recon loss: 1.1059595346450806
+04/25/2020 00:34:12 - INFO - models.brainqa -   VQVAE Loss: 1.106756567955017
+04/25/2020 00:34:12 - INFO - __main__ -   [BRAINQA] Loss: 4.141490459442139
+
+Iteration:   1%|          | 56/8224 [00:59<2:26:18,  1.07s/it][A04/25/2020 00:34:13 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:13 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:13 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:13 - INFO - models.brainqa -   Total Loss: 3.3057847023010254
+04/25/2020 00:34:13 - INFO - models.brainqa -   VQVAE emb_loss: 0.0007922566146589816	ppl: 13.724041938781738
+04/25/2020 00:34:13 - INFO - models.brainqa -   Recon loss: 1.1060205698013306
+04/25/2020 00:34:13 - INFO - models.brainqa -   VQVAE Loss: 1.106812834739685
+04/25/2020 00:34:13 - INFO - __main__ -   [BRAINQA] Loss: 4.41259765625
+
+Iteration:   1%|          | 57/8224 [01:00<2:26:24,  1.08s/it][A04/25/2020 00:34:14 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:14 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:14 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:14 - INFO - models.brainqa -   Total Loss: 1.8398420810699463
+04/25/2020 00:34:14 - INFO - models.brainqa -   VQVAE emb_loss: 0.0007855830481275916	ppl: 13.41735553741455
+04/25/2020 00:34:14 - INFO - models.brainqa -   Recon loss: 1.105992078781128
+04/25/2020 00:34:14 - INFO - models.brainqa -   VQVAE Loss: 1.1067776679992676
+04/25/2020 00:34:15 - INFO - __main__ -   [BRAINQA] Loss: 2.946619749069214
+
+Iteration:   1%|          | 58/8224 [01:01<2:26:28,  1.08s/it][A04/25/2020 00:34:15 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:15 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:15 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:15 - INFO - models.brainqa -   Total Loss: 2.398430824279785
+04/25/2020 00:34:15 - INFO - models.brainqa -   VQVAE emb_loss: 0.0007796629797667265	ppl: 13.136582374572754
+04/25/2020 00:34:15 - INFO - models.brainqa -   Recon loss: 1.1058235168457031
+04/25/2020 00:34:15 - INFO - models.brainqa -   VQVAE Loss: 1.1066031455993652
+04/25/2020 00:34:16 - INFO - __main__ -   [BRAINQA] Loss: 3.5050339698791504
+
+Iteration:   1%|          | 59/8224 [01:03<2:26:21,  1.08s/it][A04/25/2020 00:34:16 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:16 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:16 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:16 - INFO - models.brainqa -   Total Loss: 1.8055346012115479
+04/25/2020 00:34:16 - INFO - models.brainqa -   VQVAE emb_loss: 0.0007761563174426556	ppl: 12.881256103515625
+04/25/2020 00:34:16 - INFO - models.brainqa -   Recon loss: 1.1058152914047241
+04/25/2020 00:34:16 - INFO - models.brainqa -   VQVAE Loss: 1.1065914630889893
+04/25/2020 00:34:17 - INFO - __main__ -   [BRAINQA] Loss: 2.912126064300537
+
+Iteration:   1%|          | 60/8224 [01:04<2:26:10,  1.07s/it][A04/25/2020 00:34:17 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:17 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:17 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:17 - INFO - models.brainqa -   Total Loss: 2.803114891052246
+04/25/2020 00:34:17 - INFO - models.brainqa -   VQVAE emb_loss: 0.0007695570238865912	ppl: 12.38788890838623
+04/25/2020 00:34:17 - INFO - models.brainqa -   Recon loss: 1.1059815883636475
+04/25/2020 00:34:17 - INFO - models.brainqa -   VQVAE Loss: 1.1067512035369873
+04/25/2020 00:34:18 - INFO - __main__ -   [BRAINQA] Loss: 3.9098660945892334
+
+Iteration:   1%|          | 61/8224 [01:05<2:25:45,  1.07s/it][A04/25/2020 00:34:18 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:18 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:18 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:18 - INFO - models.brainqa -   Total Loss: 2.476221799850464
+04/25/2020 00:34:18 - INFO - models.brainqa -   VQVAE emb_loss: 0.0007656174711883068	ppl: 12.401618957519531
+04/25/2020 00:34:18 - INFO - models.brainqa -   Recon loss: 1.1059985160827637
+04/25/2020 00:34:18 - INFO - models.brainqa -   VQVAE Loss: 1.1067640781402588
+04/25/2020 00:34:19 - INFO - __main__ -   [BRAINQA] Loss: 3.5829858779907227
+
+Iteration:   1%|          | 62/8224 [01:06<2:26:26,  1.08s/it][A04/25/2020 00:34:19 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:19 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:19 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:19 - INFO - models.brainqa -   Total Loss: 2.1923956871032715
+04/25/2020 00:34:19 - INFO - models.brainqa -   VQVAE emb_loss: 0.0007606057915836573	ppl: 11.710076332092285
+04/25/2020 00:34:19 - INFO - models.brainqa -   Recon loss: 1.1059503555297852
+04/25/2020 00:34:19 - INFO - models.brainqa -   VQVAE Loss: 1.1067109107971191
+04/25/2020 00:34:20 - INFO - __main__ -   [BRAINQA] Loss: 3.2991065979003906
+
+Iteration:   1%|          | 63/8224 [01:07<2:28:24,  1.09s/it][A04/25/2020 00:34:20 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:20 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:20 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:20 - INFO - models.brainqa -   Total Loss: 2.2622222900390625
+04/25/2020 00:34:20 - INFO - models.brainqa -   VQVAE emb_loss: 0.0007575731724500656	ppl: 11.320656776428223
+04/25/2020 00:34:20 - INFO - models.brainqa -   Recon loss: 1.105088233947754
+04/25/2020 00:34:20 - INFO - models.brainqa -   VQVAE Loss: 1.1058458089828491
+04/25/2020 00:34:21 - INFO - __main__ -   [BRAINQA] Loss: 3.368067979812622
+
+Iteration:   1%|          | 64/8224 [01:08<2:28:04,  1.09s/it][A04/25/2020 00:34:21 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:21 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:21 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:22 - INFO - models.brainqa -   Total Loss: 2.8226916790008545
+04/25/2020 00:34:22 - INFO - models.brainqa -   VQVAE emb_loss: 0.000750277831684798	ppl: 11.481910705566406
+04/25/2020 00:34:22 - INFO - models.brainqa -   Recon loss: 1.1055049896240234
+04/25/2020 00:34:22 - INFO - models.brainqa -   VQVAE Loss: 1.106255292892456
+04/25/2020 00:34:22 - INFO - __main__ -   [BRAINQA] Loss: 3.9289469718933105
+
+Iteration:   1%|          | 65/8224 [01:09<2:27:33,  1.09s/it][A04/25/2020 00:34:22 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:22 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:22 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:23 - INFO - models.brainqa -   Total Loss: 2.7430036067962646
+04/25/2020 00:34:23 - INFO - models.brainqa -   VQVAE emb_loss: 0.0007463969523087144	ppl: 10.996402740478516
+04/25/2020 00:34:23 - INFO - models.brainqa -   Recon loss: 1.1053725481033325
+04/25/2020 00:34:23 - INFO - models.brainqa -   VQVAE Loss: 1.10611891746521
+04/25/2020 00:34:23 - INFO - __main__ -   [BRAINQA] Loss: 3.8491225242614746
+
+Iteration:   1%|          | 66/8224 [01:10<2:27:20,  1.08s/it][A04/25/2020 00:34:23 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:23 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:23 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:24 - INFO - models.brainqa -   Total Loss: 3.1345386505126953
+04/25/2020 00:34:24 - INFO - models.brainqa -   VQVAE emb_loss: 0.000740282004699111	ppl: 10.61248779296875
+04/25/2020 00:34:24 - INFO - models.brainqa -   Recon loss: 1.1048487424850464
+04/25/2020 00:34:24 - INFO - models.brainqa -   VQVAE Loss: 1.1055890321731567
+04/25/2020 00:34:24 - INFO - __main__ -   [BRAINQA] Loss: 4.2401275634765625
+
+Iteration:   1%|          | 67/8224 [01:11<2:27:34,  1.09s/it][A04/25/2020 00:34:24 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:24 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:24 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:25 - INFO - models.brainqa -   Total Loss: 2.156667709350586
+04/25/2020 00:34:25 - INFO - models.brainqa -   VQVAE emb_loss: 0.000737214635591954	ppl: 10.195297241210938
+04/25/2020 00:34:25 - INFO - models.brainqa -   Recon loss: 1.1054964065551758
+04/25/2020 00:34:25 - INFO - models.brainqa -   VQVAE Loss: 1.1062335968017578
+04/25/2020 00:34:25 - INFO - __main__ -   [BRAINQA] Loss: 3.2629013061523438
+
+Iteration:   1%|          | 68/8224 [01:12<2:27:22,  1.08s/it][A04/25/2020 00:34:26 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:26 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:26 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:26 - INFO - models.brainqa -   Total Loss: 2.9328227043151855
+04/25/2020 00:34:26 - INFO - models.brainqa -   VQVAE emb_loss: 0.0007298777345567942	ppl: 10.13930892944336
+04/25/2020 00:34:26 - INFO - models.brainqa -   Recon loss: 1.104494333267212
+04/25/2020 00:34:26 - INFO - models.brainqa -   VQVAE Loss: 1.1052242517471313
+04/25/2020 00:34:26 - INFO - __main__ -   [BRAINQA] Loss: 4.038046836853027
+
+Iteration:   1%|          | 69/8224 [01:13<2:27:13,  1.08s/it][A04/25/2020 00:34:27 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:27 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:27 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:27 - INFO - models.brainqa -   Total Loss: 2.0392673015594482
+04/25/2020 00:34:27 - INFO - models.brainqa -   VQVAE emb_loss: 0.0007267063483595848	ppl: 9.368136405944824
+04/25/2020 00:34:27 - INFO - models.brainqa -   Recon loss: 1.1051394939422607
+04/25/2020 00:34:27 - INFO - models.brainqa -   VQVAE Loss: 1.1058661937713623
+04/25/2020 00:34:28 - INFO - __main__ -   [BRAINQA] Loss: 3.1451334953308105
+
+Iteration:   1%|          | 70/8224 [01:14<2:27:10,  1.08s/it][A04/25/2020 00:34:28 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:28 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:28 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:28 - INFO - models.brainqa -   Total Loss: 2.7310352325439453
+04/25/2020 00:34:28 - INFO - models.brainqa -   VQVAE emb_loss: 0.0007203813875094056	ppl: 9.165703773498535
+04/25/2020 00:34:28 - INFO - models.brainqa -   Recon loss: 1.1049859523773193
+04/25/2020 00:34:28 - INFO - models.brainqa -   VQVAE Loss: 1.1057063341140747
+04/25/2020 00:34:29 - INFO - __main__ -   [BRAINQA] Loss: 3.8367416858673096
+
+Iteration:   1%|          | 71/8224 [01:16<2:26:54,  1.08s/it][A04/25/2020 00:34:29 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:29 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:29 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:29 - INFO - models.brainqa -   Total Loss: 2.8276524543762207
+04/25/2020 00:34:29 - INFO - models.brainqa -   VQVAE emb_loss: 0.0007172884652391076	ppl: 9.18455982208252
+04/25/2020 00:34:29 - INFO - models.brainqa -   Recon loss: 1.104739785194397
+04/25/2020 00:34:29 - INFO - models.brainqa -   VQVAE Loss: 1.105457067489624
+04/25/2020 00:34:30 - INFO - __main__ -   [BRAINQA] Loss: 3.9331095218658447
+
+Iteration:   1%|          | 72/8224 [01:17<2:26:49,  1.08s/it][A04/25/2020 00:34:30 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:30 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:30 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:30 - INFO - models.brainqa -   Total Loss: 2.778805732727051
+04/25/2020 00:34:30 - INFO - models.brainqa -   VQVAE emb_loss: 0.0007127297576516867	ppl: 9.048315048217773
+04/25/2020 00:34:30 - INFO - models.brainqa -   Recon loss: 1.1047755479812622
+04/25/2020 00:34:30 - INFO - models.brainqa -   VQVAE Loss: 1.1054883003234863
+04/25/2020 00:34:31 - INFO - __main__ -   [BRAINQA] Loss: 3.884294033050537
+
+Iteration:   1%|          | 73/8224 [01:18<2:26:49,  1.08s/it][A04/25/2020 00:34:31 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:31 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:31 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:31 - INFO - models.brainqa -   Total Loss: 2.2143545150756836
+04/25/2020 00:34:31 - INFO - models.brainqa -   VQVAE emb_loss: 0.0007099809590727091	ppl: 8.596467971801758
+04/25/2020 00:34:31 - INFO - models.brainqa -   Recon loss: 1.1047393083572388
+04/25/2020 00:34:31 - INFO - models.brainqa -   VQVAE Loss: 1.1054493188858032
+04/25/2020 00:34:32 - INFO - __main__ -   [BRAINQA] Loss: 3.3198039531707764
+
+Iteration:   1%|          | 74/8224 [01:19<2:27:07,  1.08s/it][A04/25/2020 00:34:32 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:32 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:32 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:32 - INFO - models.brainqa -   Total Loss: 2.2405238151550293
+04/25/2020 00:34:32 - INFO - models.brainqa -   VQVAE emb_loss: 0.0007048568222671747	ppl: 8.343644142150879
+04/25/2020 00:34:32 - INFO - models.brainqa -   Recon loss: 1.1041431427001953
+04/25/2020 00:34:32 - INFO - models.brainqa -   VQVAE Loss: 1.104848027229309
+04/25/2020 00:34:33 - INFO - __main__ -   [BRAINQA] Loss: 3.345371961593628
+
+Iteration:   1%|          | 75/8224 [01:20<2:26:46,  1.08s/it][A04/25/2020 00:34:33 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:33 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:33 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:33 - INFO - models.brainqa -   Total Loss: 2.513701915740967
+04/25/2020 00:34:33 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006981659680604935	ppl: 8.475995063781738
+04/25/2020 00:34:33 - INFO - models.brainqa -   Recon loss: 1.104055643081665
+04/25/2020 00:34:33 - INFO - models.brainqa -   VQVAE Loss: 1.104753851890564
+04/25/2020 00:34:34 - INFO - __main__ -   [BRAINQA] Loss: 3.618455648422241
+
+Iteration:   1%|          | 76/8224 [01:21<2:26:32,  1.08s/it][A04/25/2020 00:34:34 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:34 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:34 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:35 - INFO - models.brainqa -   Total Loss: 2.7620177268981934
+04/25/2020 00:34:35 - INFO - models.brainqa -   VQVAE emb_loss: 0.00069393590092659	ppl: 8.004793167114258
+04/25/2020 00:34:35 - INFO - models.brainqa -   Recon loss: 1.104799509048462
+04/25/2020 00:34:35 - INFO - models.brainqa -   VQVAE Loss: 1.105493426322937
+04/25/2020 00:34:35 - INFO - __main__ -   [BRAINQA] Loss: 3.86751127243042
+
+Iteration:   1%|          | 77/8224 [01:22<2:26:36,  1.08s/it][A04/25/2020 00:34:35 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:35 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:35 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:36 - INFO - models.brainqa -   Total Loss: 2.23983097076416
+04/25/2020 00:34:36 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006893138634040952	ppl: 7.926906585693359
+04/25/2020 00:34:36 - INFO - models.brainqa -   Recon loss: 1.103973627090454
+04/25/2020 00:34:36 - INFO - models.brainqa -   VQVAE Loss: 1.1046628952026367
+04/25/2020 00:34:36 - INFO - __main__ -   [BRAINQA] Loss: 3.344493865966797
+
+Iteration:   1%|          | 78/8224 [01:23<2:26:47,  1.08s/it][A04/25/2020 00:34:36 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:36 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:36 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:37 - INFO - models.brainqa -   Total Loss: 3.0198283195495605
+04/25/2020 00:34:37 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006854926468804479	ppl: 7.614072799682617
+04/25/2020 00:34:37 - INFO - models.brainqa -   Recon loss: 1.1039845943450928
+04/25/2020 00:34:37 - INFO - models.brainqa -   VQVAE Loss: 1.1046700477600098
+04/25/2020 00:34:37 - INFO - __main__ -   [BRAINQA] Loss: 4.12449836730957
+
+Iteration:   1%|          | 79/8224 [01:24<2:26:48,  1.08s/it][A04/25/2020 00:34:37 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:37 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:37 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:38 - INFO - models.brainqa -   Total Loss: 3.420996904373169
+04/25/2020 00:34:38 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006808232865296304	ppl: 7.450999736785889
+04/25/2020 00:34:38 - INFO - models.brainqa -   Recon loss: 1.1036070585250854
+04/25/2020 00:34:38 - INFO - models.brainqa -   VQVAE Loss: 1.10428786277771
+04/25/2020 00:34:38 - INFO - __main__ -   [BRAINQA] Loss: 4.525284767150879
+
+Iteration:   1%|          | 80/8224 [01:25<2:26:55,  1.08s/it][A04/25/2020 00:34:38 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:38 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:38 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:39 - INFO - models.brainqa -   Total Loss: 3.286804437637329
+04/25/2020 00:34:39 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006755947833880782	ppl: 7.383826732635498
+04/25/2020 00:34:39 - INFO - models.brainqa -   Recon loss: 1.1040014028549194
+04/25/2020 00:34:39 - INFO - models.brainqa -   VQVAE Loss: 1.1046769618988037
+04/25/2020 00:34:39 - INFO - __main__ -   [BRAINQA] Loss: 4.391481399536133
+
+Iteration:   1%|          | 81/8224 [01:26<2:26:52,  1.08s/it][A04/25/2020 00:34:40 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:40 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:40 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:40 - INFO - models.brainqa -   Total Loss: 2.4370718002319336
+04/25/2020 00:34:40 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006725778803229332	ppl: 6.703245162963867
+04/25/2020 00:34:40 - INFO - models.brainqa -   Recon loss: 1.1033483743667603
+04/25/2020 00:34:40 - INFO - models.brainqa -   VQVAE Loss: 1.1040209531784058
+04/25/2020 00:34:41 - INFO - __main__ -   [BRAINQA] Loss: 3.541092872619629
+
+Iteration:   1%|          | 82/8224 [01:27<2:28:04,  1.09s/it][A04/25/2020 00:34:41 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:41 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:41 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:41 - INFO - models.brainqa -   Total Loss: 3.0743613243103027
+04/25/2020 00:34:41 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006693332688882947	ppl: 6.760695457458496
+04/25/2020 00:34:41 - INFO - models.brainqa -   Recon loss: 1.1036648750305176
+04/25/2020 00:34:41 - INFO - models.brainqa -   VQVAE Loss: 1.1043342351913452
+04/25/2020 00:34:42 - INFO - __main__ -   [BRAINQA] Loss: 4.1786956787109375
+
+Iteration:   1%|          | 83/8224 [01:29<2:29:00,  1.10s/it][A04/25/2020 00:34:42 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:42 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:42 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:42 - INFO - models.brainqa -   Total Loss: 3.8515355587005615
+04/25/2020 00:34:42 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006656413897871971	ppl: 6.4216766357421875
+04/25/2020 00:34:42 - INFO - models.brainqa -   Recon loss: 1.1036837100982666
+04/25/2020 00:34:42 - INFO - models.brainqa -   VQVAE Loss: 1.1043493747711182
+04/25/2020 00:34:43 - INFO - __main__ -   [BRAINQA] Loss: 4.95588493347168
+
+Iteration:   1%|          | 84/8224 [01:30<2:28:35,  1.10s/it][A04/25/2020 00:34:43 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:43 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:43 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:43 - INFO - models.brainqa -   Total Loss: 3.0959348678588867
+04/25/2020 00:34:43 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006591755081899464	ppl: 6.652354717254639
+04/25/2020 00:34:43 - INFO - models.brainqa -   Recon loss: 1.10283625125885
+04/25/2020 00:34:43 - INFO - models.brainqa -   VQVAE Loss: 1.103495478630066
+04/25/2020 00:34:44 - INFO - __main__ -   [BRAINQA] Loss: 4.199430465698242
+
+Iteration:   1%|          | 85/8224 [01:31<2:27:55,  1.09s/it][A04/25/2020 00:34:44 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:44 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:44 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:44 - INFO - models.brainqa -   Total Loss: 2.287168264389038
+04/25/2020 00:34:44 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006530036916956306	ppl: 6.326488971710205
+04/25/2020 00:34:44 - INFO - models.brainqa -   Recon loss: 1.102940559387207
+04/25/2020 00:34:44 - INFO - models.brainqa -   VQVAE Loss: 1.1035935878753662
+04/25/2020 00:34:45 - INFO - __main__ -   [BRAINQA] Loss: 3.3907618522644043
+
+Iteration:   1%|          | 86/8224 [01:32<2:27:29,  1.09s/it][A04/25/2020 00:34:45 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:45 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:45 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:45 - INFO - models.brainqa -   Total Loss: 2.9835734367370605
+04/25/2020 00:34:45 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006476842681877315	ppl: 6.342442989349365
+04/25/2020 00:34:45 - INFO - models.brainqa -   Recon loss: 1.1033109426498413
+04/25/2020 00:34:45 - INFO - models.brainqa -   VQVAE Loss: 1.1039586067199707
+04/25/2020 00:34:46 - INFO - __main__ -   [BRAINQA] Loss: 4.087532043457031
+
+Iteration:   1%|          | 87/8224 [01:33<2:27:03,  1.08s/it][A04/25/2020 00:34:46 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:46 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:46 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:46 - INFO - models.brainqa -   Total Loss: 2.0446205139160156
+04/25/2020 00:34:46 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006440967554226518	ppl: 5.851164817810059
+04/25/2020 00:34:46 - INFO - models.brainqa -   Recon loss: 1.103097677230835
+04/25/2020 00:34:46 - INFO - models.brainqa -   VQVAE Loss: 1.1037417650222778
+04/25/2020 00:34:47 - INFO - __main__ -   [BRAINQA] Loss: 3.148362159729004
+
+Iteration:   1%|          | 88/8224 [01:34<2:26:41,  1.08s/it][A04/25/2020 00:34:47 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:47 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:47 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:48 - INFO - models.brainqa -   Total Loss: 1.9726850986480713
+04/25/2020 00:34:48 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006415529060177505	ppl: 5.888638019561768
+04/25/2020 00:34:48 - INFO - models.brainqa -   Recon loss: 1.1029162406921387
+04/25/2020 00:34:48 - INFO - models.brainqa -   VQVAE Loss: 1.103557825088501
+04/25/2020 00:34:48 - INFO - __main__ -   [BRAINQA] Loss: 3.0762429237365723
+
+Iteration:   1%|          | 89/8224 [01:35<2:26:44,  1.08s/it][A04/25/2020 00:34:48 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:48 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:48 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:49 - INFO - models.brainqa -   Total Loss: 2.3200178146362305
+04/25/2020 00:34:49 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006364377913996577	ppl: 5.581327438354492
+04/25/2020 00:34:49 - INFO - models.brainqa -   Recon loss: 1.102540135383606
+04/25/2020 00:34:49 - INFO - models.brainqa -   VQVAE Loss: 1.1031765937805176
+04/25/2020 00:34:49 - INFO - __main__ -   [BRAINQA] Loss: 3.423194408416748
+
+Iteration:   1%|          | 90/8224 [01:36<2:26:32,  1.08s/it][A04/25/2020 00:34:49 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:49 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:49 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:50 - INFO - models.brainqa -   Total Loss: 2.3605878353118896
+04/25/2020 00:34:50 - INFO - models.brainqa -   VQVAE emb_loss: 0.000633633229881525	ppl: 5.488361358642578
+04/25/2020 00:34:50 - INFO - models.brainqa -   Recon loss: 1.10263192653656
+04/25/2020 00:34:50 - INFO - models.brainqa -   VQVAE Loss: 1.1032655239105225
+04/25/2020 00:34:50 - INFO - __main__ -   [BRAINQA] Loss: 3.463853359222412
+
+Iteration:   1%|          | 91/8224 [01:37<2:26:33,  1.08s/it][A04/25/2020 00:34:50 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:50 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:50 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:51 - INFO - models.brainqa -   Total Loss: 2.728874683380127
+04/25/2020 00:34:51 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006285954732447863	ppl: 5.4414238929748535
+04/25/2020 00:34:51 - INFO - models.brainqa -   Recon loss: 1.102231740951538
+04/25/2020 00:34:51 - INFO - models.brainqa -   VQVAE Loss: 1.1028603315353394
+04/25/2020 00:34:51 - INFO - __main__ -   [BRAINQA] Loss: 3.8317348957061768
+
+Iteration:   1%|          | 92/8224 [01:38<2:26:28,  1.08s/it][A04/25/2020 00:34:52 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:52 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:52 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:52 - INFO - models.brainqa -   Total Loss: 3.400902032852173
+04/25/2020 00:34:52 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006236562039703131	ppl: 5.218257427215576
+04/25/2020 00:34:52 - INFO - models.brainqa -   Recon loss: 1.1025598049163818
+04/25/2020 00:34:52 - INFO - models.brainqa -   VQVAE Loss: 1.1031835079193115
+04/25/2020 00:34:53 - INFO - __main__ -   [BRAINQA] Loss: 4.504085540771484
+
+Iteration:   1%|          | 93/8224 [01:39<2:26:31,  1.08s/it][A04/25/2020 00:34:53 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:53 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:53 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:53 - INFO - models.brainqa -   Total Loss: 2.8908534049987793
+04/25/2020 00:34:53 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006185297388583422	ppl: 5.006807804107666
+04/25/2020 00:34:53 - INFO - models.brainqa -   Recon loss: 1.1018788814544678
+04/25/2020 00:34:53 - INFO - models.brainqa -   VQVAE Loss: 1.1024974584579468
+04/25/2020 00:34:54 - INFO - __main__ -   [BRAINQA] Loss: 3.9933507442474365
+
+Iteration:   1%|          | 94/8224 [01:40<2:26:25,  1.08s/it][A04/25/2020 00:34:54 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:54 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:54 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:54 - INFO - models.brainqa -   Total Loss: 2.932270050048828
+04/25/2020 00:34:54 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006156886229291558	ppl: 5.095982551574707
+04/25/2020 00:34:54 - INFO - models.brainqa -   Recon loss: 1.1023674011230469
+04/25/2020 00:34:54 - INFO - models.brainqa -   VQVAE Loss: 1.1029831171035767
+04/25/2020 00:34:55 - INFO - __main__ -   [BRAINQA] Loss: 4.035253047943115
+
+Iteration:   1%|          | 95/8224 [01:42<2:26:39,  1.08s/it][A04/25/2020 00:34:55 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:55 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:55 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:55 - INFO - models.brainqa -   Total Loss: 2.944561243057251
+04/25/2020 00:34:55 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006147747044451535	ppl: 5.032841205596924
+04/25/2020 00:34:55 - INFO - models.brainqa -   Recon loss: 1.1020156145095825
+04/25/2020 00:34:55 - INFO - models.brainqa -   VQVAE Loss: 1.102630376815796
+04/25/2020 00:34:56 - INFO - __main__ -   [BRAINQA] Loss: 4.047191619873047
+
+Iteration:   1%|          | 96/8224 [01:43<2:26:25,  1.08s/it][A04/25/2020 00:34:56 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:56 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:56 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:56 - INFO - models.brainqa -   Total Loss: 2.989137649536133
+04/25/2020 00:34:56 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006081508472561836	ppl: 4.909785747528076
+04/25/2020 00:34:56 - INFO - models.brainqa -   Recon loss: 1.1019823551177979
+04/25/2020 00:34:56 - INFO - models.brainqa -   VQVAE Loss: 1.102590560913086
+04/25/2020 00:34:57 - INFO - __main__ -   [BRAINQA] Loss: 4.091728210449219
+
+Iteration:   1%|          | 97/8224 [01:44<2:26:28,  1.08s/it][A04/25/2020 00:34:57 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:57 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:57 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:57 - INFO - models.brainqa -   Total Loss: 2.7173919677734375
+04/25/2020 00:34:57 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006039191503077745	ppl: 4.704843521118164
+04/25/2020 00:34:57 - INFO - models.brainqa -   Recon loss: 1.1013658046722412
+04/25/2020 00:34:57 - INFO - models.brainqa -   VQVAE Loss: 1.1019697189331055
+04/25/2020 00:34:58 - INFO - __main__ -   [BRAINQA] Loss: 3.819361686706543
+
+Iteration:   1%|          | 98/8224 [01:45<2:26:47,  1.08s/it][A04/25/2020 00:34:58 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:58 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:58 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:58 - INFO - models.brainqa -   Total Loss: 1.5741060972213745
+04/25/2020 00:34:58 - INFO - models.brainqa -   VQVAE emb_loss: 0.0006020583678036928	ppl: 4.755122184753418
+04/25/2020 00:34:58 - INFO - models.brainqa -   Recon loss: 1.101859450340271
+04/25/2020 00:34:58 - INFO - models.brainqa -   VQVAE Loss: 1.1024614572525024
+04/25/2020 00:34:59 - INFO - __main__ -   [BRAINQA] Loss: 2.676567554473877
+/cortex/users/jif24/brainqa/venv/lib/python3.6/site-packages/torch/optim/lr_scheduler.py:224: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+04/25/2020 00:34:59 - INFO - __main__ -   [BRAINQA] Eval loss: 3.873
+
+Iteration:   1%|          | 99/8224 [01:46<2:26:47,  1.08s/it][A04/25/2020 00:34:59 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:34:59 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:34:59 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:34:59 - INFO - models.brainqa -   Total Loss: 1.8544511795043945
+04/25/2020 00:34:59 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005989738274365664	ppl: 4.716536521911621
+04/25/2020 00:34:59 - INFO - models.brainqa -   Recon loss: 1.1020087003707886
+04/25/2020 00:34:59 - INFO - models.brainqa -   VQVAE Loss: 1.1026077270507812
+04/25/2020 00:35:00 - INFO - __main__ -   [BRAINQA] Loss: 2.957058906555176
+
+Iteration:   1%|          | 100/8224 [01:47<2:28:32,  1.10s/it][A04/25/2020 00:35:00 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:00 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:00 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:01 - INFO - models.brainqa -   Total Loss: 2.234708309173584
+04/25/2020 00:35:01 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005916255176998675	ppl: 4.533371448516846
+04/25/2020 00:35:01 - INFO - models.brainqa -   Recon loss: 1.1020128726959229
+04/25/2020 00:35:01 - INFO - models.brainqa -   VQVAE Loss: 1.1026045083999634
+04/25/2020 00:35:01 - INFO - __main__ -   [BRAINQA] Loss: 3.337312698364258
+
+Iteration:   1%|          | 101/8224 [01:48<2:27:44,  1.09s/it][A04/25/2020 00:35:01 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:01 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:01 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:02 - INFO - models.brainqa -   Total Loss: 2.919696569442749
+04/25/2020 00:35:02 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005916914669796824	ppl: 4.3865766525268555
+04/25/2020 00:35:02 - INFO - models.brainqa -   Recon loss: 1.101603388786316
+04/25/2020 00:35:02 - INFO - models.brainqa -   VQVAE Loss: 1.1021950244903564
+04/25/2020 00:35:02 - INFO - __main__ -   [BRAINQA] Loss: 4.0218915939331055
+
+Iteration:   1%|          | 102/8224 [01:49<2:27:14,  1.09s/it][A04/25/2020 00:35:02 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:02 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:02 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:03 - INFO - models.brainqa -   Total Loss: 2.2496843338012695
+04/25/2020 00:35:03 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005860094097442925	ppl: 4.334447860717773
+04/25/2020 00:35:03 - INFO - models.brainqa -   Recon loss: 1.1008954048156738
+04/25/2020 00:35:03 - INFO - models.brainqa -   VQVAE Loss: 1.1014814376831055
+04/25/2020 00:35:03 - INFO - __main__ -   [BRAINQA] Loss: 3.351165771484375
+
+Iteration:   1%|▏         | 103/8224 [01:50<2:27:23,  1.09s/it][A04/25/2020 00:35:03 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:03 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:03 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:04 - INFO - models.brainqa -   Total Loss: 2.5741658210754395
+04/25/2020 00:35:04 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005825167754665017	ppl: 4.37457799911499
+04/25/2020 00:35:04 - INFO - models.brainqa -   Recon loss: 1.1010801792144775
+04/25/2020 00:35:04 - INFO - models.brainqa -   VQVAE Loss: 1.1016627550125122
+04/25/2020 00:35:04 - INFO - __main__ -   [BRAINQA] Loss: 3.675828695297241
+
+Iteration:   1%|▏         | 104/8224 [01:51<2:27:24,  1.09s/it][A04/25/2020 00:35:05 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:05 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:05 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:05 - INFO - models.brainqa -   Total Loss: 2.7651233673095703
+04/25/2020 00:35:05 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005800385843031108	ppl: 4.285196304321289
+04/25/2020 00:35:05 - INFO - models.brainqa -   Recon loss: 1.1009260416030884
+04/25/2020 00:35:05 - INFO - models.brainqa -   VQVAE Loss: 1.1015061140060425
+04/25/2020 00:35:06 - INFO - __main__ -   [BRAINQA] Loss: 3.8666293621063232
+
+Iteration:   1%|▏         | 105/8224 [01:52<2:27:29,  1.09s/it][A04/25/2020 00:35:06 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:06 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:06 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:06 - INFO - models.brainqa -   Total Loss: 3.2625808715820312
+04/25/2020 00:35:06 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005785544053651392	ppl: 4.319285869598389
+04/25/2020 00:35:06 - INFO - models.brainqa -   Recon loss: 1.1008976697921753
+04/25/2020 00:35:06 - INFO - models.brainqa -   VQVAE Loss: 1.1014761924743652
+04/25/2020 00:35:07 - INFO - __main__ -   [BRAINQA] Loss: 4.3640570640563965
+
+Iteration:   1%|▏         | 106/8224 [01:54<2:27:30,  1.09s/it][A04/25/2020 00:35:07 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:07 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:07 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:07 - INFO - models.brainqa -   Total Loss: 2.473055839538574
+04/25/2020 00:35:07 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005731551209464669	ppl: 4.215147018432617
+04/25/2020 00:35:07 - INFO - models.brainqa -   Recon loss: 1.1006747484207153
+04/25/2020 00:35:07 - INFO - models.brainqa -   VQVAE Loss: 1.1012479066848755
+04/25/2020 00:35:08 - INFO - __main__ -   [BRAINQA] Loss: 3.57430362701416
+
+Iteration:   1%|▏         | 107/8224 [01:55<2:27:25,  1.09s/it][A04/25/2020 00:35:08 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:08 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:08 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:08 - INFO - models.brainqa -   Total Loss: 2.2156145572662354
+04/25/2020 00:35:08 - INFO - models.brainqa -   VQVAE emb_loss: 0.000570932577829808	ppl: 4.0167670249938965
+04/25/2020 00:35:08 - INFO - models.brainqa -   Recon loss: 1.1010195016860962
+04/25/2020 00:35:08 - INFO - models.brainqa -   VQVAE Loss: 1.1015903949737549
+04/25/2020 00:35:09 - INFO - __main__ -   [BRAINQA] Loss: 3.3172049522399902
+
+Iteration:   1%|▏         | 108/8224 [01:56<2:27:00,  1.09s/it][A04/25/2020 00:35:09 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:09 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:09 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:09 - INFO - models.brainqa -   Total Loss: 1.829573392868042
+04/25/2020 00:35:09 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005670773098245263	ppl: 4.1723737716674805
+04/25/2020 00:35:09 - INFO - models.brainqa -   Recon loss: 1.1010373830795288
+04/25/2020 00:35:09 - INFO - models.brainqa -   VQVAE Loss: 1.1016044616699219
+04/25/2020 00:35:10 - INFO - __main__ -   [BRAINQA] Loss: 2.931177854537964
+
+Iteration:   1%|▏         | 109/8224 [01:57<2:26:42,  1.08s/it][A04/25/2020 00:35:10 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:10 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:10 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:10 - INFO - models.brainqa -   Total Loss: 3.4973909854888916
+04/25/2020 00:35:10 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005637314170598984	ppl: 4.001894474029541
+04/25/2020 00:35:10 - INFO - models.brainqa -   Recon loss: 1.1001955270767212
+04/25/2020 00:35:10 - INFO - models.brainqa -   VQVAE Loss: 1.1007592678070068
+04/25/2020 00:35:11 - INFO - __main__ -   [BRAINQA] Loss: 4.598150253295898
+
+Iteration:   1%|▏         | 110/8224 [01:58<2:26:48,  1.09s/it][A04/25/2020 00:35:11 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:11 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:11 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:11 - INFO - models.brainqa -   Total Loss: 2.9231526851654053
+04/25/2020 00:35:11 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005603551981039345	ppl: 4.013615131378174
+04/25/2020 00:35:11 - INFO - models.brainqa -   Recon loss: 1.100467324256897
+04/25/2020 00:35:11 - INFO - models.brainqa -   VQVAE Loss: 1.1010277271270752
+04/25/2020 00:35:12 - INFO - __main__ -   [BRAINQA] Loss: 4.0241804122924805
+
+Iteration:   1%|▏         | 111/8224 [01:59<2:26:42,  1.08s/it][A04/25/2020 00:35:12 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:12 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:12 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:13 - INFO - models.brainqa -   Total Loss: 1.9413559436798096
+04/25/2020 00:35:13 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005562001024372876	ppl: 3.9558956623077393
+04/25/2020 00:35:13 - INFO - models.brainqa -   Recon loss: 1.100400447845459
+04/25/2020 00:35:13 - INFO - models.brainqa -   VQVAE Loss: 1.100956678390503
+04/25/2020 00:35:13 - INFO - __main__ -   [BRAINQA] Loss: 3.0423126220703125
+
+Iteration:   1%|▏         | 112/8224 [02:00<2:26:41,  1.09s/it][A04/25/2020 00:35:13 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:13 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:13 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:14 - INFO - models.brainqa -   Total Loss: 2.749079704284668
+04/25/2020 00:35:14 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005524736479856074	ppl: 3.840078592300415
+04/25/2020 00:35:14 - INFO - models.brainqa -   Recon loss: 1.0997496843338013
+04/25/2020 00:35:14 - INFO - models.brainqa -   VQVAE Loss: 1.1003021001815796
+04/25/2020 00:35:14 - INFO - __main__ -   [BRAINQA] Loss: 3.849381685256958
+
+Iteration:   1%|▏         | 113/8224 [02:01<2:27:45,  1.09s/it][A04/25/2020 00:35:14 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:14 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:14 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:15 - INFO - models.brainqa -   Total Loss: 2.655378818511963
+04/25/2020 00:35:15 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005523036234080791	ppl: 3.7957258224487305
+04/25/2020 00:35:15 - INFO - models.brainqa -   Recon loss: 1.1001172065734863
+04/25/2020 00:35:15 - INFO - models.brainqa -   VQVAE Loss: 1.100669503211975
+04/25/2020 00:35:15 - INFO - __main__ -   [BRAINQA] Loss: 3.7560484409332275
+
+Iteration:   1%|▏         | 114/8224 [02:02<2:27:39,  1.09s/it][A04/25/2020 00:35:15 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:15 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:15 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:16 - INFO - models.brainqa -   Total Loss: 2.8890676498413086
+04/25/2020 00:35:16 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005505864974111319	ppl: 3.7779877185821533
+04/25/2020 00:35:16 - INFO - models.brainqa -   Recon loss: 1.0995121002197266
+04/25/2020 00:35:16 - INFO - models.brainqa -   VQVAE Loss: 1.1000627279281616
+04/25/2020 00:35:16 - INFO - __main__ -   [BRAINQA] Loss: 3.9891304969787598
+
+Iteration:   1%|▏         | 115/8224 [02:03<2:27:10,  1.09s/it][A04/25/2020 00:35:17 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:17 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:17 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:17 - INFO - models.brainqa -   Total Loss: 3.1020467281341553
+04/25/2020 00:35:17 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005438897060230374	ppl: 3.7515716552734375
+04/25/2020 00:35:17 - INFO - models.brainqa -   Recon loss: 1.0998516082763672
+04/25/2020 00:35:17 - INFO - models.brainqa -   VQVAE Loss: 1.1003954410552979
+04/25/2020 00:35:18 - INFO - __main__ -   [BRAINQA] Loss: 4.202442169189453
+
+Iteration:   1%|▏         | 116/8224 [02:04<2:26:49,  1.09s/it][A04/25/2020 00:35:18 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:18 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:18 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:18 - INFO - models.brainqa -   Total Loss: 3.1847586631774902
+04/25/2020 00:35:18 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005432685138657689	ppl: 3.811354398727417
+04/25/2020 00:35:18 - INFO - models.brainqa -   Recon loss: 1.0994203090667725
+04/25/2020 00:35:18 - INFO - models.brainqa -   VQVAE Loss: 1.0999635457992554
+04/25/2020 00:35:19 - INFO - __main__ -   [BRAINQA] Loss: 4.284722328186035
+
+Iteration:   1%|▏         | 117/8224 [02:05<2:26:38,  1.09s/it][A04/25/2020 00:35:19 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:19 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:19 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:19 - INFO - models.brainqa -   Total Loss: 3.08600115776062
+04/25/2020 00:35:19 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005407408461906016	ppl: 3.6618270874023438
+04/25/2020 00:35:19 - INFO - models.brainqa -   Recon loss: 1.0994861125946045
+04/25/2020 00:35:19 - INFO - models.brainqa -   VQVAE Loss: 1.1000268459320068
+04/25/2020 00:35:20 - INFO - __main__ -   [BRAINQA] Loss: 4.186028003692627
+
+Iteration:   1%|▏         | 118/8224 [02:07<2:26:39,  1.09s/it][A04/25/2020 00:35:20 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:20 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:20 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:20 - INFO - models.brainqa -   Total Loss: 3.3337864875793457
+04/25/2020 00:35:20 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005371138686314225	ppl: 3.6534128189086914
+04/25/2020 00:35:20 - INFO - models.brainqa -   Recon loss: 1.0992720127105713
+04/25/2020 00:35:20 - INFO - models.brainqa -   VQVAE Loss: 1.099809169769287
+04/25/2020 00:35:21 - INFO - __main__ -   [BRAINQA] Loss: 4.433595657348633
+
+Iteration:   1%|▏         | 119/8224 [02:08<2:26:34,  1.09s/it][A04/25/2020 00:35:21 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:21 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:21 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:21 - INFO - models.brainqa -   Total Loss: 3.04266619682312
+04/25/2020 00:35:21 - INFO - models.brainqa -   VQVAE emb_loss: 0.000534085207618773	ppl: 3.667346954345703
+04/25/2020 00:35:21 - INFO - models.brainqa -   Recon loss: 1.0993788242340088
+04/25/2020 00:35:21 - INFO - models.brainqa -   VQVAE Loss: 1.0999128818511963
+04/25/2020 00:35:22 - INFO - __main__ -   [BRAINQA] Loss: 4.142579078674316
+
+Iteration:   1%|▏         | 120/8224 [02:09<2:27:00,  1.09s/it][A04/25/2020 00:35:22 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:22 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:22 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:22 - INFO - models.brainqa -   Total Loss: 1.9129878282546997
+04/25/2020 00:35:22 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005309577099978924	ppl: 3.66180682182312
+04/25/2020 00:35:22 - INFO - models.brainqa -   Recon loss: 1.0991779565811157
+04/25/2020 00:35:22 - INFO - models.brainqa -   VQVAE Loss: 1.099708914756775
+04/25/2020 00:35:23 - INFO - __main__ -   [BRAINQA] Loss: 3.0126967430114746
+
+Iteration:   1%|▏         | 121/8224 [02:10<2:26:49,  1.09s/it][A04/25/2020 00:35:23 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:23 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:23 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:23 - INFO - models.brainqa -   Total Loss: 3.2960681915283203
+04/25/2020 00:35:23 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005271754926070571	ppl: 3.601191997528076
+04/25/2020 00:35:23 - INFO - models.brainqa -   Recon loss: 1.0988004207611084
+04/25/2020 00:35:23 - INFO - models.brainqa -   VQVAE Loss: 1.099327564239502
+04/25/2020 00:35:24 - INFO - __main__ -   [BRAINQA] Loss: 4.395395755767822
+
+Iteration:   1%|▏         | 122/8224 [02:11<2:26:32,  1.09s/it][A04/25/2020 00:35:24 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:24 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:24 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:24 - INFO - models.brainqa -   Total Loss: 3.1085052490234375
+04/25/2020 00:35:24 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005243679042905569	ppl: 3.5591983795166016
+04/25/2020 00:35:24 - INFO - models.brainqa -   Recon loss: 1.0989665985107422
+04/25/2020 00:35:24 - INFO - models.brainqa -   VQVAE Loss: 1.099491000175476
+04/25/2020 00:35:25 - INFO - __main__ -   [BRAINQA] Loss: 4.207996368408203
+
+Iteration:   1%|▏         | 123/8224 [02:12<2:26:31,  1.09s/it][A04/25/2020 00:35:25 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:25 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:25 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:26 - INFO - models.brainqa -   Total Loss: 2.7173590660095215
+04/25/2020 00:35:26 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005230907700024545	ppl: 3.5828957557678223
+04/25/2020 00:35:26 - INFO - models.brainqa -   Recon loss: 1.0992333889007568
+04/25/2020 00:35:26 - INFO - models.brainqa -   VQVAE Loss: 1.0997564792633057
+04/25/2020 00:35:26 - INFO - __main__ -   [BRAINQA] Loss: 3.817115545272827
+
+Iteration:   2%|▏         | 124/8224 [02:13<2:26:30,  1.09s/it][A04/25/2020 00:35:26 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:26 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:26 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:27 - INFO - models.brainqa -   Total Loss: 2.725745916366577
+04/25/2020 00:35:27 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005205288180150092	ppl: 3.4412806034088135
+04/25/2020 00:35:27 - INFO - models.brainqa -   Recon loss: 1.0991722345352173
+04/25/2020 00:35:27 - INFO - models.brainqa -   VQVAE Loss: 1.0996928215026855
+04/25/2020 00:35:27 - INFO - __main__ -   [BRAINQA] Loss: 3.8254387378692627
+
+Iteration:   2%|▏         | 125/8224 [02:14<2:26:24,  1.08s/it][A04/25/2020 00:35:27 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:27 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:27 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:28 - INFO - models.brainqa -   Total Loss: 2.4951748847961426
+04/25/2020 00:35:28 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005187036003917456	ppl: 3.542933464050293
+04/25/2020 00:35:28 - INFO - models.brainqa -   Recon loss: 1.0992257595062256
+04/25/2020 00:35:28 - INFO - models.brainqa -   VQVAE Loss: 1.099744439125061
+04/25/2020 00:35:28 - INFO - __main__ -   [BRAINQA] Loss: 3.594919204711914
+
+Iteration:   2%|▏         | 126/8224 [02:15<2:26:19,  1.08s/it][A04/25/2020 00:35:28 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:28 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:28 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:29 - INFO - models.brainqa -   Total Loss: 2.8005003929138184
+04/25/2020 00:35:29 - INFO - models.brainqa -   VQVAE emb_loss: 0.000513221719302237	ppl: 3.471916913986206
+04/25/2020 00:35:29 - INFO - models.brainqa -   Recon loss: 1.0986106395721436
+04/25/2020 00:35:29 - INFO - models.brainqa -   VQVAE Loss: 1.0991238355636597
+04/25/2020 00:35:29 - INFO - __main__ -   [BRAINQA] Loss: 3.8996243476867676
+
+Iteration:   2%|▏         | 127/8224 [02:16<2:26:03,  1.08s/it][A04/25/2020 00:35:30 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:30 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:30 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:30 - INFO - models.brainqa -   Total Loss: 3.5541014671325684
+04/25/2020 00:35:30 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005140760913491249	ppl: 3.4381325244903564
+04/25/2020 00:35:30 - INFO - models.brainqa -   Recon loss: 1.0987071990966797
+04/25/2020 00:35:30 - INFO - models.brainqa -   VQVAE Loss: 1.0992212295532227
+04/25/2020 00:35:31 - INFO - __main__ -   [BRAINQA] Loss: 4.653322696685791
+
+Iteration:   2%|▏         | 128/8224 [02:17<2:27:33,  1.09s/it][A04/25/2020 00:35:31 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:31 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:31 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:31 - INFO - models.brainqa -   Total Loss: 2.099386692047119
+04/25/2020 00:35:31 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005118284025229514	ppl: 3.4092493057250977
+04/25/2020 00:35:31 - INFO - models.brainqa -   Recon loss: 1.0983079671859741
+04/25/2020 00:35:31 - INFO - models.brainqa -   VQVAE Loss: 1.0988198518753052
+04/25/2020 00:35:32 - INFO - __main__ -   [BRAINQA] Loss: 3.1982064247131348
+
+Iteration:   2%|▏         | 129/8224 [02:19<2:27:03,  1.09s/it][A04/25/2020 00:35:32 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:32 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:32 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:32 - INFO - models.brainqa -   Total Loss: 2.704136371612549
+04/25/2020 00:35:32 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005084526492282748	ppl: 3.430666208267212
+04/25/2020 00:35:32 - INFO - models.brainqa -   Recon loss: 1.098456859588623
+04/25/2020 00:35:32 - INFO - models.brainqa -   VQVAE Loss: 1.0989652872085571
+04/25/2020 00:35:33 - INFO - __main__ -   [BRAINQA] Loss: 3.8031015396118164
+
+Iteration:   2%|▏         | 130/8224 [02:20<2:27:09,  1.09s/it][A04/25/2020 00:35:33 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:33 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:33 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:33 - INFO - models.brainqa -   Total Loss: 3.453047752380371
+04/25/2020 00:35:33 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005063536809757352	ppl: 3.3384792804718018
+04/25/2020 00:35:33 - INFO - models.brainqa -   Recon loss: 1.0986872911453247
+04/25/2020 00:35:33 - INFO - models.brainqa -   VQVAE Loss: 1.0991936922073364
+04/25/2020 00:35:34 - INFO - __main__ -   [BRAINQA] Loss: 4.552241325378418
+
+Iteration:   2%|▏         | 131/8224 [02:21<2:26:51,  1.09s/it][A04/25/2020 00:35:34 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:34 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:34 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:34 - INFO - models.brainqa -   Total Loss: 2.5491762161254883
+04/25/2020 00:35:34 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005014525377191603	ppl: 3.3546228408813477
+04/25/2020 00:35:34 - INFO - models.brainqa -   Recon loss: 1.097795009613037
+04/25/2020 00:35:34 - INFO - models.brainqa -   VQVAE Loss: 1.0982964038848877
+04/25/2020 00:35:35 - INFO - __main__ -   [BRAINQA] Loss: 3.647472620010376
+
+Iteration:   2%|▏         | 132/8224 [02:22<2:26:37,  1.09s/it][A04/25/2020 00:35:35 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:35 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:35 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:35 - INFO - models.brainqa -   Total Loss: 2.912600517272949
+04/25/2020 00:35:35 - INFO - models.brainqa -   VQVAE emb_loss: 0.0005019344389438629	ppl: 3.4021239280700684
+04/25/2020 00:35:35 - INFO - models.brainqa -   Recon loss: 1.0982853174209595
+04/25/2020 00:35:35 - INFO - models.brainqa -   VQVAE Loss: 1.0987873077392578
+04/25/2020 00:35:36 - INFO - __main__ -   [BRAINQA] Loss: 4.011387825012207
+
+Iteration:   2%|▏         | 133/8224 [02:23<2:26:27,  1.09s/it][A04/25/2020 00:35:36 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:36 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:36 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:36 - INFO - models.brainqa -   Total Loss: 2.875439167022705
+04/25/2020 00:35:36 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004993536276742816	ppl: 3.324867010116577
+04/25/2020 00:35:36 - INFO - models.brainqa -   Recon loss: 1.0985891819000244
+04/25/2020 00:35:36 - INFO - models.brainqa -   VQVAE Loss: 1.0990885496139526
+04/25/2020 00:35:37 - INFO - __main__ -   [BRAINQA] Loss: 3.974527597427368
+
+Iteration:   2%|▏         | 134/8224 [02:24<2:26:08,  1.08s/it][A04/25/2020 00:35:37 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:37 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:37 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:38 - INFO - models.brainqa -   Total Loss: 2.0640621185302734
+04/25/2020 00:35:38 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004964929539710283	ppl: 3.2858734130859375
+04/25/2020 00:35:38 - INFO - models.brainqa -   Recon loss: 1.0975842475891113
+04/25/2020 00:35:38 - INFO - models.brainqa -   VQVAE Loss: 1.0980807542800903
+04/25/2020 00:35:38 - INFO - __main__ -   [BRAINQA] Loss: 3.1621429920196533
+
+Iteration:   2%|▏         | 135/8224 [02:25<2:26:13,  1.08s/it][A04/25/2020 00:35:38 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:38 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:38 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:39 - INFO - models.brainqa -   Total Loss: 2.569096326828003
+04/25/2020 00:35:39 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004949040594510734	ppl: 3.2505428791046143
+04/25/2020 00:35:39 - INFO - models.brainqa -   Recon loss: 1.0979089736938477
+04/25/2020 00:35:39 - INFO - models.brainqa -   VQVAE Loss: 1.0984039306640625
+04/25/2020 00:35:39 - INFO - __main__ -   [BRAINQA] Loss: 3.6675002574920654
+
+Iteration:   2%|▏         | 136/8224 [02:26<2:25:35,  1.08s/it][A04/25/2020 00:35:39 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:39 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:39 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:40 - INFO - models.brainqa -   Total Loss: 2.1971049308776855
+04/25/2020 00:35:40 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004935800097882748	ppl: 3.235063076019287
+04/25/2020 00:35:40 - INFO - models.brainqa -   Recon loss: 1.0975136756896973
+04/25/2020 00:35:40 - INFO - models.brainqa -   VQVAE Loss: 1.0980072021484375
+04/25/2020 00:35:40 - INFO - __main__ -   [BRAINQA] Loss: 3.295112133026123
+
+Iteration:   2%|▏         | 137/8224 [02:27<2:25:28,  1.08s/it][A04/25/2020 00:35:40 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:40 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:40 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:41 - INFO - models.brainqa -   Total Loss: 2.580313205718994
+04/25/2020 00:35:41 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004901454667560756	ppl: 3.262321710586548
+04/25/2020 00:35:41 - INFO - models.brainqa -   Recon loss: 1.0972095727920532
+04/25/2020 00:35:41 - INFO - models.brainqa -   VQVAE Loss: 1.097699761390686
+04/25/2020 00:35:41 - INFO - __main__ -   [BRAINQA] Loss: 3.6780128479003906
+
+Iteration:   2%|▏         | 138/8224 [02:28<2:25:42,  1.08s/it][A04/25/2020 00:35:41 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:41 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:41 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:42 - INFO - models.brainqa -   Total Loss: 3.693044662475586
+04/25/2020 00:35:42 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004912464646622539	ppl: 3.2604572772979736
+04/25/2020 00:35:42 - INFO - models.brainqa -   Recon loss: 1.0975359678268433
+04/25/2020 00:35:42 - INFO - models.brainqa -   VQVAE Loss: 1.098027229309082
+04/25/2020 00:35:42 - INFO - __main__ -   [BRAINQA] Loss: 4.791071891784668
+
+Iteration:   2%|▏         | 139/8224 [02:29<2:25:45,  1.08s/it][A04/25/2020 00:35:43 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:43 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:43 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:43 - INFO - models.brainqa -   Total Loss: 2.559920310974121
+04/25/2020 00:35:43 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004885969683527946	ppl: 3.2102537155151367
+04/25/2020 00:35:43 - INFO - models.brainqa -   Recon loss: 1.0974445343017578
+04/25/2020 00:35:43 - INFO - models.brainqa -   VQVAE Loss: 1.0979331731796265
+04/25/2020 00:35:44 - INFO - __main__ -   [BRAINQA] Loss: 3.657853364944458
+
+Iteration:   2%|▏         | 140/8224 [02:30<2:27:26,  1.09s/it][A04/25/2020 00:35:44 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:44 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:44 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:44 - INFO - models.brainqa -   Total Loss: 3.049621820449829
+04/25/2020 00:35:44 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004881602362729609	ppl: 3.2419848442077637
+04/25/2020 00:35:44 - INFO - models.brainqa -   Recon loss: 1.0974253416061401
+04/25/2020 00:35:44 - INFO - models.brainqa -   VQVAE Loss: 1.0979135036468506
+04/25/2020 00:35:45 - INFO - __main__ -   [BRAINQA] Loss: 4.14753532409668
+
+Iteration:   2%|▏         | 141/8224 [02:32<2:26:58,  1.09s/it][A04/25/2020 00:35:45 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:45 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:45 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:45 - INFO - models.brainqa -   Total Loss: 3.152043342590332
+04/25/2020 00:35:45 - INFO - models.brainqa -   VQVAE emb_loss: 0.00048560043796896935	ppl: 3.1729319095611572
+04/25/2020 00:35:45 - INFO - models.brainqa -   Recon loss: 1.097074270248413
+04/25/2020 00:35:45 - INFO - models.brainqa -   VQVAE Loss: 1.097559928894043
+04/25/2020 00:35:46 - INFO - __main__ -   [BRAINQA] Loss: 4.249603271484375
+
+Iteration:   2%|▏         | 142/8224 [02:33<2:26:40,  1.09s/it][A04/25/2020 00:35:46 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:46 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:46 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:46 - INFO - models.brainqa -   Total Loss: 2.9338152408599854
+04/25/2020 00:35:46 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004831789992749691	ppl: 3.179689645767212
+04/25/2020 00:35:46 - INFO - models.brainqa -   Recon loss: 1.0970522165298462
+04/25/2020 00:35:46 - INFO - models.brainqa -   VQVAE Loss: 1.0975353717803955
+04/25/2020 00:35:47 - INFO - __main__ -   [BRAINQA] Loss: 4.031350612640381
+
+Iteration:   2%|▏         | 143/8224 [02:34<2:26:38,  1.09s/it][A04/25/2020 00:35:47 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:47 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:47 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:47 - INFO - models.brainqa -   Total Loss: 2.422821521759033
+04/25/2020 00:35:47 - INFO - models.brainqa -   VQVAE emb_loss: 0.00048088503535836935	ppl: 3.1432671546936035
+04/25/2020 00:35:47 - INFO - models.brainqa -   Recon loss: 1.097512125968933
+04/25/2020 00:35:47 - INFO - models.brainqa -   VQVAE Loss: 1.097993016242981
+04/25/2020 00:35:48 - INFO - __main__ -   [BRAINQA] Loss: 3.5208144187927246
+
+Iteration:   2%|▏         | 144/8224 [02:35<2:26:54,  1.09s/it][A04/25/2020 00:35:48 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:48 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:48 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:48 - INFO - models.brainqa -   Total Loss: 2.3082327842712402
+04/25/2020 00:35:48 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004791956744156778	ppl: 3.1134042739868164
+04/25/2020 00:35:48 - INFO - models.brainqa -   Recon loss: 1.096498966217041
+04/25/2020 00:35:48 - INFO - models.brainqa -   VQVAE Loss: 1.0969781875610352
+04/25/2020 00:35:49 - INFO - __main__ -   [BRAINQA] Loss: 3.4052109718322754
+
+Iteration:   2%|▏         | 145/8224 [02:36<2:26:46,  1.09s/it][A04/25/2020 00:35:49 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:49 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:49 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:49 - INFO - models.brainqa -   Total Loss: 2.876539707183838
+04/25/2020 00:35:49 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004771878302562982	ppl: 3.138183355331421
+04/25/2020 00:35:49 - INFO - models.brainqa -   Recon loss: 1.0970685482025146
+04/25/2020 00:35:49 - INFO - models.brainqa -   VQVAE Loss: 1.0975457429885864
+04/25/2020 00:35:50 - INFO - __main__ -   [BRAINQA] Loss: 3.974085569381714
+
+Iteration:   2%|▏         | 146/8224 [02:37<2:26:22,  1.09s/it][A04/25/2020 00:35:50 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:50 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:50 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:51 - INFO - models.brainqa -   Total Loss: 1.885785698890686
+04/25/2020 00:35:51 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004768933868035674	ppl: 3.0745794773101807
+04/25/2020 00:35:51 - INFO - models.brainqa -   Recon loss: 1.0970426797866821
+04/25/2020 00:35:51 - INFO - models.brainqa -   VQVAE Loss: 1.0975195169448853
+04/25/2020 00:35:51 - INFO - __main__ -   [BRAINQA] Loss: 2.9833052158355713
+
+Iteration:   2%|▏         | 147/8224 [02:38<2:25:58,  1.08s/it][A04/25/2020 00:35:51 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:51 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:51 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:52 - INFO - models.brainqa -   Total Loss: 2.473766565322876
+04/25/2020 00:35:52 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004737186536658555	ppl: 3.1191518306732178
+04/25/2020 00:35:52 - INFO - models.brainqa -   Recon loss: 1.0965583324432373
+04/25/2020 00:35:52 - INFO - models.brainqa -   VQVAE Loss: 1.097032070159912
+04/25/2020 00:35:52 - INFO - __main__ -   [BRAINQA] Loss: 3.570798635482788
+
+Iteration:   2%|▏         | 148/8224 [02:39<2:25:42,  1.08s/it][A04/25/2020 00:35:52 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:52 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:52 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:53 - INFO - models.brainqa -   Total Loss: 3.262645721435547
+04/25/2020 00:35:53 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004722172161564231	ppl: 3.0838522911071777
+04/25/2020 00:35:53 - INFO - models.brainqa -   Recon loss: 1.0959700345993042
+04/25/2020 00:35:53 - INFO - models.brainqa -   VQVAE Loss: 1.0964422225952148
+04/25/2020 00:35:53 - INFO - __main__ -   [BRAINQA] Loss: 4.359087944030762
+
+Iteration:   2%|▏         | 149/8224 [02:40<2:25:35,  1.08s/it][A04/25/2020 00:35:53 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:53 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:53 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:54 - INFO - models.brainqa -   Total Loss: 2.5365118980407715
+04/25/2020 00:35:54 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004698874254245311	ppl: 3.0651655197143555
+04/25/2020 00:35:54 - INFO - models.brainqa -   Recon loss: 1.0964690446853638
+04/25/2020 00:35:54 - INFO - models.brainqa -   VQVAE Loss: 1.096938967704773
+04/25/2020 00:35:54 - INFO - __main__ -   [BRAINQA] Loss: 3.633450984954834
+
+Iteration:   2%|▏         | 150/8224 [02:41<2:25:25,  1.08s/it][A04/25/2020 00:35:55 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:55 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:55 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:55 - INFO - models.brainqa -   Total Loss: 2.3514564037323
+04/25/2020 00:35:55 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004674491356126964	ppl: 3.0741536617279053
+04/25/2020 00:35:55 - INFO - models.brainqa -   Recon loss: 1.095523476600647
+04/25/2020 00:35:55 - INFO - models.brainqa -   VQVAE Loss: 1.0959908962249756
+04/25/2020 00:35:56 - INFO - __main__ -   [BRAINQA] Loss: 3.4474472999572754
+
+Iteration:   2%|▏         | 151/8224 [02:42<2:25:22,  1.08s/it][A04/25/2020 00:35:56 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:56 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:56 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:56 - INFO - models.brainqa -   Total Loss: 2.4167497158050537
+04/25/2020 00:35:56 - INFO - models.brainqa -   VQVAE emb_loss: 0.00046537473099306226	ppl: 3.0388550758361816
+04/25/2020 00:35:56 - INFO - models.brainqa -   Recon loss: 1.0959022045135498
+04/25/2020 00:35:56 - INFO - models.brainqa -   VQVAE Loss: 1.096367597579956
+04/25/2020 00:35:57 - INFO - __main__ -   [BRAINQA] Loss: 3.5131173133850098
+
+Iteration:   2%|▏         | 152/8224 [02:43<2:25:38,  1.08s/it][A04/25/2020 00:35:57 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:57 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:57 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:57 - INFO - models.brainqa -   Total Loss: 2.4799957275390625
+04/25/2020 00:35:57 - INFO - models.brainqa -   VQVAE emb_loss: 0.00046279304660856724	ppl: 3.0410830974578857
+04/25/2020 00:35:57 - INFO - models.brainqa -   Recon loss: 1.0964747667312622
+04/25/2020 00:35:57 - INFO - models.brainqa -   VQVAE Loss: 1.0969375371932983
+04/25/2020 00:35:58 - INFO - __main__ -   [BRAINQA] Loss: 3.5769333839416504
+
+Iteration:   2%|▏         | 153/8224 [02:45<2:25:25,  1.08s/it][A04/25/2020 00:35:58 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:58 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:58 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:58 - INFO - models.brainqa -   Total Loss: 3.136622905731201
+04/25/2020 00:35:58 - INFO - models.brainqa -   VQVAE emb_loss: 0.000461574672954157	ppl: 3.035890579223633
+04/25/2020 00:35:58 - INFO - models.brainqa -   Recon loss: 1.0956215858459473
+04/25/2020 00:35:58 - INFO - models.brainqa -   VQVAE Loss: 1.096083164215088
+04/25/2020 00:35:59 - INFO - __main__ -   [BRAINQA] Loss: 4.232706069946289
+
+Iteration:   2%|▏         | 154/8224 [02:46<2:25:26,  1.08s/it][A04/25/2020 00:35:59 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:35:59 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:35:59 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:35:59 - INFO - models.brainqa -   Total Loss: 2.5114283561706543
+04/25/2020 00:35:59 - INFO - models.brainqa -   VQVAE emb_loss: 0.000460142910014838	ppl: 2.997438669204712
+04/25/2020 00:35:59 - INFO - models.brainqa -   Recon loss: 1.0957742929458618
+04/25/2020 00:35:59 - INFO - models.brainqa -   VQVAE Loss: 1.0962344408035278
+04/25/2020 00:36:00 - INFO - __main__ -   [BRAINQA] Loss: 3.6076626777648926
+
+Iteration:   2%|▏         | 155/8224 [02:47<2:25:04,  1.08s/it][A04/25/2020 00:36:00 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:00 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:00 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:00 - INFO - models.brainqa -   Total Loss: 2.7624926567077637
+04/25/2020 00:36:00 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004588462761603296	ppl: 2.9523699283599854
+04/25/2020 00:36:00 - INFO - models.brainqa -   Recon loss: 1.095366358757019
+04/25/2020 00:36:00 - INFO - models.brainqa -   VQVAE Loss: 1.0958251953125
+04/25/2020 00:36:01 - INFO - __main__ -   [BRAINQA] Loss: 3.8583178520202637
+
+Iteration:   2%|▏         | 156/8224 [02:48<2:24:47,  1.08s/it][A04/25/2020 00:36:01 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:01 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:01 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:01 - INFO - models.brainqa -   Total Loss: 3.2617902755737305
+04/25/2020 00:36:01 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004571101162582636	ppl: 2.9653120040893555
+04/25/2020 00:36:01 - INFO - models.brainqa -   Recon loss: 1.0950037240982056
+04/25/2020 00:36:01 - INFO - models.brainqa -   VQVAE Loss: 1.0954608917236328
+04/25/2020 00:36:02 - INFO - __main__ -   [BRAINQA] Loss: 4.357251167297363
+
+Iteration:   2%|▏         | 157/8224 [02:49<2:25:13,  1.08s/it][A04/25/2020 00:36:02 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:02 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:02 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:02 - INFO - models.brainqa -   Total Loss: 2.4875600337982178
+04/25/2020 00:36:02 - INFO - models.brainqa -   VQVAE emb_loss: 0.000454974127933383	ppl: 2.9583287239074707
+04/25/2020 00:36:02 - INFO - models.brainqa -   Recon loss: 1.0954657793045044
+04/25/2020 00:36:02 - INFO - models.brainqa -   VQVAE Loss: 1.0959208011627197
+04/25/2020 00:36:03 - INFO - __main__ -   [BRAINQA] Loss: 3.5834808349609375
+
+Iteration:   2%|▏         | 158/8224 [02:50<2:25:30,  1.08s/it][A04/25/2020 00:36:03 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:03 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:03 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:04 - INFO - models.brainqa -   Total Loss: 2.1111199855804443
+04/25/2020 00:36:04 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004531707672867924	ppl: 2.968855381011963
+04/25/2020 00:36:04 - INFO - models.brainqa -   Recon loss: 1.0953165292739868
+04/25/2020 00:36:04 - INFO - models.brainqa -   VQVAE Loss: 1.0957696437835693
+04/25/2020 00:36:04 - INFO - __main__ -   [BRAINQA] Loss: 3.2068896293640137
+
+Iteration:   2%|▏         | 159/8224 [02:51<2:27:04,  1.09s/it][A04/25/2020 00:36:04 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:04 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:04 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:05 - INFO - models.brainqa -   Total Loss: 2.4696130752563477
+04/25/2020 00:36:05 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004507371922954917	ppl: 2.907606363296509
+04/25/2020 00:36:05 - INFO - models.brainqa -   Recon loss: 1.0953238010406494
+04/25/2020 00:36:05 - INFO - models.brainqa -   VQVAE Loss: 1.095774531364441
+04/25/2020 00:36:05 - INFO - __main__ -   [BRAINQA] Loss: 3.565387725830078
+
+Iteration:   2%|▏         | 160/8224 [02:52<2:26:51,  1.09s/it][A04/25/2020 00:36:05 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:05 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:05 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:06 - INFO - models.brainqa -   Total Loss: 2.9963841438293457
+04/25/2020 00:36:06 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004498944035731256	ppl: 2.9051480293273926
+04/25/2020 00:36:06 - INFO - models.brainqa -   Recon loss: 1.0948749780654907
+04/25/2020 00:36:06 - INFO - models.brainqa -   VQVAE Loss: 1.0953248739242554
+04/25/2020 00:36:06 - INFO - __main__ -   [BRAINQA] Loss: 4.091709136962891
+
+Iteration:   2%|▏         | 161/8224 [02:53<2:26:46,  1.09s/it][A04/25/2020 00:36:06 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:06 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:06 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:07 - INFO - models.brainqa -   Total Loss: 3.208930492401123
+04/25/2020 00:36:07 - INFO - models.brainqa -   VQVAE emb_loss: 0.00044731624075211585	ppl: 2.889030933380127
+04/25/2020 00:36:07 - INFO - models.brainqa -   Recon loss: 1.0948556661605835
+04/25/2020 00:36:07 - INFO - models.brainqa -   VQVAE Loss: 1.095302939414978
+04/25/2020 00:36:07 - INFO - __main__ -   [BRAINQA] Loss: 4.304233551025391
+
+Iteration:   2%|▏         | 162/8224 [02:54<2:26:24,  1.09s/it][A04/25/2020 00:36:08 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:08 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:08 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:08 - INFO - models.brainqa -   Total Loss: 3.1791772842407227
+04/25/2020 00:36:08 - INFO - models.brainqa -   VQVAE emb_loss: 0.00044564949348568916	ppl: 2.9036197662353516
+04/25/2020 00:36:08 - INFO - models.brainqa -   Recon loss: 1.0947891473770142
+04/25/2020 00:36:08 - INFO - models.brainqa -   VQVAE Loss: 1.095234751701355
+04/25/2020 00:36:09 - INFO - __main__ -   [BRAINQA] Loss: 4.274412155151367
+
+Iteration:   2%|▏         | 163/8224 [02:55<2:26:18,  1.09s/it][A04/25/2020 00:36:09 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:09 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:09 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:09 - INFO - models.brainqa -   Total Loss: 2.641833782196045
+04/25/2020 00:36:09 - INFO - models.brainqa -   VQVAE emb_loss: 0.00044611148769035935	ppl: 2.8907809257507324
+04/25/2020 00:36:09 - INFO - models.brainqa -   Recon loss: 1.0953742265701294
+04/25/2020 00:36:09 - INFO - models.brainqa -   VQVAE Loss: 1.0958203077316284
+04/25/2020 00:36:10 - INFO - __main__ -   [BRAINQA] Loss: 3.737654209136963
+
+Iteration:   2%|▏         | 164/8224 [02:56<2:26:12,  1.09s/it][A04/25/2020 00:36:10 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:10 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:10 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:10 - INFO - models.brainqa -   Total Loss: 3.2229690551757812
+04/25/2020 00:36:10 - INFO - models.brainqa -   VQVAE emb_loss: 0.000442744349129498	ppl: 2.8773646354675293
+04/25/2020 00:36:10 - INFO - models.brainqa -   Recon loss: 1.0946201086044312
+04/25/2020 00:36:10 - INFO - models.brainqa -   VQVAE Loss: 1.0950628519058228
+04/25/2020 00:36:11 - INFO - __main__ -   [BRAINQA] Loss: 4.3180317878723145
+
+Iteration:   2%|▏         | 165/8224 [02:58<2:26:43,  1.09s/it][A04/25/2020 00:36:11 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:11 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:11 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:11 - INFO - models.brainqa -   Total Loss: 2.4030508995056152
+04/25/2020 00:36:11 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004401025362312794	ppl: 2.8370752334594727
+04/25/2020 00:36:11 - INFO - models.brainqa -   Recon loss: 1.094600796699524
+04/25/2020 00:36:11 - INFO - models.brainqa -   VQVAE Loss: 1.0950409173965454
+04/25/2020 00:36:12 - INFO - __main__ -   [BRAINQA] Loss: 3.49809193611145
+
+Iteration:   2%|▏         | 166/8224 [02:59<2:26:29,  1.09s/it][A04/25/2020 00:36:12 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:12 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:12 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:12 - INFO - models.brainqa -   Total Loss: 3.4621009826660156
+04/25/2020 00:36:12 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004387443186715245	ppl: 2.82338547706604
+04/25/2020 00:36:12 - INFO - models.brainqa -   Recon loss: 1.0942715406417847
+04/25/2020 00:36:12 - INFO - models.brainqa -   VQVAE Loss: 1.0947102308273315
+04/25/2020 00:36:13 - INFO - __main__ -   [BRAINQA] Loss: 4.556811332702637
+
+Iteration:   2%|▏         | 167/8224 [03:00<2:25:54,  1.09s/it][A04/25/2020 00:36:13 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:13 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:13 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:13 - INFO - models.brainqa -   Total Loss: 2.7700414657592773
+04/25/2020 00:36:13 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004383298219181597	ppl: 2.797107458114624
+04/25/2020 00:36:13 - INFO - models.brainqa -   Recon loss: 1.093742847442627
+04/25/2020 00:36:13 - INFO - models.brainqa -   VQVAE Loss: 1.0941811800003052
+04/25/2020 00:36:14 - INFO - __main__ -   [BRAINQA] Loss: 3.864222526550293
+
+Iteration:   2%|▏         | 168/8224 [03:01<2:26:22,  1.09s/it][A04/25/2020 00:36:14 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:14 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:14 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:14 - INFO - models.brainqa -   Total Loss: 2.695723295211792
+04/25/2020 00:36:14 - INFO - models.brainqa -   VQVAE emb_loss: 0.00043885083869099617	ppl: 2.7837226390838623
+04/25/2020 00:36:14 - INFO - models.brainqa -   Recon loss: 1.0944451093673706
+04/25/2020 00:36:14 - INFO - models.brainqa -   VQVAE Loss: 1.094883918762207
+04/25/2020 00:36:15 - INFO - __main__ -   [BRAINQA] Loss: 3.790607213973999
+
+Iteration:   2%|▏         | 169/8224 [03:02<2:26:42,  1.09s/it][A04/25/2020 00:36:15 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:15 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:15 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:16 - INFO - models.brainqa -   Total Loss: 2.434462547302246
+04/25/2020 00:36:16 - INFO - models.brainqa -   VQVAE emb_loss: 0.000436449539847672	ppl: 2.760800838470459
+04/25/2020 00:36:16 - INFO - models.brainqa -   Recon loss: 1.0940802097320557
+04/25/2020 00:36:16 - INFO - models.brainqa -   VQVAE Loss: 1.094516634941101
+04/25/2020 00:36:16 - INFO - __main__ -   [BRAINQA] Loss: 3.5289790630340576
+
+Iteration:   2%|▏         | 170/8224 [03:03<2:25:57,  1.09s/it][A04/25/2020 00:36:16 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:16 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:16 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:17 - INFO - models.brainqa -   Total Loss: 2.2695260047912598
+04/25/2020 00:36:17 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004345497291069478	ppl: 2.705970048904419
+04/25/2020 00:36:17 - INFO - models.brainqa -   Recon loss: 1.0929933786392212
+04/25/2020 00:36:17 - INFO - models.brainqa -   VQVAE Loss: 1.0934278964996338
+04/25/2020 00:36:17 - INFO - __main__ -   [BRAINQA] Loss: 3.3629539012908936
+
+Iteration:   2%|▏         | 171/8224 [03:04<2:25:31,  1.08s/it][A04/25/2020 00:36:17 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:17 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:17 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:18 - INFO - models.brainqa -   Total Loss: 2.42260479927063
+04/25/2020 00:36:18 - INFO - models.brainqa -   VQVAE emb_loss: 0.000433325330959633	ppl: 2.734515428543091
+04/25/2020 00:36:18 - INFO - models.brainqa -   Recon loss: 1.0947240591049194
+04/25/2020 00:36:18 - INFO - models.brainqa -   VQVAE Loss: 1.0951573848724365
+04/25/2020 00:36:18 - INFO - __main__ -   [BRAINQA] Loss: 3.5177621841430664
+
+Iteration:   2%|▏         | 172/8224 [03:05<2:25:07,  1.08s/it][A04/25/2020 00:36:18 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:18 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:18 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:19 - INFO - models.brainqa -   Total Loss: 1.501990556716919
+04/25/2020 00:36:19 - INFO - models.brainqa -   VQVAE emb_loss: 0.00043185584945604205	ppl: 2.6848692893981934
+04/25/2020 00:36:19 - INFO - models.brainqa -   Recon loss: 1.0937894582748413
+04/25/2020 00:36:19 - INFO - models.brainqa -   VQVAE Loss: 1.0942213535308838
+04/25/2020 00:36:19 - INFO - __main__ -   [BRAINQA] Loss: 2.5962119102478027
+
+Iteration:   2%|▏         | 173/8224 [03:06<2:25:02,  1.08s/it][A04/25/2020 00:36:19 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:19 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:20 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:20 - INFO - models.brainqa -   Total Loss: 2.932997465133667
+04/25/2020 00:36:20 - INFO - models.brainqa -   VQVAE emb_loss: 0.00043207878479734063	ppl: 2.683307647705078
+04/25/2020 00:36:20 - INFO - models.brainqa -   Recon loss: 1.0938831567764282
+04/25/2020 00:36:20 - INFO - models.brainqa -   VQVAE Loss: 1.0943152904510498
+04/25/2020 00:36:20 - INFO - __main__ -   [BRAINQA] Loss: 4.027312755584717
+
+Iteration:   2%|▏         | 174/8224 [03:07<2:25:28,  1.08s/it][A04/25/2020 00:36:21 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:21 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:21 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:21 - INFO - models.brainqa -   Total Loss: 2.081969738006592
+04/25/2020 00:36:21 - INFO - models.brainqa -   VQVAE emb_loss: 0.00042911822674795985	ppl: 2.699345827102661
+04/25/2020 00:36:21 - INFO - models.brainqa -   Recon loss: 1.0935128927230835
+04/25/2020 00:36:21 - INFO - models.brainqa -   VQVAE Loss: 1.0939420461654663
+04/25/2020 00:36:22 - INFO - __main__ -   [BRAINQA] Loss: 3.1759116649627686
+
+Iteration:   2%|▏         | 175/8224 [03:08<2:26:13,  1.09s/it][A04/25/2020 00:36:22 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:22 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:22 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:22 - INFO - models.brainqa -   Total Loss: 2.1578683853149414
+04/25/2020 00:36:22 - INFO - models.brainqa -   VQVAE emb_loss: 0.00042854249477386475	ppl: 2.649524450302124
+04/25/2020 00:36:22 - INFO - models.brainqa -   Recon loss: 1.092898964881897
+04/25/2020 00:36:22 - INFO - models.brainqa -   VQVAE Loss: 1.093327522277832
+04/25/2020 00:36:23 - INFO - __main__ -   [BRAINQA] Loss: 3.2511959075927734
+
+Iteration:   2%|▏         | 176/8224 [03:10<2:27:07,  1.10s/it][A04/25/2020 00:36:23 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:23 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:23 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:23 - INFO - models.brainqa -   Total Loss: 2.388796091079712
+04/25/2020 00:36:23 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004274125676602125	ppl: 2.6327106952667236
+04/25/2020 00:36:23 - INFO - models.brainqa -   Recon loss: 1.0939668416976929
+04/25/2020 00:36:23 - INFO - models.brainqa -   VQVAE Loss: 1.0943942070007324
+04/25/2020 00:36:24 - INFO - __main__ -   [BRAINQA] Loss: 3.4831902980804443
+
+Iteration:   2%|▏         | 177/8224 [03:11<2:26:22,  1.09s/it][A04/25/2020 00:36:24 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:24 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:24 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:24 - INFO - models.brainqa -   Total Loss: 2.5089526176452637
+04/25/2020 00:36:24 - INFO - models.brainqa -   VQVAE emb_loss: 0.00042509991908445954	ppl: 2.6349809169769287
+04/25/2020 00:36:24 - INFO - models.brainqa -   Recon loss: 1.0934864282608032
+04/25/2020 00:36:24 - INFO - models.brainqa -   VQVAE Loss: 1.0939115285873413
+04/25/2020 00:36:25 - INFO - __main__ -   [BRAINQA] Loss: 3.6028642654418945
+
+Iteration:   2%|▏         | 178/8224 [03:12<2:25:58,  1.09s/it][A04/25/2020 00:36:25 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:25 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:25 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:25 - INFO - models.brainqa -   Total Loss: 2.341679334640503
+04/25/2020 00:36:25 - INFO - models.brainqa -   VQVAE emb_loss: 0.0004251978825777769	ppl: 2.5393059253692627
+04/25/2020 00:36:25 - INFO - models.brainqa -   Recon loss: 1.0931881666183472
+04/25/2020 00:36:25 - INFO - models.brainqa -   VQVAE Loss: 1.0936133861541748
+04/25/2020 00:36:26 - INFO - __main__ -   [BRAINQA] Loss: 3.4352927207946777
+
+Iteration:   2%|▏         | 179/8224 [03:13<2:26:06,  1.09s/it][A04/25/2020 00:36:26 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:26 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:26 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:26 - INFO - models.brainqa -   Total Loss: 3.32597017288208
+04/25/2020 00:36:26 - INFO - models.brainqa -   VQVAE emb_loss: 0.00042364568798802793	ppl: 2.550981283187866
+04/25/2020 00:36:26 - INFO - models.brainqa -   Recon loss: 1.0934326648712158
+04/25/2020 00:36:26 - INFO - models.brainqa -   VQVAE Loss: 1.0938563346862793
+04/25/2020 00:36:27 - INFO - __main__ -   [BRAINQA] Loss: 4.419826507568359
+
+Iteration:   2%|▏         | 180/8224 [03:14<2:25:38,  1.09s/it][A04/25/2020 00:36:27 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:27 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:27 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:28 - INFO - models.brainqa -   Total Loss: 2.259305477142334
+04/25/2020 00:36:28 - INFO - models.brainqa -   VQVAE emb_loss: 0.00042153289541602135	ppl: 2.4834885597229004
+04/25/2020 00:36:28 - INFO - models.brainqa -   Recon loss: 1.0923949480056763
+04/25/2020 00:36:28 - INFO - models.brainqa -   VQVAE Loss: 1.0928164720535278
+04/25/2020 00:36:28 - INFO - __main__ -   [BRAINQA] Loss: 3.3521220684051514
+
+Iteration:   2%|▏         | 181/8224 [03:15<2:26:10,  1.09s/it][A04/25/2020 00:36:28 - INFO - models.brainqa -   Input sequence shape: torch.Size([16, 384])
+04/25/2020 00:36:28 - INFO - models.brainqa -   Input Embeds: torch.Size([16, 384, 768])
+04/25/2020 00:36:28 - INFO - models.brainqa -   Reconstructed shape: torch.Size([16, 384, 768]) Latent state shape: torch.Size([16, 512, 192])
+04/25/2020 00:36:29 - INFO - models.brainqa -   Total Loss: 2.3644025325775146
+04/25/2020 00:36:29 - INFO - models.brainqa -   VQVAE emb_loss: 0.000421456788899377	ppl: 2.48527455329895
+04/25/2020 00:36:29 - INFO - models.brainqa -   Recon loss: 1.0930818319320679
+04/25/2020 00:36:29 - INFO - models.brainqa -   VQVAE Loss: 1.0935032367706299
+04/25/2020 00:36:29 - INFO - __main__ -   [BRAINQA] Loss: 3.4579057693481445

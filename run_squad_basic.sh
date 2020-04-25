@@ -23,7 +23,8 @@ then
         --output_dir ./wwm_cased_finetuned_squad/ \
         --per_gpu_eval_batch_size=2  \
         --per_gpu_train_batch_size=2   \
-        --save_steps 5000 > $1 2>&1 &
+        --save_steps 5000 \
+        --logging_steps 100 > $1 2>&1 &
 else
     python run_squad_basic.py \
         --model_type bert \
@@ -38,8 +39,8 @@ else
         --max_seq_length 384 \
         --doc_stride 128 \
         --output_dir ./wwm_cased_finetuned_squad/ \
-        --per_gpu_eval_batch_size=2  \
-        --per_gpu_train_batch_size=2   \
+        --per_gpu_eval_batch_size=1  \
+        --per_gpu_train_batch_size=1   \
         --save_steps 5000 \
         --logging_steps 10
 fi

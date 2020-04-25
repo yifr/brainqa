@@ -25,7 +25,7 @@ class BrainQA(BertPreTrainedModel):
         self.vqvae_model= VQVAE(h_dim=config.hidden_size, 
                                 res_h_dim=32, 
                                 n_res_layers=2, 
-                                n_embeddings=64, 
+                                n_embeddings=256, 
                                 embedding_dim=512, 
                                 beta=.25)
 
@@ -53,28 +53,31 @@ class BrainQA(BertPreTrainedModel):
     ):
         #B = Batch Size, S = Sequence Length, H = Hidden Size
         #outputs_encoder = (last_hidden_state: (BxSxH), pooler_output:(BxH), hidden_states: (BxSxH))
+        log.info('Input sequence shape: {}'.format(input_ids.shape))
+        input_embeds = self.bert_enc.embeddings(
+            input_ids=input_ids, position_ids=position_ids, token_type_ids=token_type_ids, inputs_embeds=inputs_embeds
+        )
+        log.info('Input Embeds: {}'.format(input_embeds.shape))
+        
+        outputs_VQVAE = self.vqvae_model(input_embeds)
+        vq_embedding_loss, embeds_reconstructed, vqvae_ppl, latent_states = outputs_VQVAE    
+        vq_recon_loss = torch.mean((embeds_reconstructed - input_embeds)**2) # VQVAE divides this by variance of total training data 
+        vqvae_loss = vq_recon_loss + vq_embedding_loss       
+        
+        log.info('Reconstructed shape: {} Latent state shape: {}'.format(embeds_reconstructed.shape, latent_states.shape))    
+
         outputs_encoder = self.bert_enc(
-                input_ids,
+                input_ids=None,
                 attention_mask=attention_mask,
                 token_type_ids=token_type_ids,
                 position_ids=position_ids,
                 head_mask=head_mask,
-                inputs_embeds=inputs_embeds,
+                inputs_embeds=embeds_reconstructed,
             )
-        last_hidden_state, pooler_output, hidden_states = outputs_encoder
-
-        outputs_VQVAE = self.vqvae_model(last_hidden_state)
-        vq_embedding_loss, hidden_state_reconstructed, vqvae_ppl, latent_states = outputs_VQVAE    
-
-        log.info('Reconstructed shape: {} Latent state shape: {}'.format(hidden_state_reconstructed.shape, latent_states.shape))    
-
-        vq_recon_loss = torch.mean((hidden_state_reconstructed - last_hidden_state)**2) # VQVAE divides this by variance of total training data 
-        log.info('Recon loss: ')
-        vqvae_loss = vq_recon_loss + vq_embedding_loss        
-        
+        last_hidden_state, pooler_output, hidden_states = outputs_encoder 
 
         # Concatenate clustered memory representations with current sentence embeddings
-        vqvae_hidden_states = torch.cat((last_hidden_state, hidden_state_reconstructed), dim=1) # TODO
+        #vqvae_hidden_states = torch.cat((last_hidden_state, hidden_state_reconstructed), dim=1) # TODO
         
         #decoder bert
         outputs_decoder = self.bert_dec(
@@ -84,7 +87,7 @@ class BrainQA(BertPreTrainedModel):
                 position_ids=position_ids,
                 head_mask=head_mask,
                 inputs_embeds=inputs_embeds,
-                encoder_hidden_states = vqvae_hidden_states
+                encoder_hidden_states = last_hidden_state
             )
        
        
@@ -110,10 +113,11 @@ class BrainQA(BertPreTrainedModel):
             loss_fct = CrossEntropyLoss(ignore_index=ignored_index)
             start_loss = loss_fct(start_logits, start_positions)
             end_loss = loss_fct(end_logits, end_positions)
-            total_loss = (start_loss + end_loss) / 2 + vqvae_loss
-            outputs = (total_loss,vqvae_loss,) + outputs
+            total_loss = (start_loss + end_loss) / 2 
+            outputs = (total_loss,vqvae_loss) + outputs
         log.info('Total Loss: {}'.format(total_loss - vqvae_loss))
         log.info('VQVAE emb_loss: {}\tppl: {}'.format(vq_embedding_loss, vqvae_ppl))
+        log.info('Recon loss: {}'.format(vq_recon_loss))
         log.info('VQVAE Loss: {}'.format(vqvae_loss))
 
         return outputs  # (loss), start_logits, end_logits, (hidden_states), (attentions)

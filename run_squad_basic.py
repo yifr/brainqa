@@ -150,7 +150,7 @@ def train(args, train_dataset, model, tokenizer):
         except ValueError:
             logger.info("  Starting fine-tuning.")
 
-    tr_loss, logging_loss = 0.0, 0.0
+    tr_loss, tr_vqvae_loss, logging_loss, vq_logging_loss = 0.0, 0.0, 0.0, 0.0
     model.zero_grad()
     train_iterator = trange(
         epochs_trained, int(args.num_train_epochs), desc="Epoch")
@@ -169,7 +169,7 @@ def train(args, train_dataset, model, tokenizer):
             #NEED A TRAIN?
             model.train()
             batch = tuple(t.to(args.device) for t in batch)
-
+            
             inputs = {
                 "input_ids": batch[0],
                 "attention_mask": batch[1],
@@ -181,20 +181,21 @@ def train(args, train_dataset, model, tokenizer):
             #HERE WE DO FORWARD OF MODEL
             outputs = model(**inputs)
             # model outputs are always tuple in transformers (see doc)
-            loss = outputs[0][0]
-            vqvae_loss = outputs[0][1]
+            loss = outputs[0]
+            vqvae_loss = outputs[1]
             if args.n_gpu > 1:
                 loss = loss.mean()  # mean() to average on multi-gpu parallel (not distributed) training
                 vqvae_loss = vqvae_loss.mean()
             if args.gradient_accumulation_steps > 1:
                 loss = loss / args.gradient_accumulation_steps
                 vqvae_loss = vqvae_loss / args.gradient_accumulation_steps
-                
+            
+            vqvae_loss.backward(retain_graph=True)                
             loss.backward()
-            vqvae_loss.backward()
 
             logger.info('[BRAINQA] Loss: {}'.format(loss.item()))
             tr_loss += loss.item()
+            tr_vqvae_loss += vqvae_loss.item()
             if (step + 1) % args.gradient_accumulation_steps == 0: #CLCP
                 torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
 
@@ -212,9 +213,11 @@ def train(args, train_dataset, model, tokenizer):
                             tb_writer.add_scalar("eval_{}".format(key), value, global_step)
                     tb_writer.add_scalar("lr", scheduler.get_lr()[0], global_step)
                     tb_writer.add_scalar("loss", (tr_loss - logging_loss) / args.logging_steps, global_step)
+                    tb_writer.add_scalar('vqvae_loss', (tr_vqvae_loss - vq_logging_loss) / args.logging_steps, global_step)
                     logger.info('[BRAINQA] Eval loss: %.3f' % float((tr_loss - logging_loss) / args.logging_steps))
 
                     logging_loss = tr_loss
+                    vq_logging_loss = tr_vqvae_loss
 
                 # Save model checkpoint
                 if args.save_steps > 0 and global_step % args.save_steps == 0:
