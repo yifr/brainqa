@@ -17,4 +17,4 @@ nohup python old_run_squad.py \
     --output_dir ./baseline_bert/ \
     --per_gpu_eval_batch_size=2  \
     --per_gpu_train_batch_size=2   \
-    --save_steps 5000 > squad_out.out 2>&1 &
+    --save_steps 5000 > baseline_test2.out 2>&1 &

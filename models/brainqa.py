@@ -20,7 +20,7 @@ class BrainQA(BertPreTrainedModel):
         self.config_enc['output_hidden_states'] = True
         self.config_enc = BertConfig.from_dict(self.config_enc)
         self.bert_enc = BertModel(self.config_enc)
-
+        
         # VQVAE for external memory
         self.vqvae_model= VQVAE(h_dim=config.hidden_size, 
                                 res_h_dim=256, 
@@ -66,6 +66,17 @@ class BrainQA(BertPreTrainedModel):
         
         log.info('Reconstructed shape: {} Latent state shape: {}'.format(embeds_reconstructed.shape, vqvae_latent_states.shape))    
 
+        outputs_encoder_vqvae = self.bert_enc(
+                input_ids=None,
+                attention_mask=attention_mask,
+                token_type_ids=token_type_ids,
+                position_ids=position_ids,
+                head_mask=head_mask,
+                inputs_embeds=embeds_reconstructed,
+                encoder_hidden_states=vqvae_latent_states
+            )
+        last_hidden_state_vqvae, _, _ = outputs_encoder_vqvae
+
         outputs_encoder = self.bert_enc(
                 input_ids=input_ids,
                 attention_mask=attention_mask,
@@ -73,12 +84,11 @@ class BrainQA(BertPreTrainedModel):
                 position_ids=position_ids,
                 head_mask=head_mask,
                 inputs_embeds=inputs_embeds,
-                encoder_hidden_states=vqvae_latent_states
             )
-        last_hidden_state, pooler_output, hidden_states = outputs_encoder 
+        last_hidden_state, _, _ = outputs_encoder 
 
         # Concatenate clustered memory representations with current sentence embeddings
-        #vqvae_hidden_states = torch.cat((last_hidden_state, hidden_state_reconstructed), dim=1) # TODO
+        vqvae_hidden_states = torch.cat((last_hidden_state, last_hidden_state_vqvae), dim=1) # TODO
         
         #decoder bert
         outputs_decoder = self.bert_dec(
@@ -88,7 +98,7 @@ class BrainQA(BertPreTrainedModel):
                 position_ids=position_ids,
                 head_mask=head_mask,
                 inputs_embeds=inputs_embeds,
-                encoder_hidden_states = last_hidden_state
+                encoder_hidden_states = vqvae_hidden_states
             )
        
        

@@ -20,7 +20,7 @@ then
         --num_train_epochs 4 \
         --max_seq_length 384 \
         --doc_stride 128 \
-        --output_dir ./bert_baseline_test2/ \
+        --output_dir ./double_encoder_overnight_run/ \
         --per_gpu_eval_batch_size=2  \
         --per_gpu_train_batch_size=2   \
         --save_steps 5000 \
@@ -29,8 +29,8 @@ else
     python run_brainqa.py \
         --model_type bert \
         --model_name_or_path bert-base-uncased \
-        --do_train \
         --do_eval \
+        --eval_checkpoints \
         --version_2_with_negative \
         --train_file $SQUAD_DIR/train-v2.0.json \
         --predict_file $SQUAD_DIR/dev-v2.0.json \
@@ -38,7 +38,7 @@ else
         --num_train_epochs 4 \
         --max_seq_length 384 \
         --doc_stride 128 \
-        --output_dir ./double_encoder_brain/ \
+        --output_dir ./double_encoder_overnight_run/ \
         --eval_all_checkpoints \
         --per_gpu_eval_batch_size=1  \
         --per_gpu_train_batch_size=1   \

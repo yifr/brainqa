@@ -175,8 +175,8 @@ def train_vqvae(args, train_dataset, model, brainqa_model, tokenizer):
             #HERE WE DO FORWARD OF MODEL
             vq_embedding_loss, x_hat, perplexity, z_q = model(embeddings)
             # model outputs are always tuple in transformers (see doc)
-            vq_recon_loss = torch.mean((x_hat - embeddings)**2) # VQVAE divides this by variance of total training data 
-            loss = vq_recon_loss + vq_embedding_loss   
+            vq_recon_loss = torch.mean((x_hat - embeddings)**2) # VQVAE divides this by variance of total training data
+            loss = vq_recon_loss + vq_embedding_loss
 
             if args.n_gpu > 1:
                 loss = loss.mean()  # mean() to average on multi-gpu parallel (not distributed) training
@@ -338,21 +338,21 @@ def train(args, train_dataset, model, tokenizer):
             outputs = model(**inputs)
             # model outputs are always tuple in transformers (see doc)
             loss = outputs[0]
-            vqvae_loss = outputs[1]
+            # vqvae_loss = outputs[1]
             if args.n_gpu > 1:
                 loss = loss.mean()  # mean() to average on multi-gpu parallel (not distributed) training
-                vqvae_loss = vqvae_loss.mean()
+                # vqvae_loss = vqvae_loss.mean()
             if args.gradient_accumulation_steps > 1:
                 loss = loss / args.gradient_accumulation_steps
-                vqvae_loss = vqvae_loss / args.gradient_accumulation_steps
+                # vqvae_loss = vqvae_loss / args.gradient_accumulation_steps
 
-            vqvae_loss.backward()
-            vqvae_loss.detach()
+            # vqvae_loss.backward(retain_graph=True)
+            # vqvae_loss.detach()
             loss.backward()
 
             logger.info('[BRAINQA] Loss: {}'.format(loss.item()))
             tr_loss += loss.item()
-            tr_vqvae_loss += vqvae_loss.item()
+            # tr_vqvae_loss += vqvae_loss.item()
             if (step + 1) % args.gradient_accumulation_steps == 0: #CLCP
                 torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
 
@@ -370,11 +370,11 @@ def train(args, train_dataset, model, tokenizer):
                             tb_writer.add_scalar("eval_{}".format(key), value, global_step)
                     tb_writer.add_scalar("lr", scheduler.get_lr()[0], global_step)
                     tb_writer.add_scalar("loss", (tr_loss - logging_loss) / args.logging_steps, global_step)
-                    tb_writer.add_scalar('vqvae_loss', (tr_vqvae_loss - vq_logging_loss) / args.logging_steps, global_step)
+                    # tb_writer.add_scalar('vqvae_loss', (tr_vqvae_loss - vq_logging_loss) / args.logging_steps, global_step)
                     logger.info('[BRAINQA] Eval loss: %.3f' % float((tr_loss - logging_loss) / args.logging_steps))
 
                     logging_loss = tr_loss
-                    vq_logging_loss = tr_vqvae_loss
+                    # vq_logging_loss = tr_vqvae_loss
 
                 # Save model checkpoint
                 if args.save_steps > 0 and global_step % args.save_steps == 0:
@@ -698,6 +698,7 @@ def main():
     )
     parser.add_argument("--do_train", action="store_true", help="Whether to run training.")
     parser.add_argument("--do_eval", action="store_true", help="Whether to run eval on the dev set.")
+    parser.add_argument("--eval_checkpoints", action="store_true", help="evaluate checkpoints")
     parser.add_argument(
         "--evaluate_during_training", action="store_true", help="Run evaluation during training at each logging step."
     )
@@ -826,22 +827,21 @@ def main():
         cache_dir=args.cache_dir if args.cache_dir else None,
     )
 
-    model = BrainQA(config=config)
+    # model = BrainQA(config=config)
+    model = AutoModelForQuestionAnswering.from_pretrained(
+        args.model_name_or_path,
+        from_tf=bool(".ckpt" in args.model_name_or_path),
+        config=config,
+        cache_dir=args.cache_dir if args.cache_dir else None,
+    )
     model.to(args.device)
     logger.info("Training/evaluation parameters %s", args)
 
     # Training
     if args.do_train:
         train_dataset = load_and_cache_examples(args, tokenizer, evaluate=False, output_examples=False)
-        from models.vqvae import VQVAE
-        vqvae_model = VQVAE(h_dim=config.hidden_size, 
-                                res_h_dim=256, 
-                                n_res_layers=4, 
-                                n_embeddings=4096, 
-                                embedding_dim=256, 
-                                beta=2)
-        vqvae_model.to(args.device)
-        global_step, tr_loss = train_vqvae(args, train_dataset, vqvae_model, model, tokenizer) #train(args, train_dataset, model, tokenizer)
+
+        global_step, tr_loss = train(args, train_dataset, model, tokenizer)
         logger.info(" global_step = %s, average loss = %s", global_step, tr_loss)
 
         # Create output directory if needed
@@ -867,7 +867,7 @@ def main():
     # Evaluation - we can ask to evaluate all the checkpoints (sub-directories) in a directory
     results = {}
     if args.do_eval:
-        if args.do_train:
+        if args.do_train or args.eval_checkpoints:
             logger.info("Loading checkpoints saved during training for evaluation")
             checkpoints = [args.output_dir]
             if args.eval_all_checkpoints:
