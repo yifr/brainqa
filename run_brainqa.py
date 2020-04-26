@@ -827,13 +827,7 @@ def main():
         cache_dir=args.cache_dir if args.cache_dir else None,
     )
 
-    # model = BrainQA(config=config)
-    model = AutoModelForQuestionAnswering.from_pretrained(
-        args.model_name_or_path,
-        from_tf=bool(".ckpt" in args.model_name_or_path),
-        config=config,
-        cache_dir=args.cache_dir if args.cache_dir else None,
-    )
+    model = BrainQA(args=args, config=config)
     model.to(args.device)
     logger.info("Training/evaluation parameters %s", args)
 

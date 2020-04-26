@@ -11,7 +11,7 @@ import logging
 log = logging.getLogger(__name__)
 
 class BrainQA(BertPreTrainedModel):
-    def __init__(self, config):
+    def __init__(self, args, config):
         super(BrainQA, self).__init__(config)
         self.num_labels = config.num_labels
 
@@ -19,8 +19,8 @@ class BrainQA(BertPreTrainedModel):
         self.config_enc = config.to_dict()
         self.config_enc['output_hidden_states'] = True
         self.config_enc = BertConfig.from_dict(self.config_enc)
-        self.bert_enc = BertModel(self.config_enc)
-        
+        self.bert_enc = BertModel.from_pretrained(args.model_name_or_path, config=self.config_enc)
+ 
         # VQVAE for external memory
         self.vqvae_model= VQVAE(h_dim=config.hidden_size, 
                                 res_h_dim=256, 
@@ -28,13 +28,7 @@ class BrainQA(BertPreTrainedModel):
                                 n_embeddings=4096, 
                                 embedding_dim=256, 
                                 beta=2)
-
-        # Set up BERT decoder
-        self.config_dec = config.to_dict()
-        self.config_dec['is_decoder'] = True
-        self.config_dec = BertConfig.from_dict(self.config_dec)
-        self.bert_dec = BertModel(self.config_dec)
-
+                                
         # Question answer layer to output spans of question answers
         self.qa_outputs = nn.Linear(config.hidden_size, config.num_labels)
         

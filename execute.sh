@@ -38,7 +38,7 @@ else
         --num_train_epochs 4 \
         --max_seq_length 384 \
         --doc_stride 128 \
-        --output_dir ./double_encoder_brain/ \
+        --output_dir ./pretrained_bert_test1/ \
         --eval_all_checkpoints \
         --per_gpu_eval_batch_size=1  \
         --per_gpu_train_batch_size=1   \
