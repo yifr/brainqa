@@ -1,4 +1,0 @@
-  File "run_squad_basic.py", line 646
-    "Device: %s, n_gpu: %s,
-                          ^
-SyntaxError: EOL while scanning string literal

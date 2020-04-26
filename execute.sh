@@ -8,7 +8,7 @@ export SQUAD_DIR=/ml/jif24/squad
 RUN_IN_BACKGROUND=${1:-"FALSE"}
 if [ "$RUN_IN_BACKGROUND" != "FALSE" ]
 then
-    nohup python run_squad_basic.py \
+    nohup python run_brainqa.py \
         --model_type bert \
         --model_name_or_path bert-base-uncased \
         --do_train \
@@ -26,7 +26,7 @@ then
         --save_steps 5000 \
         --logging_steps 100 > $1 2>&1 &
 else
-    python run_squad_basic.py \
+    python run_brainqa.py \
         --model_type bert \
         --model_name_or_path bert-base-uncased \
         --do_train \
@@ -38,7 +38,7 @@ else
         --num_train_epochs 4 \
         --max_seq_length 384 \
         --doc_stride 128 \
-        --output_dir ./brainqa_results/ \
+        --output_dir ./just_vqvae/ \
         --eval_all_checkpoints \
         --per_gpu_eval_batch_size=1  \
         --per_gpu_train_batch_size=1   \
