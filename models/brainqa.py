@@ -23,11 +23,11 @@ class BrainQA(BertPreTrainedModel):
 
         # VQVAE for external memory
         self.vqvae_model= VQVAE(h_dim=config.hidden_size, 
-                                res_h_dim=32, 
-                                n_res_layers=2, 
-                                n_embeddings=256, 
-                                embedding_dim=512, 
-                                beta=.25)
+                                res_h_dim=256, 
+                                n_res_layers=4, 
+                                n_embeddings=4096, 
+                                embedding_dim=256, 
+                                beta=2)
 
         # Set up BERT decoder
         self.config_dec = config.to_dict()
@@ -54,25 +54,26 @@ class BrainQA(BertPreTrainedModel):
         #B = Batch Size, S = Sequence Length, H = Hidden Size
         #outputs_encoder = (last_hidden_state: (BxSxH), pooler_output:(BxH), hidden_states: (BxSxH))
         log.info('Input sequence shape: {}'.format(input_ids.shape))
-        input_embeds = self.bert_enc.embeddings(
+        bert_embeds = self.bert_enc.embeddings(
             input_ids=input_ids, position_ids=position_ids, token_type_ids=token_type_ids, inputs_embeds=inputs_embeds
         )
-        log.info('Input Embeds: {}'.format(input_embeds.shape))
+        log.info('Input Embeds: {}'.format(bert_embeds.shape))
         
-        outputs_VQVAE = self.vqvae_model(input_embeds)
-        vq_embedding_loss, embeds_reconstructed, vqvae_ppl, latent_states = outputs_VQVAE    
-        vq_recon_loss = torch.mean((embeds_reconstructed - input_embeds)**2) # VQVAE divides this by variance of total training data 
+        outputs_VQVAE = self.vqvae_model(bert_embeds)
+        vq_embedding_loss, embeds_reconstructed, vqvae_ppl, vqvae_latent_states = outputs_VQVAE    
+        vq_recon_loss = torch.mean((embeds_reconstructed - bert_embeds)**2) # VQVAE divides this by variance of total training data 
         vqvae_loss = vq_recon_loss + vq_embedding_loss       
         
-        log.info('Reconstructed shape: {} Latent state shape: {}'.format(embeds_reconstructed.shape, latent_states.shape))    
+        log.info('Reconstructed shape: {} Latent state shape: {}'.format(embeds_reconstructed.shape, vqvae_latent_states.shape))    
 
         outputs_encoder = self.bert_enc(
-                input_ids=None,
+                input_ids=input_ids,
                 attention_mask=attention_mask,
                 token_type_ids=token_type_ids,
                 position_ids=position_ids,
                 head_mask=head_mask,
-                inputs_embeds=embeds_reconstructed,
+                inputs_embeds=inputs_embeds,
+                encoder_hidden_states=vqvae_latent_states
             )
         last_hidden_state, pooler_output, hidden_states = outputs_encoder 
 
@@ -115,7 +116,7 @@ class BrainQA(BertPreTrainedModel):
             end_loss = loss_fct(end_logits, end_positions)
             total_loss = (start_loss + end_loss) / 2 
             outputs = (total_loss,vqvae_loss) + outputs
-        log.info('Total Loss: {}'.format(total_loss - vqvae_loss))
+        log.info('BERT Loss: {}'.format(total_loss))
         log.info('VQVAE emb_loss: {}\tppl: {}'.format(vq_embedding_loss, vqvae_ppl))
         log.info('Recon loss: {}'.format(vq_recon_loss))
         log.info('VQVAE Loss: {}'.format(vqvae_loss))

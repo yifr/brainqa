@@ -169,7 +169,7 @@ def train(args, train_dataset, model, tokenizer):
             #NEED A TRAIN?
             model.train()
             batch = tuple(t.to(args.device) for t in batch)
-            
+
             inputs = {
                 "input_ids": batch[0],
                 "attention_mask": batch[1],
@@ -189,8 +189,9 @@ def train(args, train_dataset, model, tokenizer):
             if args.gradient_accumulation_steps > 1:
                 loss = loss / args.gradient_accumulation_steps
                 vqvae_loss = vqvae_loss / args.gradient_accumulation_steps
-            
-            vqvae_loss.backward(retain_graph=True)                
+
+            vqvae_loss.backward()
+            vqvae_loss.detach()
             loss.backward()
 
             logger.info('[BRAINQA] Loss: {}'.format(loss.item()))
@@ -613,7 +614,7 @@ def main():
         "--overwrite_cache", action="store_true", help="Overwrite the cached training and evaluation sets"
     )
     parser.add_argument("--seed", type=int, default=42, help="random seed for initialization")
-    
+
     parser.add_argument("--server_ip", type=str, default="", help="Can be used for distant debugging.")
     parser.add_argument("--server_port", type=str, default="", help="Can be used for distant debugging.")
 
@@ -638,7 +639,7 @@ def main():
             )
         )
 
-    # Setup CUDA, GPU 
+    # Setup CUDA, GPU
     device = torch.device("cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
     args.n_gpu = torch.cuda.device_count()
     args.device = device
@@ -702,7 +703,7 @@ def main():
     # Evaluation - we can ask to evaluate all the checkpoints (sub-directories) in a directory
     results = {}
     if args.do_eval:
-        if args.do_train:
+        if True:
             logger.info("Loading checkpoints saved during training for evaluation")
             checkpoints = [args.output_dir]
             if args.eval_all_checkpoints:

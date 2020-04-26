@@ -20,6 +20,6 @@ var/
 .installed.cfg
 *.egg
 
-runs/
 cached_*
 wwm*/
+brainqa_results/*
