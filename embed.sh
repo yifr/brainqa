@@ -5,15 +5,14 @@
 # Otherwise, ./run_squad_basic.sh will run the program as usual
 export SQUAD_DIR=/ml/jif24/squad
 
-CHECKPOINT_DIR=$1
+CHECKPOINT_DIR=${1:-"pretrained_v1_final/"}
 OUTPUT_FILE=${2:-"FALSE"}
 if [ "$OUTPUT_FILE" != "FALSE" ]
 then
     nohup python run_brainqa.py \
         --model_type bert \
         --model_name_or_path bert-base-uncased \
-        --do_eval \
-        --eval_checkpoints \
+        --do_embeddings \
         --eval_all_checkpoints \
         --version_2_with_negative \
         --train_file $SQUAD_DIR/train-v2.0.json \
@@ -31,8 +30,7 @@ else
     python run_brainqa.py \
         --model_type bert \
         --model_name_or_path bert-base-uncased \
-        --do_eval \
-        --eval_checkpoints \
+        --do_embeddings \
         --version_2_with_negative \
         --train_file $SQUAD_DIR/train-v2.0.json \
         --predict_file $SQUAD_DIR/dev-v2.0.json \

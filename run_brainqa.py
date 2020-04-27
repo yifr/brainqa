@@ -56,7 +56,8 @@ from models.brainqa import BrainQA
 from transformers import BertModel, BertTokenizer
 
 #Interpolate 
-import interpolate as interp
+from utils import interpolate as interp
+from utils.embeddings import emb_visualizer
 
 logger = logging.getLogger(__name__)
 
@@ -722,6 +723,7 @@ def main():
 
     #Added in order to visualize latent
     parser.add_argument("--do_interpolate", action="store_true", help="Whether to run interpolate to visualize latent space.")
+    parser.add_argument("--do_embeddings", action="store_true", help="Whether to run embedding code")
 
     args = parser.parse_args()
 
@@ -855,6 +857,19 @@ def main():
         model.load_state_dict(state_dict)
         interp.run(model.vqvae_model)
 
+    if args.do_embeddings:
+        model = BrainQA(args=args, config=config)
+        path_to_dict = './pretrained_final_v1/checkpoint-30000/pytorch_model.bin'
+        state_dict = torch.load(path_to_dict)
+        model.load_state_dict(state_dict)
+        
+        eval_dataset, examples, features = load_and_cache_examples(args, tokenizer, evaluate=True, output_examples=True)
+        args.eval_batch_size = args.per_gpu_eval_batch_size * max(1, args.n_gpu)
+        eval_sampler = SequentialSampler(eval_dataset)
+        eval_dataloader = DataLoader(eval_dataset, sampler=eval_sampler, batch_size=args.eval_batch_size)
+
+        emb_visualizer(model, eval_dataset, tokenizer, args)
+        
     logger.info("Results: {}".format(results))
 
     return results

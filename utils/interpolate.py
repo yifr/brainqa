@@ -29,15 +29,16 @@ from transformers import BertModel, BertTokenizer
 
 def run(vqvae_model):
     def generate_samples(vqvae_model, e_indices):
-        #4096 is num embeddings
-        min_encodings = torch.zeros(e_indices.shape[0], 4096).to(device)
+        num_embeddings = 4096
+        min_encodings = torch.zeros(e_indices.shape[0], num_embeddings).to(device)
         min_encodings.scatter_(1, e_indices, 1)
         e_weights = vqvae_model.vector_quantization.embedding.weight
         #z_q = torch.matmul(min_encodings, e_weights).view((params["batch_size"],8,8,params["embedding_dim"])) 
         
         #Adjusting for conv1d implementation since text not image
-        #8 is batch size, 256 is embedding dim
-        z_q = torch.matmul(min_encodings, e_weights).view((8,8,256))
+        batch_size = 8
+        embedding_dim = 256
+        z_q = torch.matmul(min_encodings, e_weights).view((batch_size, batch_size, embedding_dim))
         z_q = z_q.permute(2, 0, 1).contiguous()
     
         x_recon = vqvae_model.decoder(z_q)
