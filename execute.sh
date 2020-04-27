@@ -20,7 +20,7 @@ then
         --num_train_epochs 4 \
         --max_seq_length 384 \
         --doc_stride 128 \
-        --output_dir ./bert_baseline_test2/ \
+        --output_dir ./pretrained_final_v1/ \
         --per_gpu_eval_batch_size=2  \
         --per_gpu_train_batch_size=2   \
         --save_steps 5000 \
@@ -38,7 +38,7 @@ else
         --num_train_epochs 4 \
         --max_seq_length 384 \
         --doc_stride 128 \
-        --output_dir ./pretrained_bert_test1/ \
+        --output_dir ./pretrained_final_v1/ \
         --eval_all_checkpoints \
         --per_gpu_eval_batch_size=1  \
         --per_gpu_train_batch_size=1   \

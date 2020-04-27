@@ -24,6 +24,9 @@ class VQVAE(nn.Module):
         # decode the discrete latent representation
         self.decoder = Decoder(embedding_dim, h_dim, n_res_layers, res_h_dim)
 
+        #E_indices used in sampling, just save last to rep last latent state
+        self.e_indices = None
+
         if save_img_embedding_map:
             self.img_to_embedding_map = {i: [] for i in range(n_embeddings)}
         else:
@@ -34,8 +37,12 @@ class VQVAE(nn.Module):
         z_e = self.encoder(x)
 
         z_e = self.pre_quantization_conv(z_e)
-        embedding_loss, z_q, perplexity, _, _ = self.vector_quantization(
+        embedding_loss, z_q, perplexity, _, e_indices = self.vector_quantization(
             z_e)
+
+        #Retain the embedding indices to be used in sampling
+        self.e_indices = e_indices
+
         x_hat = self.decoder(z_q)
 
         if verbose:

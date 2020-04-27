@@ -29,12 +29,6 @@ from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 from torch.utils.data.distributed import DistributedSampler
 from tqdm import tqdm, trange
 
-###############
-#MY IMPORT
-from models.brainqa import BrainQA
-from transformers import BertModel, BertTokenizer
-##############
-
 from transformers import (
     MODEL_FOR_QUESTION_ANSWERING_MAPPING,
     WEIGHTS_NAME,
@@ -52,12 +46,14 @@ from transformers.data.metrics.squad_metrics import (
 )
 from transformers.data.processors.squad import SquadResult, SquadV1Processor, SquadV2Processor
 
-
 try:
     from torch.utils.tensorboard import SummaryWriter
 except ImportError:
     from tensorboardX import SummaryWriter
 
+from models.vqvae import VQVAE
+from models.brainqa import BrainQA
+from transformers import BertModel, BertTokenizer
 
 logger = logging.getLogger(__name__)
 
@@ -79,7 +75,6 @@ def set_seed(args):
 
 def to_list(tensor):
     return tensor.detach().cpu().tolist()
-
 
 def train_vqvae(args, train_dataset, model, brainqa_model, tokenizer):
     tb_writer = SummaryWriter()
@@ -167,15 +162,16 @@ def train_vqvae(args, train_dataset, model, brainqa_model, tokenizer):
 
             #NEED A TRAIN?
             model.train()
-            batch = tuple(t.to(args.device) for t in batch)
+            batch = tuple(t.to(args.device, dtype=torch.float) for t in batch)
 
-            embeddings = brainqa_model.bert_enc.embeddings(
-                input_ids=batch[0], position_ids=None, token_type_ids=batch[2], inputs_embeds=None
-            )
             #HERE WE DO FORWARD OF MODEL
-            vq_embedding_loss, x_hat, perplexity, z_q = model(embeddings)
+            vq_embedding_loss, x_hat, perplexity, z_q = model(batch[0])
+            logger.info('Emb Loss: {}, \tx_hat.shape: {}\t, ppl: {}\t z_q.shape: {}'.format(vq_embedding_loss,
+                                                                                            x_hat.shape,
+                                                                                            perplexity,
+                                                                                            z_q.shape))
             # model outputs are always tuple in transformers (see doc)
-            vq_recon_loss = torch.mean((x_hat - embeddings)**2) # VQVAE divides this by variance of total training data
+            vq_recon_loss = torch.mean((x_hat - batch[0])**2) # VQVAE divides this by variance of total training data
             loss = vq_recon_loss + vq_embedding_loss
 
             if args.n_gpu > 1:
@@ -699,6 +695,8 @@ def main():
     parser.add_argument("--do_train", action="store_true", help="Whether to run training.")
     parser.add_argument("--do_eval", action="store_true", help="Whether to run eval on the dev set.")
     parser.add_argument("--eval_checkpoints", action="store_true", help="evaluate checkpoints")
+    parser.add_argument("--train_vqvae_instead", action="store_true", help="Train VQVAE model on text")
+
     parser.add_argument(
         "--evaluate_during_training", action="store_true", help="Run evaluation during training at each logging step."
     )
@@ -828,14 +826,24 @@ def main():
     )
 
     model = BrainQA(args=args, config=config)
+    if args.train_vqvae_instead:
+        vqvae_model = VQVAE(h_dim=384, 
+                                res_h_dim=256, 
+                                n_res_layers=4, 
+                                n_embeddings=4096, 
+                                embedding_dim=256, 
+                                beta=2)
+        vqvae_model.to(args.device)
     model.to(args.device)
     logger.info("Training/evaluation parameters %s", args)
 
     # Training
     if args.do_train:
         train_dataset = load_and_cache_examples(args, tokenizer, evaluate=False, output_examples=False)
-
-        global_step, tr_loss = train(args, train_dataset, model, tokenizer)
+        if args.train_vqvae_instead:
+            global_step, tr_loss = train_vqvae(args, train_dataset, vqvae_model, model, tokenizer)
+        else:
+            global_step, tr_loss = train(args, train_dataset, model, tokenizer)
         logger.info(" global_step = %s, average loss = %s", global_step, tr_loss)
 
         # Create output directory if needed

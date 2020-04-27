@@ -8,6 +8,7 @@ import numpy as np
 
 import logging
 
+
 log = logging.getLogger(__name__)
 
 class BrainQA(BertPreTrainedModel):
@@ -27,7 +28,7 @@ class BrainQA(BertPreTrainedModel):
                                 n_res_layers=4, 
                                 n_embeddings=4096, 
                                 embedding_dim=256, 
-                                beta=2)
+                                beta=1)
                                 
         # Question answer layer to output spans of question answers
         self.qa_outputs = nn.Linear(config.hidden_size, config.num_labels)
@@ -66,44 +67,16 @@ class BrainQA(BertPreTrainedModel):
                 token_type_ids=token_type_ids,
                 position_ids=position_ids,
                 head_mask=head_mask,
-                inputs_embeds=embeds_reconstructed,
-                encoder_hidden_states=vqvae_latent_states
+                inputs_embeds=embeds_reconstructed
             )
         last_hidden_state_vqvae, _, _ = outputs_encoder_vqvae
-
-        outputs_encoder = self.bert_enc(
-                input_ids=input_ids,
-                attention_mask=attention_mask,
-                token_type_ids=token_type_ids,
-                position_ids=position_ids,
-                head_mask=head_mask,
-                inputs_embeds=inputs_embeds,
-            )
-        last_hidden_state, _, _ = outputs_encoder 
-
-        # Concatenate clustered memory representations with current sentence embeddings
-        vqvae_hidden_states = torch.cat((last_hidden_state, last_hidden_state_vqvae), dim=1) # TODO
-        
-        #decoder bert
-        outputs_decoder = self.bert_dec(
-                input_ids,
-                attention_mask=attention_mask,
-                token_type_ids=token_type_ids,
-                position_ids=position_ids,
-                head_mask=head_mask,
-                inputs_embeds=inputs_embeds,
-                encoder_hidden_states = vqvae_hidden_states
-            )
-       
-       
-        sequence_output, dec_pooler_output = outputs_decoder
-
-        logits = self.qa_outputs(sequence_output)
+        log.info('Last hidden state shape: {}'.format(last_hidden_state_vqvae.shape))
+        logits = self.qa_outputs(last_hidden_state_vqvae)
         start_logits, end_logits = logits.split(1, dim=-1)
         start_logits = start_logits.squeeze(-1)
         end_logits = end_logits.squeeze(-1)
 
-        outputs = (start_logits, end_logits,) + outputs_decoder[2:]
+        outputs = (start_logits, end_logits,) + outputs_encoder_vqvae[2:]
         if start_positions is not None and end_positions is not None:
             # If we are on multi-GPU, split add a dimension
             if len(start_positions.size()) > 1:

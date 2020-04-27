@@ -41,7 +41,6 @@ class Encoder(nn.Module):
                       stride=stride-1, padding=1),
             ResidualStack(
                 h_dim, h_dim, res_h_dim, n_res_layers)
-
         )
 
     def forward(self, x):
