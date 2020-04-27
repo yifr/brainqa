@@ -55,6 +55,9 @@ from models.vqvae import VQVAE
 from models.brainqa import BrainQA
 from transformers import BertModel, BertTokenizer
 
+#Interpolate 
+from interpolate import run
+
 logger = logging.getLogger(__name__)
 
 MODEL_CONFIG_CLASSES = list(MODEL_FOR_QUESTION_ANSWERING_MAPPING.keys())
@@ -717,6 +720,9 @@ def main():
     parser.add_argument("--server_ip", type=str, default="", help="Can be used for distant debugging.")
     parser.add_argument("--server_port", type=str, default="", help="Can be used for distant debugging.")
 
+    #Added in order to visualize latent
+    parser.add_argument("--do_interpolate", action="store_true", help="Whether to run interpolate to visualize latent space.")
+
     args = parser.parse_args()
 
     if args.doc_stride >= args.max_seq_length - args.max_query_length:
@@ -841,6 +847,14 @@ def main():
 
             result = dict((k + ("_{}".format(global_step) if global_step else ""), v) for k, v in result.items())
             results.update(result)
+
+    if args.do_interpolate:
+        model = BrainQA(args=args, config=config)
+        path_to_dict = './pretrained_final_v1/checkpoint-30000/pytorch_model.bin'
+        state_dict = torch.load(path_to_dict)
+        model.load_state_dict(state_dict)
+        run(model.vqvae_model)
+
     logger.info("Results: {}".format(results))
 
     return results
@@ -848,8 +862,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-model = BRAINQA(args, config, ...)
-state_dict = torch.load('path_to_pytorch_model.bin')
-model.load_state_dict(state_dict)
