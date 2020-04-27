@@ -56,7 +56,7 @@ from models.brainqa import BrainQA
 from transformers import BertModel, BertTokenizer
 
 #Interpolate 
-from interpolate import run
+import interpolate as interp
 
 logger = logging.getLogger(__name__)
 
@@ -853,7 +853,7 @@ def main():
         path_to_dict = './pretrained_final_v1/checkpoint-30000/pytorch_model.bin'
         state_dict = torch.load(path_to_dict)
         model.load_state_dict(state_dict)
-        run(model.vqvae_model)
+        interp.run(model.vqvae_model)
 
     logger.info("Results: {}".format(results))
 
