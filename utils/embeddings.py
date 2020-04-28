@@ -7,7 +7,8 @@ from torch.utils.data import DataLoader, SequentialSampler
 from tqdm import tqdm
 from sklearn.manifold import TSNE
 from matplotlib import pyplot as plt 
-from mpl_toolkits.mplot3d import Axes3D
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 def cos_similarity(batch_emb, dim=0):
     '''
@@ -36,8 +37,8 @@ def emb_visualizer(model, dataset, tokenizer, args):
 
     # Eval!
     print(args.eval_batch_size)
-    fig = plt.figure(figsize=(18, 9))
-    ax = fig.add_subplot(111, projection='3d')
+    #fig = plt.figure(figsize=(18, 9))
+    #ax = fig.add_subplot(111, projection='3d')
 
     i = 0
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
@@ -66,6 +67,7 @@ def emb_visualizer(model, dataset, tokenizer, args):
             for duplicate in targets:
                 del bottomk[duplicate]
 
+            fig = make_subplots(rows=1, cols=1)
             input_embs = input_embs.to('cpu')
             print('MOST SIMILAR')
             for k in topk.keys():
@@ -73,7 +75,7 @@ def emb_visualizer(model, dataset, tokenizer, args):
                 print(legend_text)
                 # Plot T-SNE visualization
                 X_embedded = TSNE(n_components=3).fit_transform(input_embs[k])
-                ax.scatter(X_embedded[:, 0], X_embedded[:, 1], X_embedded[:, 2], alpha=0.4, label=legend_text)
+                fig.add_trace(go.Scatter3d(x=X_embedded[:, 0], y=X_embedded[:, 1], z=X_embedded[:, 2], opacity=0.4, text=legend_text))
 
             print('LEAST SIMILAR')
             for k in bottomk.keys():
@@ -81,12 +83,11 @@ def emb_visualizer(model, dataset, tokenizer, args):
                 print(legend_text)
                 # Plot T-SNE visualization
                 X_embedded = TSNE(n_components=3).fit_transform(input_embs[k])
-                ax.scatter(X_embedded[:, 0], X_embedded[:, 1], X_embedded[:, 2], alpha=0.4, label=legend_text)
+                fig.add_trace(go.Scatter3d(x=X_embedded[:, 0], y=X_embedded[:, 1], z=X_embedded[:, 2], opacity=0.4, text=legend_text))
 
-        break
-    plt.legend(prop={'size': 10}, loc='center left', bbox_to_anchor=(1, 0.5))
-    plt.title('T-Sne on BERT Embeddings')
-    plt.savefig('embeddings_scattered', dpi=250)
+            break
+    fig.write_html(args.output_dir + "_emb_viz.html", include_plotlyjs='cdn', full_html=True)
+
 
 def topk_embedding_sentences(cossims, k, batch_ids, tokenizer, bottom=False):
     '''
