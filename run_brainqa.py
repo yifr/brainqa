@@ -743,13 +743,15 @@ def main():
 
 
     if args.do_embeddings:
-        #model = BrainQA(args=args, config=config)
-        model = AutoModelForQuestionAnswering.from_pretrained('bert_baseline_test2/checkpoint-10000')
-        model.to(args.device)
-        #path_to_dict = './bert_baseline_test2/checkpoint-10000/pytorch_model.bin'
-        #state_dict = torch.load(path_to_dict)
-        #model.load_state_dict(state_dict)
+        model = None
+        model = BrainQA(args=args, config=config)
+        #model = AutoModelForQuestionAnswering.from_pretrained('bert_baseline_test2/checkpoint-10000')
+        path_to_dict = './pretrained_v2/checkpoint-30000/pytorch_model.bin'
+        state_dict = torch.load(path_to_dict)
+        model.load_state_dict(state_dict)
         
+        model.to(args.device)
+
         eval_dataset, examples, features = load_and_cache_examples(args, tokenizer, evaluate=True, output_examples=True)
         emb_visualizer(model, eval_dataset, tokenizer, args)
         

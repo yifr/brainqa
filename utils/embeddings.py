@@ -21,8 +21,8 @@ def cos_similarity(batch_emb, dim=0):
             heapq.heappush(cos_sims, (-1*torch.sum(similarity).item(), (i,j)))
     
         return cos_sims
-
-def emb_visualizer(model, dataset, tokenizer, args):
+    
+def emb_visualizer(model, dataset, tokenizer, args, embed_vis=False, latent_vis=True):
     
     if not os.path.exists(args.output_dir):
         os.makedirs(args.output_dir)
@@ -50,40 +50,57 @@ def emb_visualizer(model, dataset, tokenizer, args):
             print(input_ids.shape)
             
             # Get cosine similarity of embeddings
-            input_embs = model.bert.embeddings(input_ids=input_ids)
-            cos_sims = cos_similarity(input_embs)            
-            topk = topk_embedding_sentences(cos_sims, 4, input_ids, tokenizer)
-            bottomk = topk_embedding_sentences(cos_sims, 4, input_ids, tokenizer, bottom=True)
+            input_embs = model.bert_enc.embeddings(input_ids=input_ids)
 
-            # Remove duplicates from least similar
-            targets = []
-            for k in bottomk.keys():
-                if k in topk:
-                    targets.append(k)
-            for duplicate in targets:
-                del bottomk[duplicate]
+            # VQVAE Reconstruction visualization
+            outputs_VQVAE = model.vqvae_model(input_embs) 
+            vq_embedding_loss, embeds_reconstructed, vqvae_ppl, vqvae_latent_states = outputs_VQVAE   
+            
+            if latent_vis:
+                input_embs = input_embs.to('cpu')
+                embeds_reconstructed = embeds_reconstructed.to('cpu')
+                bert_embedded = TSNE(n_components=2).fit_transform(input_embs[0])
+                bert_embedded2 = TSNE(n_components=2).fit_transform(input_embs[0])
+                vqvae_reconstructions = TSNE(n_components=2).fit_transform(embeds_reconstructed[0])
+                plt.scatter(bert_embedded[:, 0], bert_embedded[:, 1], alpha=0.4, label='BERT Embeddings')
+                plt.scatter(bert_embedded2[:, 0], bert_embedded2[:, 1], alpha=0.4, label='BERT Embeddings')
+                plt.scatter(vqvae_reconstructions[:, 0], vqvae_reconstructions[:, 1], alpha=0.4, label='Reconstructed Embeddings')
 
-            input_embs = input_embs.to('cpu')
-            print('MOST SIMILAR')
-            for k in topk.keys():
-                legend_text = 'INDEX: ' + str(k)  + ', ' + str(topk[k][0]) + ': ' + topk[k][1]
-                print(legend_text)
-                # Plot T-SNE visualization
-                X_embedded = TSNE(n_components=2).fit_transform(input_embs[k])
-                plt.scatter(X_embedded[:, 0], X_embedded[:, 1], alpha=0.4, label=legend_text)
 
-            print('LEAST SIMILAR')
-            for k in bottomk.keys():
-                legend_text = 'INDEX: ' + str(k)  + ', ' + str(bottomk[k][0]) + ': ' + bottomk[k][1]
-                print(legend_text)
-                # Plot T-SNE visualization
-                X_embedded = TSNE(n_components=2).fit_transform(input_embs[k])
-                plt.scatter(X_embedded[:, 0], X_embedded[:, 1], alpha=0.4, label=legend_text)
+            elif embed_vis: 
+                cos_sims = cos_similarity(input_embs)            
+                topk = topk_embedding_sentences(cos_sims, 4, input_ids, tokenizer)
+                bottomk = topk_embedding_sentences(cos_sims, 4, input_ids, tokenizer, bottom=True)
+
+                # Remove duplicates from least similar
+                targets = []
+                for k in bottomk.keys():
+                    if k in topk:
+                        targets.append(k)
+                for duplicate in targets:
+                    del bottomk[duplicate]
+
+                input_embs = input_embs.to('cpu')
+                print('MOST SIMILAR')
+                for k in topk.keys():
+                    legend_text = 'INDEX: ' + str(k)  + ', ' + str(topk[k][0]) + ': ' + topk[k][1]
+                    print(legend_text)
+                    # Plot T-SNE visualization
+                    X_embedded = TSNE(n_components=2).fit_transform(input_embs[k])
+                    plt.scatter(X_embedded[:, 0], X_embedded[:, 1], alpha=0.4, label=legend_text)
+
+                print('LEAST SIMILAR')
+                for k in bottomk.keys():
+                    legend_text = 'INDEX: ' + str(k)  + ', ' + str(bottomk[k][0]) + ': ' + bottomk[k][1]
+                    print(legend_text)
+                    # Plot T-SNE visualization
+                    X_embedded = TSNE(n_components=2).fit_transform(input_embs[k])
+                    plt.scatter(X_embedded[:, 0], X_embedded[:, 1], alpha=0.4, label=legend_text)
 
         break
-    plt.legend(prop={'size': 10}, loc='center left', bbox_to_anchor=(1, 0.5))
-    plt.title('T-Sne on BERT Embeddings')
-    plt.savefig('embeddings_scattered', dpi=250)
+    #plt.legend(prop={'size': 10}, loc='center left', bbox_to_anchor=(1, 0.5))
+    plt.title('Comparing BERT Embeddings and their VQVAE Reconstructions')
+    plt.savefig('reconstructed_comparison_1', dpi=250)
 
 def topk_embedding_sentences(cossims, k, batch_ids, tokenizer, bottom=False):
     '''
