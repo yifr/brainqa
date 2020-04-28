@@ -39,7 +39,8 @@ def emb_visualizer(model, dataset, tokenizer, args):
             input_embs = model.bert_enc.embeddings(input_ids=input_ids).cpu()
             bert_embs = model.bert_enc.get_input_embeddings()
             X_embedded = TSNE(n_components=2).fit_transform(input_embs[0])
-            plt.scatter(X_embedded[0], X_embedded[1])
+            print(X_embedded.shape)
+            plt.scatter(X_embedded[:, 0], X_embedded[:, 1])
         i += 1
         if i == 3:
             break
