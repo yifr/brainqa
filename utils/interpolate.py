@@ -27,19 +27,31 @@ from transformers.data.processors.squad import SquadResult, SquadV2Processor
 from models.brainqa import BrainQA
 from transformers import BertModel, BertTokenizer
 
-def run(vqvae_model):
+
+
+def run(vqvae_model, device):
+    logger = logging.getLogger(__name__)
     def generate_samples(vqvae_model, e_indices):
         num_embeddings = 4096
         min_encodings = torch.zeros(e_indices.shape[0], num_embeddings).to(device)
+        print('\nMin encodings shape ' + str(min_encodings.shape))
         min_encodings.scatter_(1, e_indices, 1)
         e_weights = vqvae_model.vector_quantization.embedding.weight
+
+        print('\nE_weights shape ' + str(e_weights.shape))
         #z_q = torch.matmul(min_encodings, e_weights).view((params["batch_size"],8,8,params["embedding_dim"])) 
         
         #Adjusting for conv1d implementation since text not image
         batch_size = 8
         embedding_dim = 256
-        z_q = torch.matmul(min_encodings, e_weights).view((batch_size, batch_size, embedding_dim))
-        z_q = z_q.permute(2, 0, 1).contiguous()
+
+        #Add noise to z_q
+        z_q = torch.matmul(min_encodings, e_weights)
+        print('\nZ_q shape ' + str(z_q.shape))
+        z_q = z_q.view((batch_size * batch_size, batch_size, embedding_dim))
+        z_q = z_q.permute(1, 2, 0).contiguous()
+        #201 = (256, 64, 8)
+        #012 = (64, 8, 256)
     
         x_recon = vqvae_model.decoder(z_q)
         return x_recon, z_q,e_indices
@@ -79,12 +91,19 @@ def run(vqvae_model):
         
     samples = sample_histogram(hist)
 
-    def histogram_samples(model):
+    def histogram_samples(vqvae_model):
         min_encoding_indices = torch.tensor(samples).reshape(-1,1).long().to(device)
-        x_recon, z_q,e_indices = generate_samples(min_encoding_indices)
+        #min_encoding_indices_temp = torch.tensor(samples).long().to(device)
+        print('Min_e_indices shape: ' + str(min_encoding_indices.shape))
+        x_recon, z_q,e_indices = generate_samples(vqvae_model, min_encoding_indices)
         
         return x_recon, z_q,e_indices
 
     x_hist,_,_ = histogram_samples(vqvae_model)
 
-    display_image_grid(x_hist)
+    # print(x_hist)
+    # print(x_hist.shape)
+    logger.info('X_hist shape: {}'.format(x_hist.shape))
+    logger.info('X_hist: {}'.format(x_hist))
+    #display_image_grid(x_hist)
+    return x_hist

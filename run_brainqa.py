@@ -851,23 +851,67 @@ def main():
             results.update(result)
 
     if args.do_interpolate:
-        model = BrainQA(args=args, config=config)
+        train_dataset = load_and_cache_examples(args, tokenizer, evaluate=False, output_examples=False)
+        args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
+        train_sampler = RandomSampler(train_dataset)
+        train_dataloader = DataLoader(train_dataset, sampler=train_sampler, batch_size=args.train_batch_size)
+
+        model_inter = BrainQA(args=args, config=config)
         path_to_dict = './pretrained_final_v1/checkpoint-30000/pytorch_model.bin'
         state_dict = torch.load(path_to_dict)
-        model.load_state_dict(state_dict)
-        interp.run(model.vqvae_model)
+        model_inter.load_state_dict(state_dict)
+        model_inter.eval()
+        model_inter.to(args.device)
+
+        count = 0
+        latents = []
+        epoch_iterator = tqdm(train_dataloader, desc="Iteration")
+        for step, batch in enumerate(epoch_iterator):
+
+            batch = tuple(t.to(args.device) for t in batch)
+        
+            inputs = {
+                "input_ids": batch[0],
+                "attention_mask": batch[1],
+                "token_type_ids": batch[2],
+                "start_positions": batch[3],
+                "end_positions": batch[4],
+            }
+
+            #HERE WE DO FORWARD OF MODEL
+            model_inter(**inputs)
+            # vq_embedding_loss, x_hat, perplexity, z_q = model_inter.vqvae_model(batch[0])
+            # logger.info('Emb Loss: {}, \tx_hat.shape: {}\t, ppl: {}\t z_q.shape: {}'.format(vq_embedding_loss,
+            #                                                                                 x_hat.shape,
+            #                                                                                 perplexity,
+            #                                                                                 z_q.shape))
+            # # model outputs are always tuple in transformers (see doc)
+            # vq_recon_loss = torch.mean((x_hat - batch[0])**2) # VQVAE divides this by variance of total training data
+            # loss = vq_recon_loss + vq_embedding_loss
+
+            # if args.n_gpu > 1:
+            #     loss = loss.mean()  # mean() to average on multi-gpu parallel (not distributed) training
+            # if args.gradient_accumulation_steps > 1:
+            #     loss = loss / args.gradient_accumulation_steps
+
+            # logger.info('[VQVAE_INTERPOLATE] Embedding Loss: {}\tPerplexity: {}\tReconstruction Loss: {}\n\t\t\tOverall: {}'.format(vq_embedding_loss, perplexity, vq_recon_loss, loss))
+            if count == 2:
+                epoch_iterator.close()
+                break
+            count = count + 1
+            latents.append(interp.run(model_inter.vqvae_model, args.device))
+        #print('Latents: ' + str(latents))
+        print(torch.nonzero(latents[0] - latents[1]).shape)
+
 
     if args.do_embeddings:
         model = BrainQA(args=args, config=config)
+        model.to(args.device)
         path_to_dict = './pretrained_final_v1/checkpoint-30000/pytorch_model.bin'
         state_dict = torch.load(path_to_dict)
         model.load_state_dict(state_dict)
         
         eval_dataset, examples, features = load_and_cache_examples(args, tokenizer, evaluate=True, output_examples=True)
-        args.eval_batch_size = args.per_gpu_eval_batch_size * max(1, args.n_gpu)
-        eval_sampler = SequentialSampler(eval_dataset)
-        eval_dataloader = DataLoader(eval_dataset, sampler=eval_sampler, batch_size=args.eval_batch_size)
-
         emb_visualizer(model, eval_dataset, tokenizer, args)
         
     logger.info("Results: {}".format(results))
