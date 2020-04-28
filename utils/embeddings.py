@@ -53,20 +53,16 @@ def emb_visualizer(model, dataset, tokenizer, args):
             input_embs = model.bert_enc.embeddings(input_ids=input_ids)
             cos_sims = cos_similarity(input_embs)            
             topk = topk_embedding_sentences(cos_sims, 4, input_ids, tokenizer)
-            for k in topk.keys():
-                print(k)
-
             input_embs = input_embs.to('cpu')
-            bert_embs = model.bert_enc.get_input_embeddings()
+            for k in topk.keys():
+                legend_text = 'INDEX: ' + str(topk[k]) + ': ' + k
+                index, sim = topk[k]
+                # Plot T-SNE visualization
+                X_embedded = TSNE(n_components=2).fit_transform(input_embs[index])
+                plt.scatter(X_embedded[:, 0], X_embedded[:, 1], alpha=0.4, label=legend_text)
 
-            # Plot T-SNE visualization
-            X_embedded = TSNE(n_components=2).fit_transform(input_embs[0])
-            print(X_embedded.shape)
-            plt.scatter(X_embedded[:, 0], X_embedded[:, 1], alpha=0.4)
-
-        i += 1
-        if i == 3:
-            break
+        break
+    plt.legend(loc='center_left', bbox_to_anchor=(1, 0.5))
     plt.title('T-Sne on BERT Embeddings')
     plt.savefig('embeddings_scattered', dpi=250)
 
@@ -77,13 +73,13 @@ def topk_embedding_sentences(cossims, k, batch_ids, tokenizer):
         i, j = idxs
         sentence_i = get_sentence(batch_ids[i], tokenizer)
         sentence_j = get_sentence(batch_ids[j], tokenizer)
-        top[sentence_i] = 1
-        top[sentence_j] = 1
+        top[sentence_i] = (i, sim)
+        top[sentence_j] = (j, sim)
     
     return top
 
 def get_sentence(ids, tokenizer):
     tokens = tokenizer.convert_ids_to_tokens(ids)
     sentence = tokenizer.convert_tokens_to_string(tokens)
-    sentence.replace('[PAD]', '')
+    sentence = sentence.replace('[PAD]', '')
     return sentence
