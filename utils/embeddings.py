@@ -55,22 +55,29 @@ def emb_visualizer(model, dataset, tokenizer, args):
             topk = topk_embedding_sentences(cos_sims, 4, input_ids, tokenizer)
             bottomk = topk_embedding_sentences(cos_sims, 4, input_ids, tokenizer, bottom=True)
 
+            # Remove duplicates from least similar
+            targets = []
+            for k in bottomk.keys():
+                if k not in topk:
+                    targets.append(k)
+            for duplicate in targets:
+                del bottomk[duplicate]
+
             input_embs = input_embs.to('cpu')
             print('MOST SIMILAR')
             for k in topk.keys():
-                legend_text = 'INDEX: ' + str(topk[k]) + ': ' + k
+                legend_text = 'INDEX: ' + str(k)  + ', ' + str(topk[k][0]) + ': ' + topk[k][1]
                 print(legend_text)
-                index, sim = topk[k]
                 # Plot T-SNE visualization
-                X_embedded = TSNE(n_components=2).fit_transform(input_embs[index])
+                X_embedded = TSNE(n_components=2).fit_transform(input_embs[k])
                 plt.scatter(X_embedded[:, 0], X_embedded[:, 1], alpha=0.4, label=legend_text)
+
             print('LEAST SIMILAR')
             for k in bottomk.keys():
-                legend_text = 'INDEX: ' + str(bottomk[k]) + ': ' + k
+                legend_text = 'INDEX: ' + str(k)  + ', ' + str(bottomk[k][0]) + ': ' + bottomk[k][1]
                 print(legend_text)
-                index, sim = bottomk[k]
                 # Plot T-SNE visualization
-                X_embedded = TSNE(n_components=2).fit_transform(input_embs[index])
+                X_embedded = TSNE(n_components=2).fit_transform(input_embs[k])
                 plt.scatter(X_embedded[:, 0], X_embedded[:, 1], alpha=0.4, label=legend_text)
 
         break
@@ -83,23 +90,19 @@ def topk_embedding_sentences(cossims, k, batch_ids, tokenizer, bottom=False):
     Returns the k most or least similar embeddings
     '''
     top = {}
+    targets = None
     if not bottom:
-        most_similar = heapq.nsmallest(k, cossims)
-        for sim, idxs in most_similar:
-            i, j = idxs
-            sentence_i = get_sentence(batch_ids[i], tokenizer)
-            sentence_j = get_sentence(batch_ids[j], tokenizer)
-            top[sentence_i] = (i, sim)
-            top[sentence_j] = (j, sim)
+        targets = heapq.nsmallest(k, cossims)
     else:
         # Least similar embeddings have greatest values in minheap
-        least_similar = heapq.nlargest(k, cossims)
-        for sim, idxs in least_similar:
-            i, j = idxs
-            sentence_i = get_sentence(batch_ids[i], tokenizer)
-            sentence_j = get_sentence(batch_ids[j], tokenizer)
-            top[sentence_i] = (i, sim)
-            top[sentence_j] = (j, sim)
+        targets = heapq.nlargest(k, cossims)
+
+    for sim, idxs in targets:
+        i, j = idxs
+        sentence_i = get_sentence(batch_ids[i], tokenizer)
+        sentence_j = get_sentence(batch_ids[j], tokenizer)
+        top[i] = (sim, sentence_i)
+        top[j] = (sim, sentence_j)
 
     return top
 
