@@ -60,10 +60,10 @@ def emb_visualizer(model, dataset, tokenizer, args, embed_vis=False, latent_vis=
                 idx = 0
                 input_embs = input_embs.to('cpu')
                 embeds_reconstructed = embeds_reconstructed.to('cpu')
-                print('Sentence: ', get_sentence(input_ids[idx]))
-                bert_embedded = TSNE(n_components=2).fit_transform(input_embs[idx])
-                bert_embedded2 = TSNE(n_components=2).fit_transform(input_embs[idx])
-                vqvae_reconstructions = TSNE(n_components=2).fit_transform(embeds_reconstructed[idx])
+                print('Sentence: ', get_sentence(input_ids[idx], tokenizer))
+                bert_embedded = TSNE(n_components=2, init='pca', random_state=42).fit_transform(input_embs[idx])
+                bert_embedded2 = TSNE(n_components=2, init='pca', random_state=42).fit_transform(input_embs[idx])
+                vqvae_reconstructions = TSNE(n_components=2, init='pca', random_state=42).fit_transform(embeds_reconstructed[idx])
                 plt.scatter(bert_embedded[:, 0], bert_embedded[:, 1], alpha=0.4, label='BERT Embeddings')
                 plt.scatter(bert_embedded2[:, 0], bert_embedded2[:, 1], alpha=0.4, label='BERT Embeddings')
                 plt.scatter(vqvae_reconstructions[:, 0], vqvae_reconstructions[:, 1], alpha=0.4, label='Reconstructed Embeddings')
@@ -102,7 +102,7 @@ def emb_visualizer(model, dataset, tokenizer, args, embed_vis=False, latent_vis=
         break
     plt.legend(prop={'size': 10}, loc='center left', bbox_to_anchor=(1, 0.5))
     plt.title('Comparing BERT Embeddings and their VQVAE Reconstructions')
-    plt.savefig('reconstructed_comparison_1', dpi=250)
+    plt.savefig('reconstructed_comparison_2', dpi=350)
 
 def topk_embedding_sentences(cossims, k, batch_ids, tokenizer, bottom=False):
     '''
