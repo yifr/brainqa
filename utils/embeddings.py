@@ -7,6 +7,7 @@ from torch.utils.data import DataLoader, SequentialSampler
 from tqdm import tqdm
 from sklearn.manifold import TSNE
 from matplotlib import pyplot as plt 
+from mpl_toolkits.mplot3d import Axes3D
 
 def cos_similarity(batch_emb, dim=0):
     '''
@@ -36,6 +37,8 @@ def emb_visualizer(model, dataset, tokenizer, args):
     # Eval!
     print(args.eval_batch_size)
     fig = plt.figure(figsize=(18, 9))
+    ax = fig.add_subplot(111, projection='3d')
+
     i = 0
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
         model.eval()
@@ -69,16 +72,16 @@ def emb_visualizer(model, dataset, tokenizer, args):
                 legend_text = 'INDEX: ' + str(k)  + ', ' + str(topk[k][0]) + ': ' + topk[k][1]
                 print(legend_text)
                 # Plot T-SNE visualization
-                X_embedded = TSNE(n_components=2).fit_transform(input_embs[k])
-                plt.scatter(X_embedded[:, 0], X_embedded[:, 1], alpha=0.4, label=legend_text)
+                X_embedded = TSNE(n_components=3).fit_transform(input_embs[k])
+                ax.scatter(X_embedded[:, 0], X_embedded[:, 1], X_embedded[:, 2], alpha=0.4, label=legend_text)
 
             print('LEAST SIMILAR')
             for k in bottomk.keys():
                 legend_text = 'INDEX: ' + str(k)  + ', ' + str(bottomk[k][0]) + ': ' + bottomk[k][1]
                 print(legend_text)
                 # Plot T-SNE visualization
-                X_embedded = TSNE(n_components=2).fit_transform(input_embs[k])
-                plt.scatter(X_embedded[:, 0], X_embedded[:, 1], alpha=0.4, label=legend_text)
+                X_embedded = TSNE(n_components=3).fit_transform(input_embs[k])
+                ax.scatter(X_embedded[:, 0], X_embedded[:, 1], X_embedded[:, 2], alpha=0.4, label=legend_text)
 
         break
     plt.legend(prop={'size': 10}, loc='center left', bbox_to_anchor=(1, 0.5))

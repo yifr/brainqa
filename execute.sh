@@ -5,7 +5,8 @@
 # Otherwise, ./run_squad_basic.sh will run the program as usual
 export SQUAD_DIR=/ml/jif24/squad
 
-RUN_IN_BACKGROUND=${1:-"FALSE"}
+OUTPUT_DIR=$1
+RUN_IN_BACKGROUND=${2:-"FALSE"}
 if [ "$RUN_IN_BACKGROUND" != "FALSE" ]
 then
     nohup python run_brainqa.py \
@@ -20,17 +21,17 @@ then
         --num_train_epochs 4 \
         --max_seq_length 256 \
         --doc_stride 128 \
-        --output_dir ./pretrained_v2/ \
+        --output_dir $OUTPUT_DIR \
         --per_gpu_eval_batch_size=2  \
         --per_gpu_train_batch_size=2   \
         --save_steps 5000 \
-        --logging_steps 100 > $1 2>&1 &
+        --logging_steps 100 > $RUN_IN_BACKGROUND 2>&1 &
 else
     python run_brainqa.py \
         --model_type bert \
         --model_name_or_path bert-base-uncased \
-        --do_train \
         --do_eval \
+        --eval_all_checkpoints \
         --version_2_with_negative \
         --train_file $SQUAD_DIR/train-v2.0.json \
         --predict_file $SQUAD_DIR/dev-v2.0.json \
@@ -38,7 +39,7 @@ else
         --num_train_epochs 4 \
         --max_seq_length 256 \
         --doc_stride 128 \
-        --output_dir ./pretrained_final_v1/ \
+        --output_dir $OUTPUT_DIR \
         --eval_all_checkpoints \
         --per_gpu_eval_batch_size=1  \
         --per_gpu_train_batch_size=1   \

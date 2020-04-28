@@ -57,6 +57,10 @@ class BrainQA(BertPreTrainedModel):
         outputs_VQVAE = self.vqvae_model(bert_embeds) 
         vq_embedding_loss, embeds_reconstructed, vqvae_ppl, vqvae_latent_states = outputs_VQVAE    
 
+        # Detach reconstructions from computation graph
+        embeds_reconstructed = embeds_reconstructed.detach()
+
+        # Feed to hungry BERT
         outputs_encoder_vqvae = self.bert_enc(
                 input_ids=None,
                 attention_mask=attention_mask,
@@ -67,6 +71,7 @@ class BrainQA(BertPreTrainedModel):
             )
         last_hidden_state_vqvae, pooler_output, hidden_states = outputs_encoder_vqvae
 
+        # Compute logits 
         logits = self.qa_outputs(last_hidden_state_vqvae)
         start_logits, end_logits = logits.split(1, dim=-1)
         start_logits = start_logits.squeeze(-1)
@@ -88,11 +93,11 @@ class BrainQA(BertPreTrainedModel):
             start_loss = loss_fct(start_logits, start_positions)
             end_loss = loss_fct(end_logits, end_positions)
             total_loss = (start_loss + end_loss) / 2 
-
+            
             # Compute VQVAE loss
             vq_recon_loss = torch.mean((embeds_reconstructed - bert_embeds)**2) # VQVAE divides this by variance of total training data 
             vqvae_loss = vq_recon_loss + vq_embedding_loss       
-        
+                        
             outputs = (total_loss,vqvae_loss) + outputs
             if verbose:
                 log.info('VQVAE emb_loss: {}\tppl: {}'.format(vq_embedding_loss, vqvae_ppl))
