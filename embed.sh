@@ -19,7 +19,7 @@ then
         --predict_file $SQUAD_DIR/dev-v2.0.json \
         --learning_rate 3e-5 \
         --num_train_epochs 4 \
-        --max_seq_length 384 \
+        --max_seq_length 256 \
         --doc_stride 128 \
         --output_dir $CHECKPOINT_DIR \
         --per_gpu_eval_batch_size=2  \
@@ -36,7 +36,7 @@ else
         --predict_file $SQUAD_DIR/dev-v2.0.json \
         --learning_rate 3e-5 \
         --num_train_epochs 4 \
-        --max_seq_length 384 \
+        --max_seq_length 256 \
         --doc_stride 128 \
         --output_dir $CHECKPOINT_DIR \
         --eval_all_checkpoints \

@@ -25,5 +25,5 @@ wwm*/
 brainqa_results/*
 double_encoder_overnight_run/*
 bert_baseline_test2/*
-pretrained_final_v1/*
+pretrained_v2/*
 *checkpoint-*

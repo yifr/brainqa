@@ -352,7 +352,7 @@ def train(args, train_dataset, model, tokenizer):
 
             logger.info('[BRAINQA] Loss: {}'.format(loss.item()))
             tr_loss += loss.item()
-            # tr_vqvae_loss += vqvae_loss.item()
+            tr_vqvae_loss += vqvae_loss.item()
             if (step + 1) % args.gradient_accumulation_steps == 0: #CLCP
                 torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
 
@@ -370,11 +370,11 @@ def train(args, train_dataset, model, tokenizer):
                             tb_writer.add_scalar("eval_{}".format(key), value, global_step)
                     tb_writer.add_scalar("lr", scheduler.get_lr()[0], global_step)
                     tb_writer.add_scalar("loss", (tr_loss - logging_loss) / args.logging_steps, global_step)
-                    # tb_writer.add_scalar('vqvae_loss', (tr_vqvae_loss - vq_logging_loss) / args.logging_steps, global_step)
+                    tb_writer.add_scalar('vqvae_loss', (tr_vqvae_loss - vq_logging_loss) / args.logging_steps, global_step)
                     logger.info('[BRAINQA] Eval loss: %.3f' % float((tr_loss - logging_loss) / args.logging_steps))
 
                     logging_loss = tr_loss
-                    # vq_logging_loss = tr_vqvae_loss
+                    vq_logging_loss = tr_vqvae_loss
 
                 # Save model checkpoint
                 if args.save_steps > 0 and global_step % args.save_steps == 0:
@@ -812,11 +812,6 @@ def main():
 
         # Good practice: save your training arguments together with the trained model
         torch.save(args, os.path.join(args.output_dir, "training_args.bin"))
-
-        # Load a trained model and vocabulary that you have fine-tuned
-        model = AutoModelForQuestionAnswering.from_pretrained(args.output_dir)  # , force_download=True)
-        tokenizer = AutoTokenizer.from_pretrained(args.output_dir, do_lower_case=args.do_lower_case)
-        model.to(args.device)
 
     # Evaluation - we can ask to evaluate all the checkpoints (sub-directories) in a directory
     results = {}

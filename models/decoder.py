@@ -35,7 +35,7 @@ class Decoder(nn.Module):
             nn.ConvTranspose1d(h_dim, h_dim // 2,
                                kernel_size=kernel, stride=stride, padding=1),
             nn.ReLU(),
-            nn.ConvTranspose1d(h_dim//2, 384, kernel_size=kernel,
+            nn.ConvTranspose1d(h_dim//2, 256, kernel_size=kernel,
                                stride=stride, padding=1)
         )
 

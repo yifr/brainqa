@@ -47,6 +47,8 @@ class BrainQA(BertPreTrainedModel):
         end_positions=None,
         verbose=False
     ):
+        device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
         #B = Batch Size, S = Sequence Length, H = Hidden Size
         #outputs_encoder = (last_hidden_state: (BxSxH), pooler_output:(BxH), hidden_states: (BxSxH))
         bert_embeds = self.bert_enc.embeddings(
