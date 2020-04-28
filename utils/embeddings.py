@@ -35,7 +35,7 @@ def emb_visualizer(model, dataset, tokenizer, args):
 
     # Eval!
     print(args.eval_batch_size)
-    fig = plt.figure(figsize=(20,10))
+    fig = plt.figure(figsize=(18, 9))
     i = 0
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
         model.eval()
@@ -53,7 +53,7 @@ def emb_visualizer(model, dataset, tokenizer, args):
             input_embs = model.bert_enc.embeddings(input_ids=input_ids)
             cos_sims = cos_similarity(input_embs)            
             topk = topk_embedding_sentences(cos_sims, 4, input_ids, tokenizer)
-            bottomk = topk_embedding_sentences(cos_sims, 6, input_ids, tokenizer, bottom=True)
+            bottomk = topk_embedding_sentences(cos_sims, 4, input_ids, tokenizer, bottom=True)
 
             # Remove duplicates from least similar
             targets = []
@@ -81,7 +81,7 @@ def emb_visualizer(model, dataset, tokenizer, args):
                 plt.scatter(X_embedded[:, 0], X_embedded[:, 1], alpha=0.4, label=legend_text)
 
         break
-    plt.legend(prop={'size':8}, loc='center left', bbox_to_anchor=(1, 0.5))
+    plt.legend(prop={'size': 10}, loc='center left', bbox_to_anchor=(1, 0.5))
     plt.title('T-Sne on BERT Embeddings')
     plt.savefig('embeddings_scattered', dpi=250)
 
