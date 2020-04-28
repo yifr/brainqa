@@ -50,7 +50,7 @@ def emb_visualizer(model, dataset, tokenizer, args):
             print(input_ids.shape)
             
             # Get cosine similarity of embeddings
-            input_embs = model.bert_enc.embeddings(input_ids=input_ids)
+            input_embs = model.bert.embeddings(input_ids=input_ids)
             cos_sims = cos_similarity(input_embs)            
             topk = topk_embedding_sentences(cos_sims, 4, input_ids, tokenizer)
             bottomk = topk_embedding_sentences(cos_sims, 4, input_ids, tokenizer, bottom=True)
