@@ -743,10 +743,9 @@ def main():
 
 
     if args.do_embeddings:
-        model = None
         model = BrainQA(args=args, config=config)
         #model = AutoModelForQuestionAnswering.from_pretrained('bert_baseline_test2/checkpoint-10000')
-        path_to_dict = './pretrained_v2/checkpoint-30000/pytorch_model.bin'
+        path_to_dict = './separate_loss_opt_v1/checkpoint-35000/pytorch_model.bin'
         state_dict = torch.load(path_to_dict)
         model.load_state_dict(state_dict)
         

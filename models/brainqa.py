@@ -26,8 +26,8 @@ class BrainQA(BertPreTrainedModel):
         self.vqvae_model= VQVAE(h_dim=config.hidden_size, 
                                 res_h_dim=256, 
                                 n_res_layers=4, 
-                                n_embeddings=4096, 
-                                embedding_dim=256, 
+                                n_embeddings=512, 
+                                embedding_dim=64, 
                                 beta=1)
                                 
         # Question answer layer to output spans of question answers
