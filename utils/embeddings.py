@@ -36,6 +36,7 @@ def emb_visualizer(model, dataset, tokenizer, args, embed_vis=False, latent_vis=
     # Eval!
     print(args.eval_batch_size)
     fig = plt.figure(figsize=(18, 9))
+    title = ''
     i = 0
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
         model.eval()
@@ -57,15 +58,14 @@ def emb_visualizer(model, dataset, tokenizer, args, embed_vis=False, latent_vis=
             vq_embedding_loss, embeds_reconstructed, vqvae_ppl, vqvae_latent_states = outputs_VQVAE   
             
             if latent_vis:
-                idx = 0
+                idx = 12
+                title = 'latent_reconstruction_d%02d' % idx
                 input_embs = input_embs.to('cpu')
                 embeds_reconstructed = embeds_reconstructed.to('cpu')
                 print('Sentence: ', get_sentence(input_ids[idx], tokenizer))
                 bert_embedded = TSNE(n_components=2, init='pca', random_state=42).fit_transform(input_embs[idx])
-                bert_embedded2 = TSNE(n_components=2, init='pca', random_state=42).fit_transform(input_embs[idx])
                 vqvae_reconstructions = TSNE(n_components=2, init='pca', random_state=42).fit_transform(embeds_reconstructed[idx])
                 plt.scatter(bert_embedded[:, 0], bert_embedded[:, 1], alpha=0.4, label='BERT Embeddings')
-                plt.scatter(bert_embedded2[:, 0], bert_embedded2[:, 1], alpha=0.4, label='BERT Embeddings')
                 plt.scatter(vqvae_reconstructions[:, 0], vqvae_reconstructions[:, 1], alpha=0.4, label='Reconstructed Embeddings')
 
 
@@ -102,7 +102,7 @@ def emb_visualizer(model, dataset, tokenizer, args, embed_vis=False, latent_vis=
         break
     plt.legend(prop={'size': 10}, loc='center left', bbox_to_anchor=(1, 0.5))
     plt.title('Comparing BERT Embeddings and their VQVAE Reconstructions')
-    plt.savefig('reconstructed_comparison_2', dpi=350)
+    plt.savefig('images/'+title, dpi=350)
 
 def topk_embedding_sentences(cossims, k, batch_ids, tokenizer, bottom=False):
     '''

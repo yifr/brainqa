@@ -26,4 +26,5 @@ brainqa_results/*
 double_encoder_overnight_run/*
 bert_baseline_test2/*
 pretrained_v2/*
+separate_loss_opt_v1/*
 *checkpoint-*
