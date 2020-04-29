@@ -37,7 +37,7 @@ class WrapText(mtext.Text):
     def _get_wrap_line_width(self):
         return self.width
 
-def emb_visualizer(model, dataset, tokenizer, args, embed_vis=False, latent_vis=True):
+def emb_visualizer(model, dataset, tokenizer, args, embed_vis=True, latent_vis=False):
     
     if not os.path.exists(args.output_dir):
         os.makedirs(args.output_dir)
@@ -50,8 +50,10 @@ def emb_visualizer(model, dataset, tokenizer, args, embed_vis=False, latent_vis=
 
     # Eval!
     print(args.eval_batch_size)
+
     fig = plt.figure(figsize=(16, 8))
-    title = ''
+    title = 'cos_sim_embs_latents'
+
     i = 0
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
         model.eval()
@@ -71,9 +73,9 @@ def emb_visualizer(model, dataset, tokenizer, args, embed_vis=False, latent_vis=
             # VQVAE Reconstruction visualization
             outputs_VQVAE = model.vqvae_model(input_embs) 
             vq_embedding_loss, embeds_reconstructed, vqvae_ppl, vqvae_latent_states = outputs_VQVAE   
-            
+
             if latent_vis:
-                idx = 14
+                idx = 5
                 ax1 = fig.add_subplot(121)
                 ax2 = fig.add_subplot(122)
             
@@ -95,38 +97,80 @@ def emb_visualizer(model, dataset, tokenizer, args, embed_vis=False, latent_vis=
 
             elif embed_vis: 
                 cos_sims = cos_similarity(input_embs)            
-                topk = topk_embedding_sentences(cos_sims, 4, input_ids, tokenizer)
-                bottomk = topk_embedding_sentences(cos_sims, 4, input_ids, tokenizer, bottom=True)
-
-                # Remove duplicates from least similar
-                targets = []
-                for k in bottomk.keys():
-                    if k in topk:
-                        targets.append(k)
-                for duplicate in targets:
-                    del bottomk[duplicate]
+                topk = topk_embedding_sentences(cos_sims, 1, input_ids, tokenizer)
+                bottomk = topk_embedding_sentences(cos_sims, 1, input_ids, tokenizer, bottom=True)
 
                 input_embs = input_embs.to('cpu')
-                print('MOST SIMILAR')
-                for k in topk.keys():
+
+                sim_embs = fig.add_subplot(241)
+                sim_latents = fig.add_subplot(242)
+                sim_text_a = fig.add_subplot(243)
+                sim_text_b = fig.add_subplot(244)
+
+                diff_embs = fig.add_subplot(245)
+                diff_latents = fig.add_subplot(246)
+                diff_text_a = fig.add_subplot(247)
+                diff_text_b = fig.add_subplot(248)
+
+                sim_embs.title.set_text('Most similar embeddings')
+                sim_latents.title.set_text('Corresponding VQVAE latent states')
+                sim_text_a.title.set_text('Corresponding input text (Passage 1)')
+                sim_text_b.title.set_text('Corresponding input text (Passage 2)')
+
+                diff_embs.title.set_text('Least similar embeddings')
+                diff_latents.title.set_text('Corresponding VQVAE latent states')
+                diff_text_a.title.set_text('Corresponding input text (Passage 1)')
+                diff_text_b.title.set_text('Corresponding input text (Passage 2)')
+
+                for i, k in enumerate(topk.keys()):
                     legend_text = 'INDEX: ' + str(k)  + ', ' + str(topk[k][0]) + ': ' + topk[k][1]
                     print(legend_text)
+                    
                     # Plot T-SNE visualization
-                    X_embedded = TSNE(n_components=2).fit_transform(input_embs[k])
-                    plt.scatter(X_embedded[:, 0], X_embedded[:, 1], alpha=0.4, label=legend_text)
+                    # Embeddings:
+                    embs_embedded = TSNE(n_components=2, init='pca', random_state=42).fit_transform(input_embs[k])
+                    sim_embs.scatter(embs_embedded[:, 0], embs_embedded[:, 1], alpha=0.4, label='Passage #%d'%(i+1))
+
+                    # Latents
+                    latents = vqvae_latent_states[k].to('cpu')
+                    latents_embedded = TSNE(n_components=2, init='pca', random_state=42).fit_transform(latents)
+                    sim_latents.scatter(latents_embedded[:, 0], latents_embedded[:, 1], alpha=0.4, label='Passage #%d'%(i+1))
+
+                    # Sentence
+                    wtxt = WrapText(0.01, 0.99, topk[k][1], width=1200, fontsize=8, ha='left', va='top')
+                    if i == 1:
+                        sim_text_a.add_artist(wtxt)
+                    else:
+                        sim_text_b.add_artist(wtxt)
+
+                sim_embs.legend(prop={'size': 6})
+                sim_latents.legend(prop={'size': 6})
 
                 print('LEAST SIMILAR')
-                for k in bottomk.keys():
-                    legend_text = 'INDEX: ' + str(k)  + ', ' + str(bottomk[k][0]) + ': ' + bottomk[k][1]
-                    print(legend_text)
+                for i, k in enumerate(bottomk.keys()):
                     # Plot T-SNE visualization
-                    X_embedded = TSNE(n_components=2, init='pca', random_state=42).fit_transform(input_embs[k])
-                    plt.scatter(X_embedded[:, 0], X_embedded[:, 1], alpha=0.4, label=legend_text)
+                    # Embeddings:
+                    embs_embedded = TSNE(n_components=2, init='pca', random_state=42).fit_transform(input_embs[k])
+                    diff_embs.scatter(embs_embedded[:, 0], embs_embedded[:, 1], alpha=0.4, label='Passage #%d'%(i+1))
 
+                    # Latents
+                    latents = vqvae_latent_states[k].to('cpu')
+                    latents_embedded = TSNE(n_components=2, init='pca', random_state=42).fit_transform(latents)
+                    diff_latents.scatter(latents_embedded[:, 0], latents_embedded[:, 1], alpha=0.4, label='Passage #%d'%(i+1))
+
+                    # Sentence
+                    wtxt = WrapText(0.01, 0.99, bottomk[k][1], width=1200, fontsize=8, ha='left', va='top')
+                    if i == 1:
+                        diff_text_a.add_artist(wtxt)
+                    else:
+                        diff_text_b.add_artist(wtxt)
+
+                diff_embs.legend(prop={'size': 6})
+                diff_latents.legend(prop={'size': 6})
         break
 
     plt.legend(prop={'size': 10}, loc='center left', bbox_to_anchor=(1, 0.5))
-    plt.title('Comparing BERT Embeddings and their VQVAE Reconstructions')
+    #plt.title('Comparing BERT Embeddings and their VQVAE Reconstructions')
     plt.savefig('images/'+title, bbox_inches='tight', dpi=350)
 
 def topk_embedding_sentences(cossims, k, batch_ids, tokenizer, bottom=False):
