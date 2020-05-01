@@ -82,7 +82,7 @@ def to_list(tensor):
     return tensor.detach().cpu().tolist()
 
 def train_vqvae(args, train_dataset, model, brainqa_model, tokenizer):
-    tb_writer = SummaryWriter()
+    tb_writer = SummaryWriter(comment=args.output_dir)
 
     args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
     train_sampler = RandomSampler(train_dataset)
@@ -208,7 +208,7 @@ def train_vqvae(args, train_dataset, model, brainqa_model, tokenizer):
                             tb_writer.add_scalar("eval_{}".format(key), value, global_step)
                     tb_writer.add_scalar("lr", scheduler.get_lr()[0], global_step)
                     tb_writer.add_scalar("vqvae_loss", (tr_loss - logging_loss) / args.logging_steps, global_step)
-                    logger.info('[BRAINQA] Eval loss: %.3f' % float((tr_loss - logging_loss) / args.logging_steps))
+                    # logger.info('[BRAINQA] Eval loss: %.3f' % float((tr_loss - logging_loss) / args.logging_steps))
 
                     logging_loss = tr_loss
 
@@ -450,8 +450,8 @@ def evaluate(args, model, tokenizer, prefix=""):
             unique_id = int(eval_feature.unique_id)
 
             output = [to_list(output[i]) for output in outputs]
-            # (loss), start_logits, end_logits, (hidden_states), (attentions)
-            start_logits, end_logits = output
+            # (loss), start_logits, end_logits, e_indices (hidden_states), (attentions), e_indices
+            start_logits, end_logits, _ = output
             result = SquadResult(unique_id, start_logits, end_logits)
 
             all_results.append(result)
