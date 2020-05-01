@@ -52,4 +52,4 @@ class VQVAE(nn.Module):
             assert x.shape == x_hat.shape
 
         #log.info('Recon embed shape: {}'.format(x_hat.shape))
-        return embedding_loss, x_hat, perplexity, z_q
+        return embedding_loss, x_hat, perplexity, z_q, e_indices

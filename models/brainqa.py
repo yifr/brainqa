@@ -67,22 +67,13 @@ class BrainQA(BertPreTrainedModel):
         last_hidden_state, pooler_output, enc_hidden_states = outputs_encoder
 
         outputs_VQVAE = self.vqvae_model(last_hidden_state) 
-        vq_embedding_loss, hidden_states_recon, vqvae_ppl, vqvae_latent_states = outputs_VQVAE    
+        
+        #VQVAE returns: embedding_loss, x_hat, perplexity, z_q, e_indices
+        vq_embedding_loss, hidden_states_recon, vqvae_ppl, _, min_encoding_indices = outputs_VQVAE    
 
         # Detach reconstructions from computation graph
         hidden_states_recon = hidden_states_recon.detach()
 
-        # # Feed to hungry BERT
-        # bert_outputs = self.bert_enc(
-        #         input_ids=None,
-        #         attention_mask=attention_mask,
-        #         token_type_ids=token_type_ids,
-        #         position_ids=position_ids,
-        #         head_mask=head_mask,
-        #         inputs_embeds=embeds_reconstructed
-        #     )
-        # last_hidden_state_vqvae, pooler_output, hidden_states = bert_outputs
-        
         outputs_decoder = self.bert_dec(
                 input_ids=input_ids,
                 attention_mask=attention_mask,
@@ -101,7 +92,7 @@ class BrainQA(BertPreTrainedModel):
         start_logits = start_logits.squeeze(-1)
         end_logits = end_logits.squeeze(-1)
 
-        outputs = (start_logits, end_logits,) #+ outputs_encoder_vqvae[2:]
+        outputs = (start_logits, end_logits, min_encoding_indices) #+ outputs_encoder_vqvae[2:]
         if start_positions is not None and end_positions is not None:
             # If we are on multi-GPU, split add a dimension
             if len(start_positions.size()) > 1:

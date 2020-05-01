@@ -3,6 +3,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 
+import logging
+
+log = logging.getLogger(__name__)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -45,14 +48,19 @@ class VectorQuantizer(nn.Module):
         # reshape z -> (batch, height, width, channel) and flatten
         z = z.permute(0, 2, 1).contiguous()
         z_flattened = z.view(-1, self.e_dim)
+        # log.info("Z-Flattened shape: {}".format(z_flattened.shape))
 
         # distances from z to embeddings e_j (z - e)^2 = z^2 + e^2 - 2 e * z
         d = torch.sum(z_flattened ** 2, dim=1, keepdim=True) + \
             torch.sum(self.embedding.weight**2, dim=1) - 2 * \
             torch.matmul(z_flattened, self.embedding.weight.t())
 
+        # log.info('Distance calculation shape: {}, example: {}'.format(d.shape, d[0]))
+
         # find closest encodings
         min_encoding_indices = torch.argmin(d, dim=1).unsqueeze(1)
+        # log.info('Min Encoding Indices shape: {}, example: {}'.format(min_encoding_indices.shape, min_encoding_indices[0]))
+
         min_encodings = torch.zeros(
             min_encoding_indices.shape[0], self.n_e).to(device)
         min_encodings.scatter_(1, min_encoding_indices, 1)

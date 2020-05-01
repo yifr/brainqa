@@ -343,6 +343,7 @@ def train(args, train_dataset, model, tokenizer):
             # model outputs are always tuple in transformers (see doc)
             bert_loss = outputs[0]
             vqvae_loss = outputs[1]
+            min_encoding_indices = outputs[-1]
             if args.n_gpu > 1:
                 bert_loss = bert_loss.mean()  # mean() to average on multi-gpu parallel (not distributed) training
                 vqvae_loss = vqvae_loss.mean()
@@ -374,6 +375,7 @@ def train(args, train_dataset, model, tokenizer):
                     tb_writer.add_scalar("lr", scheduler.get_lr()[0], global_step)
                     tb_writer.add_scalar("loss", (tr_loss - logging_loss) / args.logging_steps, global_step)
                     tb_writer.add_scalar('vqvae_loss', (tr_vqvae_loss - vq_logging_loss) / args.logging_steps, global_step)
+                    tb_writer.add_histogram('min_encoding_idxs', min_encoding_indices, global_step)
                     logger.info('[BRAINQA] Eval loss: %.3f' % float((tr_loss - logging_loss) / args.logging_steps))
 
                     logging_loss = tr_loss
@@ -780,8 +782,8 @@ def main():
         cache_dir=args.cache_dir if args.cache_dir else None,
     )
 
-    #model = BrainQA(args=args, config=config)
-    model = FrontalBrainQA(args=args, config=config)
+    model = BrainQA(args=args, config=config)
+    #model = FrontalBrainQA(args=args, config=config)
     if args.train_vqvae_instead:
         vqvae_model = VQVAE(h_dim=256, 
                         res_h_dim=256, 
