@@ -877,21 +877,7 @@ def main():
 
             #HERE WE DO FORWARD OF MODEL
             model_inter(**inputs)
-            # vq_embedding_loss, x_hat, perplexity, z_q = model_inter.vqvae_model(batch[0])
-            # logger.info('Emb Loss: {}, \tx_hat.shape: {}\t, ppl: {}\t z_q.shape: {}'.format(vq_embedding_loss,
-            #                                                                                 x_hat.shape,
-            #                                                                                 perplexity,
-            #                                                                                 z_q.shape))
-            # # model outputs are always tuple in transformers (see doc)
-            # vq_recon_loss = torch.mean((x_hat - batch[0])**2) # VQVAE divides this by variance of total training data
-            # loss = vq_recon_loss + vq_embedding_loss
-
-            # if args.n_gpu > 1:
-            #     loss = loss.mean()  # mean() to average on multi-gpu parallel (not distributed) training
-            # if args.gradient_accumulation_steps > 1:
-            #     loss = loss / args.gradient_accumulation_steps
-
-            # logger.info('[VQVAE_INTERPOLATE] Embedding Loss: {}\tPerplexity: {}\tReconstruction Loss: {}\n\t\t\tOverall: {}'.format(vq_embedding_loss, perplexity, vq_recon_loss, loss))
+           
             if count == 2:
                 epoch_iterator.close()
                 break
