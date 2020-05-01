@@ -28,3 +28,7 @@ bert_baseline_test2/*
 pretrained_v2/*
 separate_loss_opt_v1/*
 *checkpoint-*
+*checkpoint_*
+*/nbest_predictions*
+front_brainqa_test/*
+shiggles/*

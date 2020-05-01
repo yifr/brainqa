@@ -53,6 +53,7 @@ except ImportError:
 
 from models.vqvae import VQVAE
 from models.brainqa import BrainQA
+from models.frontal_brainqa import FrontalBrainQA
 from transformers import BertModel, BertTokenizer
 
 #Interpolate 
@@ -779,7 +780,8 @@ def main():
         cache_dir=args.cache_dir if args.cache_dir else None,
     )
 
-    model = BrainQA(args=args, config=config)
+    #model = BrainQA(args=args, config=config)
+    model = FrontalBrainQA(args=args, config=config)
     if args.train_vqvae_instead:
         vqvae_model = VQVAE(h_dim=256, 
                         res_h_dim=256, 
