@@ -43,7 +43,7 @@ class VectorQuantizer(nn.Module):
         """
         #CHANGING PERMUTES z = z.permute(0, 2, 3, 1).contiguous()
         # reshape z -> (batch, height, width, channel) and flatten
-        z = z.permute(1, 2, 0).contiguous()
+        z = z.permute(0, 2, 1).contiguous()
         z_flattened = z.view(-1, self.e_dim)
         # distances from z to embeddings e_j (z - e)^2 = z^2 + e^2 - 2 e * z
 
@@ -73,6 +73,6 @@ class VectorQuantizer(nn.Module):
 
         # reshape back to match original input shape
         #z_q = z_q.permute(0, 3, 1, 2).contiguous()
-        z_q = z_q.permute(2, 0, 1).contiguous()
+        z_q = z_q.permute(0, 2, 1).contiguous()
 
         return loss, z_q, perplexity, min_encodings, min_encoding_indices

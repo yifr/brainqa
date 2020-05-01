@@ -28,6 +28,7 @@ class Encoder(nn.Module):
 
     def __init__(self, in_dim, h_dim, n_res_layers, res_h_dim):
         super(Encoder, self).__init__()
+       
         kernel = 4
         stride = 2
         self.conv_stack = nn.Sequential(

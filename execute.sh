@@ -30,6 +30,7 @@ else
     python run_brainqa.py \
         --model_type bert \
         --model_name_or_path bert-base-uncased \
+        --do_train \
         --do_eval \
         --eval_all_checkpoints \
         --version_2_with_negative \

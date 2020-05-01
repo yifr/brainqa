@@ -17,7 +17,7 @@ class VQVAE(nn.Module):
         # encode image into continuous latent space
         self.encoder = Encoder(in_dim=256, h_dim=h_dim, n_res_layers=n_res_layers, res_h_dim=res_h_dim)
         self.pre_quantization_conv = nn.Conv1d(
-            h_dim, embedding_dim, kernel_size=1, stride=1)
+            h_dim, embedding_dim, kernel_size=3, stride=1, padding=1)
         # pass continuous latent vector through discretization bottleneck
         self.vector_quantization = VectorQuantizer(
             n_embeddings, embedding_dim, beta)
@@ -33,13 +33,13 @@ class VQVAE(nn.Module):
             self.img_to_embedding_map = None
 
     def forward(self, x, verbose=False):
-
+        #log.info('Embeddings shape: {}'.format(x.shape))
         z_e = self.encoder(x)
-
+        #log.info('Z-e shape before pre_conv: {}'.format(z_e.shape))
         z_e = self.pre_quantization_conv(z_e)
-        embedding_loss, z_q, perplexity, _, e_indices = self.vector_quantization(
-            z_e)
-
+        #log.info('Z-e shape: {}'.format(z_e.shape))
+        embedding_loss, z_q, perplexity, _, e_indices = self.vector_quantization(z_e)
+        #log.info('Z-q shape: {}'.format(z_q.shape))
         #Retain the embedding indices to be used in sampling
         self.e_indices = e_indices
 
@@ -51,4 +51,5 @@ class VQVAE(nn.Module):
             print('recon data shape:', x_hat.shape)
             assert x.shape == x_hat.shape
 
+        #log.info('Recon embed shape: {}'.format(x_hat.shape))
         return embedding_loss, x_hat, perplexity, z_q
