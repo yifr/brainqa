@@ -1,0 +1,976 @@
+2020-05-02 02:06:34.032945: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer.so.6'; dlerror: libnvinfer.so.6: cannot open shared object file: No such file or directory
+2020-05-02 02:06:34.033052: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer_plugin.so.6'; dlerror: libnvinfer_plugin.so.6: cannot open shared object file: No such file or directory
+2020-05-02 02:06:34.033063: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:30] Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+05/02/2020 02:06:36 - WARNING - __main__ -   Device: cuda, n_gpu: 8
+05/02/2020 02:06:36 - INFO - transformers.configuration_utils -   loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-config.json from cache at /cortex/users/jif24/.cache/torch/transformers/4dad0251492946e18ac39290fcfe91b89d370fee250efe9521476438fe8ca185.7156163d5fdc189c3016baca0775ffce230789d7fa2a42ef516483e4ca884517
+05/02/2020 02:06:36 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "_num_labels": 2,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": null,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": true,
+  "eos_token_id": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "min_length": 0,
+  "model_type": "bert",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30522,
+  "xla_device": null
+}
+
+05/02/2020 02:06:36 - INFO - transformers.configuration_utils -   loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-config.json from cache at /cortex/users/jif24/.cache/torch/transformers/4dad0251492946e18ac39290fcfe91b89d370fee250efe9521476438fe8ca185.7156163d5fdc189c3016baca0775ffce230789d7fa2a42ef516483e4ca884517
+05/02/2020 02:06:36 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "_num_labels": 2,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": null,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": false,
+  "eos_token_id": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "min_length": 0,
+  "model_type": "bert",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30522,
+  "xla_device": null
+}
+
+05/02/2020 02:06:37 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt from cache at /cortex/users/jif24/.cache/torch/transformers/26bc1ad6c0ac742e9b52263248f6d0f00068293b33709fae12320c0e35ccfbbb.542ce4285a40d23a559526243235df47c5f75c197f04f37d1a0c124c32c9a084
+05/02/2020 02:06:37 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "_num_labels": 2,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": null,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": true,
+  "eos_token_id": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "min_length": 0,
+  "model_type": "bert",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": true,
+  "output_past": true,
+  "pad_token_id": 0,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30522,
+  "xla_device": null
+}
+
+05/02/2020 02:06:37 - INFO - transformers.modeling_utils -   loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-pytorch_model.bin from cache at /cortex/users/jif24/.cache/torch/transformers/aa1ef1aede4482d0dbcd4d52baad8ae300e60902e88fcb0bebdec09afd232066.36ca03ab34a1a5d5fa7bc3d03d55c4fa650fed07220e2eeebc06ce58d0e9a157
+05/02/2020 02:06:39 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "_num_labels": 2,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": null,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": true,
+  "eos_token_id": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": true,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "min_length": 0,
+  "model_type": "bert",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30522,
+  "xla_device": null
+}
+
+05/02/2020 02:06:45 - INFO - __main__ -   Training/evaluation parameters Namespace(adam_epsilon=1e-08, cache_dir='', config_name='', data_dir=None, device=device(type='cuda'), do_embeddings=False, do_eval=True, do_interpolate=False, do_lower_case=False, do_train=True, doc_stride=128, eval_all_checkpoints=False, eval_checkpoints=False, evaluate_during_training=False, gradient_accumulation_steps=1, lang_id=0, learning_rate=3e-05, logging_steps=10, max_answer_length=30, max_grad_norm=1.0, max_query_length=64, max_seq_length=256, max_steps=-1, model_name_or_path='bert-base-uncased', model_type='bert', n_best_size=20, n_gpu=8, no_cuda=False, null_score_diff_threshold=0.0, num_train_epochs=6.0, output_dir='index_collapse2', overwrite_cache=False, overwrite_output_dir=False, per_gpu_eval_batch_size=2, per_gpu_train_batch_size=2, predict_file='/ml/jif24/squad/dev-v2.0.json', save_steps=30000, seed=42, server_ip='', server_port='', tokenizer_name='', train_file='/ml/jif24/squad/train-v2.0.json', train_vqvae_instead=False, verbose_logging=False, version_2_with_negative=True, warmup_steps=0, weight_decay=0.0)
+05/02/2020 02:06:45 - INFO - __main__ -   Loading features from cached file ./cached_train_bert-base-uncased_256
+05/02/2020 02:07:10 - INFO - __main__ -   ***** Running training *****
+05/02/2020 02:07:10 - INFO - __main__ -     Num examples = 141725
+05/02/2020 02:07:10 - INFO - __main__ -     Num Epochs = 6
+05/02/2020 02:07:10 - INFO - __main__ -     Instantaneous batch size per GPU = 2
+05/02/2020 02:07:10 - INFO - __main__ -     Total train batch size (w. parallel, distributed & accumulation) = 16
+05/02/2020 02:07:10 - INFO - __main__ -     Gradient Accumulation steps = 1
+05/02/2020 02:07:10 - INFO - __main__ -     Total optimization steps = 53148
+Epoch:   0%|          | 0/6 [00:00<?, ?it/s]
+Iteration:   0%|          | 0/8858 [00:00<?, ?it/s][A
+Iteration:   0%|          | 1/8858 [00:00<2:10:06,  1.13it/s][A
+Iteration:   0%|          | 2/8858 [00:01<2:00:03,  1.23it/s][A
+Iteration:   0%|          | 3/8858 [00:02<1:52:47,  1.31it/s][A
+Iteration:   0%|          | 4/8858 [00:02<1:47:50,  1.37it/s][A
+Iteration:   0%|          | 5/8858 [00:03<1:44:01,  1.42it/s][A
+Iteration:   0%|          | 6/8858 [00:04<1:41:44,  1.45it/s][A
+Iteration:   0%|          | 7/8858 [00:04<1:40:06,  1.47it/s][A
+Iteration:   0%|          | 8/8858 [00:05<1:38:52,  1.49it/s][A/cortex/users/jif24/brainqa/venv/lib/python3.6/site-packages/torch/optim/lr_scheduler.py:224: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+05/02/2020 02:07:16 - INFO - __main__ -   [BRAINQA] Eval loss: 4.639
+
+Iteration:   0%|          | 9/8858 [00:06<1:38:20,  1.50it/s][A
+Iteration:   0%|          | 10/8858 [00:06<1:37:44,  1.51it/s][A
+Iteration:   0%|          | 11/8858 [00:07<1:36:55,  1.52it/s][A
+Iteration:   0%|          | 12/8858 [00:08<1:36:44,  1.52it/s][A
+Iteration:   0%|          | 13/8858 [00:08<1:36:34,  1.53it/s][A
+Iteration:   0%|          | 14/8858 [00:09<1:39:48,  1.48it/s][A
+Iteration:   0%|          | 15/8858 [00:10<1:39:11,  1.49it/s][A
+Iteration:   0%|          | 16/8858 [00:10<1:39:13,  1.49it/s][A
+Iteration:   0%|          | 17/8858 [00:11<1:40:47,  1.46it/s][A
+Iteration:   0%|          | 18/8858 [00:12<1:41:23,  1.45it/s][A05/02/2020 02:07:23 - INFO - __main__ -   [BRAINQA] Eval loss: 4.711
+
+Iteration:   0%|          | 19/8858 [00:12<1:41:11,  1.46it/s][A
+Iteration:   0%|          | 20/8858 [00:13<1:40:05,  1.47it/s][A
+Iteration:   0%|          | 21/8858 [00:14<1:40:14,  1.47it/s][A
+Iteration:   0%|          | 22/8858 [00:14<1:39:14,  1.48it/s][A
+Iteration:   0%|          | 23/8858 [00:15<1:39:31,  1.48it/s][A
+Iteration:   0%|          | 24/8858 [00:16<1:38:36,  1.49it/s][A
+Iteration:   0%|          | 25/8858 [00:16<1:38:06,  1.50it/s][A
+Iteration:   0%|          | 26/8858 [00:17<1:37:45,  1.51it/s][A
+Iteration:   0%|          | 27/8858 [00:18<1:37:46,  1.51it/s][A
+Iteration:   0%|          | 28/8858 [00:18<1:37:50,  1.50it/s][A05/02/2020 02:07:29 - INFO - __main__ -   [BRAINQA] Eval loss: 4.530
+
+Iteration:   0%|          | 29/8858 [00:19<1:37:45,  1.51it/s][A
+Iteration:   0%|          | 30/8858 [00:20<1:37:12,  1.51it/s][A
+Iteration:   0%|          | 31/8858 [00:20<1:37:50,  1.50it/s][A
+Iteration:   0%|          | 32/8858 [00:21<1:37:34,  1.51it/s][A
+Iteration:   0%|          | 33/8858 [00:22<1:37:24,  1.51it/s][A
+Iteration:   0%|          | 34/8858 [00:22<1:37:23,  1.51it/s][A
+Iteration:   0%|          | 35/8858 [00:23<1:37:14,  1.51it/s][A
+Iteration:   0%|          | 36/8858 [00:24<1:37:17,  1.51it/s][A
+Iteration:   0%|          | 37/8858 [00:24<1:37:18,  1.51it/s][A
+Iteration:   0%|          | 38/8858 [00:25<1:37:19,  1.51it/s][A05/02/2020 02:07:36 - INFO - __main__ -   [BRAINQA] Eval loss: 4.765
+
+Iteration:   0%|          | 39/8858 [00:26<1:37:03,  1.51it/s][A
+Iteration:   0%|          | 40/8858 [00:26<1:37:02,  1.51it/s][A
+Iteration:   0%|          | 41/8858 [00:27<1:37:06,  1.51it/s][A
+Iteration:   0%|          | 42/8858 [00:28<1:37:15,  1.51it/s][A
+Iteration:   0%|          | 43/8858 [00:28<1:37:25,  1.51it/s][A
+Iteration:   0%|          | 44/8858 [00:29<1:37:21,  1.51it/s][A
+Iteration:   1%|          | 45/8858 [00:30<1:38:01,  1.50it/s][A
+Iteration:   1%|          | 46/8858 [00:30<1:38:24,  1.49it/s][A
+Iteration:   1%|          | 47/8858 [00:31<1:38:42,  1.49it/s][A
+Iteration:   1%|          | 48/8858 [00:32<1:38:29,  1.49it/s][A05/02/2020 02:07:43 - INFO - __main__ -   [BRAINQA] Eval loss: 4.508
+
+Iteration:   1%|          | 49/8858 [00:32<1:39:33,  1.47it/s][A
+Iteration:   1%|          | 50/8858 [00:33<1:39:42,  1.47it/s][A
+Iteration:   1%|          | 51/8858 [00:34<1:40:59,  1.45it/s][A
+Iteration:   1%|          | 52/8858 [00:34<1:40:38,  1.46it/s][A
+Iteration:   1%|          | 53/8858 [00:35<1:39:57,  1.47it/s][A
+Iteration:   1%|          | 54/8858 [00:36<1:39:27,  1.48it/s][A
+Iteration:   1%|          | 55/8858 [00:36<1:38:57,  1.48it/s][A
+Iteration:   1%|          | 56/8858 [00:37<1:38:38,  1.49it/s][A
+Iteration:   1%|          | 57/8858 [00:38<1:38:29,  1.49it/s][A
+Iteration:   1%|          | 58/8858 [00:38<1:38:10,  1.49it/s][A05/02/2020 02:07:50 - INFO - __main__ -   [BRAINQA] Eval loss: 4.835
+
+Iteration:   1%|          | 59/8858 [00:39<1:38:12,  1.49it/s][A
+Iteration:   1%|          | 60/8858 [00:40<1:38:16,  1.49it/s][A
+Iteration:   1%|          | 61/8858 [00:40<1:38:09,  1.49it/s][A
+Iteration:   1%|          | 62/8858 [00:41<1:37:57,  1.50it/s][A
+Iteration:   1%|          | 63/8858 [00:42<1:37:37,  1.50it/s][A
+Iteration:   1%|          | 64/8858 [00:42<1:37:57,  1.50it/s][A
+Iteration:   1%|          | 65/8858 [00:43<1:38:10,  1.49it/s][A
+Iteration:   1%|          | 66/8858 [00:44<1:38:13,  1.49it/s][A
+Iteration:   1%|          | 67/8858 [00:44<1:38:15,  1.49it/s][A
+Iteration:   1%|          | 68/8858 [00:45<1:38:15,  1.49it/s][A05/02/2020 02:07:56 - INFO - __main__ -   [BRAINQA] Eval loss: 4.427
+
+Iteration:   1%|          | 69/8858 [00:46<1:39:22,  1.47it/s][A
+Iteration:   1%|          | 70/8858 [00:46<1:39:06,  1.48it/s][A
+Iteration:   1%|          | 71/8858 [00:47<1:39:03,  1.48it/s][A
+Iteration:   1%|          | 72/8858 [00:48<1:38:58,  1.48it/s][A
+Iteration:   1%|          | 73/8858 [00:49<1:38:52,  1.48it/s][A
+Iteration:   1%|          | 74/8858 [00:49<1:39:27,  1.47it/s][A
+Iteration:   1%|          | 75/8858 [00:50<1:39:16,  1.47it/s][A
+Iteration:   1%|          | 76/8858 [00:51<1:38:44,  1.48it/s][A
+Iteration:   1%|          | 77/8858 [00:51<1:38:45,  1.48it/s][A
+Iteration:   1%|          | 78/8858 [00:52<1:38:47,  1.48it/s][A05/02/2020 02:08:03 - INFO - __main__ -   [BRAINQA] Eval loss: 4.935
+
+Iteration:   1%|          | 79/8858 [00:53<1:38:38,  1.48it/s][A
+Iteration:   1%|          | 80/8858 [00:53<1:38:40,  1.48it/s][A
+Iteration:   1%|          | 81/8858 [00:54<1:38:39,  1.48it/s][A
+Iteration:   1%|          | 82/8858 [00:55<1:38:54,  1.48it/s][A
+Iteration:   1%|          | 83/8858 [00:55<1:38:45,  1.48it/s][A
+Iteration:   1%|          | 84/8858 [00:56<1:38:24,  1.49it/s][A
+Iteration:   1%|          | 85/8858 [00:57<1:38:27,  1.49it/s][A
+Iteration:   1%|          | 86/8858 [00:57<1:38:34,  1.48it/s][A
+Iteration:   1%|          | 87/8858 [00:58<1:38:47,  1.48it/s][A
+Iteration:   1%|          | 88/8858 [00:59<1:38:28,  1.48it/s][A05/02/2020 02:08:10 - INFO - __main__ -   [BRAINQA] Eval loss: 4.765
+
+Iteration:   1%|          | 89/8858 [00:59<1:39:19,  1.47it/s][A
+Iteration:   1%|          | 90/8858 [01:00<1:40:59,  1.45it/s][A
+Iteration:   1%|          | 91/8858 [01:01<1:40:38,  1.45it/s][A
+Iteration:   1%|          | 92/8858 [01:01<1:40:08,  1.46it/s][A
+Iteration:   1%|          | 93/8858 [01:02<1:39:53,  1.46it/s][A
+Iteration:   1%|          | 94/8858 [01:03<1:39:31,  1.47it/s][A
+Iteration:   1%|          | 95/8858 [01:03<1:40:31,  1.45it/s][A
+Iteration:   1%|          | 96/8858 [01:04<1:40:41,  1.45it/s][A
+Iteration:   1%|          | 97/8858 [01:05<1:40:20,  1.46it/s][A
+Iteration:   1%|          | 98/8858 [01:06<1:39:59,  1.46it/s][A05/02/2020 02:08:17 - INFO - __main__ -   [BRAINQA] Eval loss: 4.793
+
+Iteration:   1%|          | 99/8858 [01:06<1:39:41,  1.46it/s][A
+Iteration:   1%|          | 100/8858 [01:07<1:39:33,  1.47it/s][A
+Iteration:   1%|          | 101/8858 [01:08<1:39:27,  1.47it/s][A
+Iteration:   1%|          | 102/8858 [01:08<1:38:54,  1.48it/s][A
+Iteration:   1%|          | 103/8858 [01:09<1:38:44,  1.48it/s][A
+Iteration:   1%|          | 104/8858 [01:10<1:38:39,  1.48it/s][A
+Iteration:   1%|          | 105/8858 [01:10<1:38:49,  1.48it/s][A
+Iteration:   1%|          | 106/8858 [01:11<1:38:55,  1.47it/s][A
+Iteration:   1%|          | 107/8858 [01:12<1:38:51,  1.48it/s][A
+Iteration:   1%|          | 108/8858 [01:12<1:39:04,  1.47it/s][A05/02/2020 02:08:23 - INFO - __main__ -   [BRAINQA] Eval loss: 4.335
+
+Iteration:   1%|          | 109/8858 [01:13<1:39:09,  1.47it/s][A
+Iteration:   1%|          | 110/8858 [01:14<1:38:57,  1.47it/s][A
+Iteration:   1%|▏         | 111/8858 [01:14<1:38:48,  1.48it/s][A
+Iteration:   1%|▏         | 112/8858 [01:15<1:39:06,  1.47it/s][A
+Iteration:   1%|▏         | 113/8858 [01:16<1:39:00,  1.47it/s][A
+Iteration:   1%|▏         | 114/8858 [01:16<1:38:40,  1.48it/s][A
+Iteration:   1%|▏         | 115/8858 [01:17<1:38:51,  1.47it/s][A
+Iteration:   1%|▏         | 116/8858 [01:18<1:39:40,  1.46it/s][A
+Iteration:   1%|▏         | 117/8858 [01:18<1:39:32,  1.46it/s][A
+Iteration:   1%|▏         | 118/8858 [01:19<1:39:18,  1.47it/s][A05/02/2020 02:08:30 - INFO - __main__ -   [BRAINQA] Eval loss: 4.886
+
+Iteration:   1%|▏         | 119/8858 [01:20<1:39:25,  1.46it/s][A
+Iteration:   1%|▏         | 120/8858 [01:20<1:39:19,  1.47it/s][A
+Iteration:   1%|▏         | 121/8858 [01:21<1:39:16,  1.47it/s][A
+Iteration:   1%|▏         | 122/8858 [01:22<1:39:22,  1.47it/s][A
+Iteration:   1%|▏         | 123/8858 [01:23<1:39:29,  1.46it/s][A
+Iteration:   1%|▏         | 124/8858 [01:23<1:39:27,  1.46it/s][A
+Iteration:   1%|▏         | 125/8858 [01:24<1:39:05,  1.47it/s][A
+Iteration:   1%|▏         | 126/8858 [01:25<1:39:07,  1.47it/s][A
+Iteration:   1%|▏         | 127/8858 [01:25<1:39:16,  1.47it/s][A
+Iteration:   1%|▏         | 128/8858 [01:26<1:39:21,  1.46it/s][A05/02/2020 02:08:37 - INFO - __main__ -   [BRAINQA] Eval loss: 4.769
+
+Iteration:   1%|▏         | 129/8858 [01:27<1:39:18,  1.46it/s][A
+Iteration:   1%|▏         | 130/8858 [01:27<1:39:23,  1.46it/s][A
+Iteration:   1%|▏         | 131/8858 [01:28<1:39:41,  1.46it/s][A
+Iteration:   1%|▏         | 132/8858 [01:29<1:40:01,  1.45it/s][A
+Iteration:   2%|▏         | 133/8858 [01:29<1:39:51,  1.46it/s][A
+Iteration:   2%|▏         | 134/8858 [01:30<1:39:46,  1.46it/s][A
+Iteration:   2%|▏         | 135/8858 [01:31<1:39:42,  1.46it/s][A
+Iteration:   2%|▏         | 136/8858 [01:31<1:39:37,  1.46it/s][A
+Iteration:   2%|▏         | 137/8858 [01:32<1:39:27,  1.46it/s][A
+Iteration:   2%|▏         | 138/8858 [01:33<1:39:27,  1.46it/s][A05/02/2020 02:08:44 - INFO - __main__ -   [BRAINQA] Eval loss: 4.434
+
+Iteration:   2%|▏         | 139/8858 [01:33<1:39:14,  1.46it/s][A
+Iteration:   2%|▏         | 140/8858 [01:34<1:39:14,  1.46it/s][A
+Iteration:   2%|▏         | 141/8858 [01:35<1:39:21,  1.46it/s][A
+Iteration:   2%|▏         | 142/8858 [01:36<1:39:20,  1.46it/s][A
+Iteration:   2%|▏         | 143/8858 [01:36<1:39:29,  1.46it/s][A
+Iteration:   2%|▏         | 144/8858 [01:37<1:39:31,  1.46it/s][A
+Iteration:   2%|▏         | 145/8858 [01:38<1:39:32,  1.46it/s][A
+Iteration:   2%|▏         | 146/8858 [01:38<1:39:34,  1.46it/s][A
+Iteration:   2%|▏         | 147/8858 [01:39<1:39:03,  1.47it/s][A
+Iteration:   2%|▏         | 148/8858 [01:40<1:38:47,  1.47it/s][A05/02/2020 02:08:51 - INFO - __main__ -   [BRAINQA] Eval loss: 4.512
+
+Iteration:   2%|▏         | 149/8858 [01:40<1:38:23,  1.48it/s][A
+Iteration:   2%|▏         | 150/8858 [01:41<1:39:19,  1.46it/s][A
+Iteration:   2%|▏         | 151/8858 [01:42<1:39:03,  1.46it/s][A
+Iteration:   2%|▏         | 152/8858 [01:42<1:39:09,  1.46it/s][A
+Iteration:   2%|▏         | 153/8858 [01:43<1:39:14,  1.46it/s][A
+Iteration:   2%|▏         | 154/8858 [01:44<1:39:23,  1.46it/s][A
+Iteration:   2%|▏         | 155/8858 [01:44<1:39:26,  1.46it/s][A
+Iteration:   2%|▏         | 156/8858 [01:45<1:39:27,  1.46it/s][A
+Iteration:   2%|▏         | 157/8858 [01:46<1:39:26,  1.46it/s][A
+Iteration:   2%|▏         | 158/8858 [01:46<1:40:47,  1.44it/s][A05/02/2020 02:08:58 - INFO - __main__ -   [BRAINQA] Eval loss: 4.699
+
+Iteration:   2%|▏         | 159/8858 [01:47<1:43:05,  1.41it/s][A
+Iteration:   2%|▏         | 160/8858 [01:48<1:44:29,  1.39it/s][A
+Iteration:   2%|▏         | 161/8858 [01:49<1:49:10,  1.33it/s][A
+Iteration:   2%|▏         | 162/8858 [01:50<1:54:03,  1.27it/s][A
+Iteration:   2%|▏         | 163/8858 [01:50<1:54:39,  1.26it/s][A
+Iteration:   2%|▏         | 164/8858 [01:51<1:55:17,  1.26it/s][A
+Iteration:   2%|▏         | 165/8858 [01:52<1:56:23,  1.24it/s][A
+Iteration:   2%|▏         | 166/8858 [01:53<1:55:10,  1.26it/s][A
+Iteration:   2%|▏         | 167/8858 [01:54<1:53:14,  1.28it/s][A
+Iteration:   2%|▏         | 168/8858 [01:54<1:51:57,  1.29it/s][A05/02/2020 02:09:06 - INFO - __main__ -   [BRAINQA] Eval loss: 4.451
+
+Iteration:   2%|▏         | 169/8858 [01:55<1:50:52,  1.31it/s][A
+Iteration:   2%|▏         | 170/8858 [01:56<1:50:08,  1.31it/s][A
+Iteration:   2%|▏         | 171/8858 [01:57<1:48:22,  1.34it/s][A
+Iteration:   2%|▏         | 172/8858 [01:57<1:48:15,  1.34it/s][A
+Iteration:   2%|▏         | 173/8858 [01:58<1:46:55,  1.35it/s][A
+Iteration:   2%|▏         | 174/8858 [01:59<1:46:51,  1.35it/s][A
+Iteration:   2%|▏         | 175/8858 [02:00<1:48:35,  1.33it/s][A
+Iteration:   2%|▏         | 176/8858 [02:00<1:49:22,  1.32it/s][A
+Iteration:   2%|▏         | 177/8858 [02:01<1:49:16,  1.32it/s][A
+Iteration:   2%|▏         | 178/8858 [02:02<1:49:12,  1.32it/s][A05/02/2020 02:09:13 - INFO - __main__ -   [BRAINQA] Eval loss: 4.750
+
+Iteration:   2%|▏         | 179/8858 [02:03<1:47:51,  1.34it/s][A
+Iteration:   2%|▏         | 180/8858 [02:03<1:47:13,  1.35it/s][A
+Iteration:   2%|▏         | 181/8858 [02:04<1:47:35,  1.34it/s][A
+Iteration:   2%|▏         | 182/8858 [02:05<1:45:39,  1.37it/s][A
+Iteration:   2%|▏         | 183/8858 [02:05<1:43:53,  1.39it/s][A
+Iteration:   2%|▏         | 184/8858 [02:06<1:42:33,  1.41it/s][A
+Iteration:   2%|▏         | 185/8858 [02:07<1:41:34,  1.42it/s][A
+Iteration:   2%|▏         | 186/8858 [02:08<1:40:53,  1.43it/s][A
+Iteration:   2%|▏         | 187/8858 [02:08<1:40:21,  1.44it/s][A
+Iteration:   2%|▏         | 188/8858 [02:09<1:40:01,  1.44it/s][A05/02/2020 02:09:20 - INFO - __main__ -   [BRAINQA] Eval loss: 4.616
+
+Iteration:   2%|▏         | 189/8858 [02:10<1:39:48,  1.45it/s][A
+Iteration:   2%|▏         | 190/8858 [02:10<1:39:32,  1.45it/s][A
+Iteration:   2%|▏         | 191/8858 [02:11<1:39:25,  1.45it/s][A
+Iteration:   2%|▏         | 192/8858 [02:12<1:39:52,  1.45it/s][A
+Iteration:   2%|▏         | 193/8858 [02:12<1:39:36,  1.45it/s][A
+Iteration:   2%|▏         | 194/8858 [02:13<1:39:25,  1.45it/s][A
+Iteration:   2%|▏         | 195/8858 [02:14<1:39:16,  1.45it/s][A
+Iteration:   2%|▏         | 196/8858 [02:14<1:39:09,  1.46it/s][A
+Iteration:   2%|▏         | 197/8858 [02:15<1:39:04,  1.46it/s][A
+Iteration:   2%|▏         | 198/8858 [02:16<1:39:24,  1.45it/s][A05/02/2020 02:09:27 - INFO - __main__ -   [BRAINQA] Eval loss: 4.567
+
+Iteration:   2%|▏         | 199/8858 [02:16<1:39:28,  1.45it/s][A
+Iteration:   2%|▏         | 200/8858 [02:17<1:39:24,  1.45it/s][A
+Iteration:   2%|▏         | 201/8858 [02:18<1:39:15,  1.45it/s][A
+Iteration:   2%|▏         | 202/8858 [02:19<1:39:11,  1.45it/s][A
+Iteration:   2%|▏         | 203/8858 [02:19<1:39:16,  1.45it/s][A
+Iteration:   2%|▏         | 204/8858 [02:20<1:39:21,  1.45it/s][A
+Iteration:   2%|▏         | 205/8858 [02:21<1:39:16,  1.45it/s][A
+Iteration:   2%|▏         | 206/8858 [02:21<1:39:10,  1.45it/s][A
+Iteration:   2%|▏         | 207/8858 [02:22<1:39:12,  1.45it/s][A
+Iteration:   2%|▏         | 208/8858 [02:23<1:39:18,  1.45it/s][A05/02/2020 02:09:34 - INFO - __main__ -   [BRAINQA] Eval loss: 4.604
+
+Iteration:   2%|▏         | 209/8858 [02:23<1:39:20,  1.45it/s][A
+Iteration:   2%|▏         | 210/8858 [02:24<1:39:11,  1.45it/s][A
+Iteration:   2%|▏         | 211/8858 [02:25<1:39:10,  1.45it/s][A
+Iteration:   2%|▏         | 212/8858 [02:25<1:39:12,  1.45it/s][A
+Iteration:   2%|▏         | 213/8858 [02:26<1:39:07,  1.45it/s][A
+Iteration:   2%|▏         | 214/8858 [02:27<1:39:02,  1.45it/s][A
+Iteration:   2%|▏         | 215/8858 [02:27<1:38:59,  1.46it/s][A
+Iteration:   2%|▏         | 216/8858 [02:28<1:38:55,  1.46it/s][A
+Iteration:   2%|▏         | 217/8858 [02:29<1:38:54,  1.46it/s][A
+Iteration:   2%|▏         | 218/8858 [02:30<1:38:53,  1.46it/s][A05/02/2020 02:09:41 - INFO - __main__ -   [BRAINQA] Eval loss: 4.570
+
+Iteration:   2%|▏         | 219/8858 [02:30<1:38:55,  1.46it/s][A
+Iteration:   2%|▏         | 220/8858 [02:31<1:38:55,  1.46it/s][A
+Iteration:   2%|▏         | 221/8858 [02:32<1:39:02,  1.45it/s][A
+Iteration:   3%|▎         | 222/8858 [02:32<1:39:03,  1.45it/s][A
+Iteration:   3%|▎         | 223/8858 [02:33<1:39:01,  1.45it/s][A
+Iteration:   3%|▎         | 224/8858 [02:34<1:39:01,  1.45it/s][A
+Iteration:   3%|▎         | 225/8858 [02:34<1:39:05,  1.45it/s][A
+Iteration:   3%|▎         | 226/8858 [02:35<1:39:07,  1.45it/s][A
+Iteration:   3%|▎         | 227/8858 [02:36<1:39:04,  1.45it/s][A
+Iteration:   3%|▎         | 228/8858 [02:36<1:38:46,  1.46it/s][A05/02/2020 02:09:48 - INFO - __main__ -   [BRAINQA] Eval loss: 4.632
+
+Iteration:   3%|▎         | 229/8858 [02:37<1:39:07,  1.45it/s][A
+Iteration:   3%|▎         | 230/8858 [02:38<1:40:21,  1.43it/s][A
+Iteration:   3%|▎         | 231/8858 [02:39<1:40:58,  1.42it/s][A
+Iteration:   3%|▎         | 232/8858 [02:39<1:42:40,  1.40it/s][A
+Iteration:   3%|▎         | 233/8858 [02:40<1:42:27,  1.40it/s][A
+Iteration:   3%|▎         | 234/8858 [02:41<1:41:45,  1.41it/s][A
+Iteration:   3%|▎         | 235/8858 [02:41<1:41:13,  1.42it/s][A
+Iteration:   3%|▎         | 236/8858 [02:42<1:40:45,  1.43it/s][A
+Iteration:   3%|▎         | 237/8858 [02:43<1:40:14,  1.43it/s][A
+Iteration:   3%|▎         | 238/8858 [02:43<1:39:33,  1.44it/s][A05/02/2020 02:09:55 - INFO - __main__ -   [BRAINQA] Eval loss: 4.584
+
+Iteration:   3%|▎         | 239/8858 [02:44<1:39:56,  1.44it/s][A
+Iteration:   3%|▎         | 240/8858 [02:45<1:40:07,  1.43it/s][A
+Iteration:   3%|▎         | 241/8858 [02:46<1:39:57,  1.44it/s][A
+Iteration:   3%|▎         | 242/8858 [02:46<1:39:48,  1.44it/s][A
+Iteration:   3%|▎         | 243/8858 [02:47<1:39:28,  1.44it/s][A
+Iteration:   3%|▎         | 244/8858 [02:48<1:40:04,  1.43it/s][A
+Iteration:   3%|▎         | 245/8858 [02:48<1:40:31,  1.43it/s][A
+Iteration:   3%|▎         | 246/8858 [02:49<1:40:21,  1.43it/s][A
+Iteration:   3%|▎         | 247/8858 [02:50<1:39:19,  1.44it/s][A
+Iteration:   3%|▎         | 248/8858 [02:50<1:39:20,  1.44it/s][A05/02/2020 02:10:02 - INFO - __main__ -   [BRAINQA] Eval loss: 4.411
+
+Iteration:   3%|▎         | 249/8858 [02:51<1:39:17,  1.45it/s][A
+Iteration:   3%|▎         | 250/8858 [02:52<1:40:20,  1.43it/s][A
+Iteration:   3%|▎         | 251/8858 [02:53<1:42:49,  1.40it/s][A
+Iteration:   3%|▎         | 252/8858 [02:53<1:43:32,  1.39it/s][A
+Iteration:   3%|▎         | 253/8858 [02:54<1:45:05,  1.36it/s][A
+Iteration:   3%|▎         | 254/8858 [02:55<1:45:50,  1.35it/s][A
+Iteration:   3%|▎         | 255/8858 [02:56<1:47:19,  1.34it/s][A
+Iteration:   3%|▎         | 256/8858 [02:56<1:47:25,  1.33it/s][A
+Iteration:   3%|▎         | 257/8858 [02:57<1:46:43,  1.34it/s][A
+Iteration:   3%|▎         | 258/8858 [02:58<1:47:09,  1.34it/s][A05/02/2020 02:10:09 - INFO - __main__ -   [BRAINQA] Eval loss: 4.509
+
+Iteration:   3%|▎         | 259/8858 [02:59<1:48:22,  1.32it/s][A
+Iteration:   3%|▎         | 260/8858 [02:59<1:48:19,  1.32it/s][A
+Iteration:   3%|▎         | 261/8858 [03:00<1:48:35,  1.32it/s][A
+Iteration:   3%|▎         | 262/8858 [03:01<1:47:58,  1.33it/s][A
+Iteration:   3%|▎         | 263/8858 [03:02<1:47:13,  1.34it/s][A
+Iteration:   3%|▎         | 264/8858 [03:02<1:47:27,  1.33it/s][A
+Iteration:   3%|▎         | 265/8858 [03:03<1:47:56,  1.33it/s][A
+Iteration:   3%|▎         | 266/8858 [03:04<1:48:19,  1.32it/s][A
+Iteration:   3%|▎         | 267/8858 [03:05<1:48:52,  1.32it/s][A
+Iteration:   3%|▎         | 268/8858 [03:05<1:49:08,  1.31it/s][A05/02/2020 02:10:17 - INFO - __main__ -   [BRAINQA] Eval loss: 4.361
+
+Iteration:   3%|▎         | 269/8858 [03:06<1:47:57,  1.33it/s][A
+Iteration:   3%|▎         | 270/8858 [03:07<1:46:11,  1.35it/s][A
+Iteration:   3%|▎         | 271/8858 [03:08<1:44:35,  1.37it/s][A
+Iteration:   3%|▎         | 272/8858 [03:08<1:43:09,  1.39it/s][A
+Iteration:   3%|▎         | 273/8858 [03:09<1:41:17,  1.41it/s][A
+Iteration:   3%|▎         | 274/8858 [03:10<1:40:20,  1.43it/s][A
+Iteration:   3%|▎         | 275/8858 [03:10<1:40:21,  1.43it/s][A
+Iteration:   3%|▎         | 276/8858 [03:11<1:40:26,  1.42it/s][A
+Iteration:   3%|▎         | 277/8858 [03:12<1:39:37,  1.44it/s][A
+Iteration:   3%|▎         | 278/8858 [03:12<1:39:02,  1.44it/s][A05/02/2020 02:10:24 - INFO - __main__ -   [BRAINQA] Eval loss: 4.156
+
+Iteration:   3%|▎         | 279/8858 [03:13<1:39:57,  1.43it/s][A
+Iteration:   3%|▎         | 280/8858 [03:14<1:39:30,  1.44it/s][A
+Iteration:   3%|▎         | 281/8858 [03:14<1:39:13,  1.44it/s][A
+Iteration:   3%|▎         | 282/8858 [03:15<1:38:59,  1.44it/s][A
+Iteration:   3%|▎         | 283/8858 [03:16<1:38:46,  1.45it/s][A
+Iteration:   3%|▎         | 284/8858 [03:17<1:38:38,  1.45it/s][A
+Iteration:   3%|▎         | 285/8858 [03:17<1:38:30,  1.45it/s][A
+Iteration:   3%|▎         | 286/8858 [03:18<1:39:07,  1.44it/s][A
+Iteration:   3%|▎         | 287/8858 [03:19<1:38:50,  1.45it/s][A
+Iteration:   3%|▎         | 288/8858 [03:19<1:38:34,  1.45it/s][A05/02/2020 02:10:30 - INFO - __main__ -   [BRAINQA] Eval loss: 4.365
+
+Iteration:   3%|▎         | 289/8858 [03:20<1:38:32,  1.45it/s][A
+Iteration:   3%|▎         | 290/8858 [03:21<1:38:18,  1.45it/s][A
+Iteration:   3%|▎         | 291/8858 [03:21<1:38:12,  1.45it/s][A
+Iteration:   3%|▎         | 292/8858 [03:22<1:38:06,  1.46it/s][A
+Iteration:   3%|▎         | 293/8858 [03:23<1:38:03,  1.46it/s][A
+Iteration:   3%|▎         | 294/8858 [03:23<1:38:07,  1.45it/s][A
+Iteration:   3%|▎         | 295/8858 [03:24<1:38:07,  1.45it/s][A
+Iteration:   3%|▎         | 296/8858 [03:25<1:38:09,  1.45it/s][A
+Iteration:   3%|▎         | 297/8858 [03:25<1:38:14,  1.45it/s][A
+Iteration:   3%|▎         | 298/8858 [03:26<1:38:08,  1.45it/s][A05/02/2020 02:10:37 - INFO - __main__ -   [BRAINQA] Eval loss: 4.469
+
+Iteration:   3%|▎         | 299/8858 [03:27<1:38:09,  1.45it/s][A
+Iteration:   3%|▎         | 300/8858 [03:28<1:38:02,  1.45it/s][A
+Iteration:   3%|▎         | 301/8858 [03:28<1:37:57,  1.46it/s][A
+Iteration:   3%|▎         | 302/8858 [03:29<1:37:54,  1.46it/s][A
+Iteration:   3%|▎         | 303/8858 [03:30<1:37:52,  1.46it/s][A
+Iteration:   3%|▎         | 304/8858 [03:30<1:37:51,  1.46it/s][A
+Iteration:   3%|▎         | 305/8858 [03:31<1:37:41,  1.46it/s][A
+Iteration:   3%|▎         | 306/8858 [03:32<1:38:56,  1.44it/s][A
+Iteration:   3%|▎         | 307/8858 [03:32<1:38:40,  1.44it/s][A
+Iteration:   3%|▎         | 308/8858 [03:33<1:38:26,  1.45it/s][A05/02/2020 02:10:44 - INFO - __main__ -   [BRAINQA] Eval loss: 4.517
+
+Iteration:   3%|▎         | 309/8858 [03:34<1:38:21,  1.45it/s][A
+Iteration:   3%|▎         | 310/8858 [03:34<1:39:03,  1.44it/s][A
+Iteration:   4%|▎         | 311/8858 [03:35<1:38:36,  1.44it/s][A
+Iteration:   4%|▎         | 312/8858 [03:36<1:38:20,  1.45it/s][A
+Iteration:   4%|▎         | 313/8858 [03:37<1:38:04,  1.45it/s][A
+Iteration:   4%|▎         | 314/8858 [03:37<1:38:07,  1.45it/s][A
+Iteration:   4%|▎         | 315/8858 [03:38<1:38:00,  1.45it/s][A
+Iteration:   4%|▎         | 316/8858 [03:39<1:37:59,  1.45it/s][A
+Iteration:   4%|▎         | 317/8858 [03:39<1:37:19,  1.46it/s][A
+Iteration:   4%|▎         | 318/8858 [03:40<1:37:22,  1.46it/s][A05/02/2020 02:10:51 - INFO - __main__ -   [BRAINQA] Eval loss: 4.295
+
+Iteration:   4%|▎         | 319/8858 [03:41<1:37:34,  1.46it/s][A
+Iteration:   4%|▎         | 320/8858 [03:41<1:37:30,  1.46it/s][A
+Iteration:   4%|▎         | 321/8858 [03:42<1:37:31,  1.46it/s][A
+Iteration:   4%|▎         | 322/8858 [03:43<1:37:32,  1.46it/s][A
+Iteration:   4%|▎         | 323/8858 [03:43<1:37:30,  1.46it/s][A
+Iteration:   4%|▎         | 324/8858 [03:44<1:37:31,  1.46it/s][A
+Iteration:   4%|▎         | 325/8858 [03:45<1:37:29,  1.46it/s][A
+Iteration:   4%|▎         | 326/8858 [03:45<1:37:33,  1.46it/s][A
+Iteration:   4%|▎         | 327/8858 [03:46<1:37:33,  1.46it/s][A
+Iteration:   4%|▎         | 328/8858 [03:47<1:37:36,  1.46it/s][A05/02/2020 02:10:58 - INFO - __main__ -   [BRAINQA] Eval loss: 4.323
+
+Iteration:   4%|▎         | 329/8858 [03:48<1:37:41,  1.46it/s][A
+Iteration:   4%|▎         | 330/8858 [03:48<1:37:34,  1.46it/s][A
+Iteration:   4%|▎         | 331/8858 [03:49<1:37:23,  1.46it/s][A
+Iteration:   4%|▎         | 332/8858 [03:50<1:37:27,  1.46it/s][A
+Iteration:   4%|▍         | 333/8858 [03:50<1:37:30,  1.46it/s][A
+Iteration:   4%|▍         | 334/8858 [03:51<1:37:33,  1.46it/s][A
+Iteration:   4%|▍         | 335/8858 [03:52<1:37:35,  1.46it/s][A
+Iteration:   4%|▍         | 336/8858 [03:52<1:37:37,  1.45it/s][A
+Iteration:   4%|▍         | 337/8858 [03:53<1:37:39,  1.45it/s][A
+Iteration:   4%|▍         | 338/8858 [03:54<1:37:44,  1.45it/s][A05/02/2020 02:11:05 - INFO - __main__ -   [BRAINQA] Eval loss: 4.536
+
+Iteration:   4%|▍         | 339/8858 [03:54<1:37:47,  1.45it/s][A
+Iteration:   4%|▍         | 340/8858 [03:55<1:37:49,  1.45it/s][A
+Iteration:   4%|▍         | 341/8858 [03:56<1:37:54,  1.45it/s][A
+Iteration:   4%|▍         | 342/8858 [03:56<1:37:38,  1.45it/s][A
+Iteration:   4%|▍         | 343/8858 [03:57<1:37:38,  1.45it/s][A
+Iteration:   4%|▍         | 344/8858 [03:58<1:37:32,  1.45it/s][A
+Iteration:   4%|▍         | 345/8858 [03:59<1:37:31,  1.45it/s][A
+Iteration:   4%|▍         | 346/8858 [03:59<1:37:25,  1.46it/s][A
+Iteration:   4%|▍         | 347/8858 [04:00<1:37:21,  1.46it/s][A
+Iteration:   4%|▍         | 348/8858 [04:01<1:38:52,  1.43it/s][A05/02/2020 02:11:12 - INFO - __main__ -   [BRAINQA] Eval loss: 4.542
+
+Iteration:   4%|▍         | 349/8858 [04:01<1:38:43,  1.44it/s][A
+Iteration:   4%|▍         | 350/8858 [04:02<1:38:21,  1.44it/s][A
+Iteration:   4%|▍         | 351/8858 [04:03<1:38:12,  1.44it/s][A
+Iteration:   4%|▍         | 352/8858 [04:03<1:38:00,  1.45it/s][A
+Iteration:   4%|▍         | 353/8858 [04:04<1:37:49,  1.45it/s][A
+Iteration:   4%|▍         | 354/8858 [04:05<1:38:09,  1.44it/s][A
+Iteration:   4%|▍         | 355/8858 [04:05<1:37:30,  1.45it/s][A
+Iteration:   4%|▍         | 356/8858 [04:06<1:37:24,  1.45it/s][A
+Iteration:   4%|▍         | 357/8858 [04:07<1:37:46,  1.45it/s][A
+Iteration:   4%|▍         | 358/8858 [04:07<1:37:37,  1.45it/s][A05/02/2020 02:11:19 - INFO - __main__ -   [BRAINQA] Eval loss: 4.636
+
+Iteration:   4%|▍         | 359/8858 [04:08<1:37:10,  1.46it/s][A
+Iteration:   4%|▍         | 360/8858 [04:09<1:37:49,  1.45it/s][A
+Iteration:   4%|▍         | 361/8858 [04:10<1:37:52,  1.45it/s][A
+Iteration:   4%|▍         | 362/8858 [04:10<1:38:00,  1.44it/s][A
+Iteration:   4%|▍         | 363/8858 [04:11<1:37:39,  1.45it/s][A
+Iteration:   4%|▍         | 364/8858 [04:12<1:37:24,  1.45it/s][A
+Iteration:   4%|▍         | 365/8858 [04:12<1:37:19,  1.45it/s][A
+Iteration:   4%|▍         | 366/8858 [04:13<1:37:14,  1.46it/s][A
+Iteration:   4%|▍         | 367/8858 [04:14<1:37:12,  1.46it/s][A
+Iteration:   4%|▍         | 368/8858 [04:14<1:37:12,  1.46it/s][A05/02/2020 02:11:26 - INFO - __main__ -   [BRAINQA] Eval loss: 4.334
+
+Iteration:   4%|▍         | 369/8858 [04:15<1:37:15,  1.45it/s][A
+Iteration:   4%|▍         | 370/8858 [04:16<1:37:21,  1.45it/s][A
+Iteration:   4%|▍         | 371/8858 [04:16<1:37:21,  1.45it/s][A
+Iteration:   4%|▍         | 372/8858 [04:17<1:37:18,  1.45it/s][A
+Iteration:   4%|▍         | 373/8858 [04:18<1:37:00,  1.46it/s][A
+Iteration:   4%|▍         | 374/8858 [04:18<1:37:11,  1.45it/s][A
+Iteration:   4%|▍         | 375/8858 [04:19<1:37:13,  1.45it/s][A
+Iteration:   4%|▍         | 376/8858 [04:20<1:37:09,  1.46it/s][A
+Iteration:   4%|▍         | 377/8858 [04:21<1:37:59,  1.44it/s][A
+Iteration:   4%|▍         | 378/8858 [04:21<1:38:02,  1.44it/s][A05/02/2020 02:11:32 - INFO - __main__ -   [BRAINQA] Eval loss: 4.754
+
+Iteration:   4%|▍         | 379/8858 [04:22<1:39:02,  1.43it/s][A
+Iteration:   4%|▍         | 380/8858 [04:23<1:40:32,  1.41it/s][A
+Iteration:   4%|▍         | 381/8858 [04:23<1:42:12,  1.38it/s][A
+Iteration:   4%|▍         | 382/8858 [04:24<1:43:00,  1.37it/s][A
+Iteration:   4%|▍         | 383/8858 [04:25<1:43:34,  1.36it/s][A
+Iteration:   4%|▍         | 384/8858 [04:26<1:43:30,  1.36it/s][A
+Iteration:   4%|▍         | 385/8858 [04:26<1:43:44,  1.36it/s][A
+Iteration:   4%|▍         | 386/8858 [04:27<1:44:02,  1.36it/s][A
+Iteration:   4%|▍         | 387/8858 [04:28<1:44:24,  1.35it/s][A
+Iteration:   4%|▍         | 388/8858 [04:29<1:45:44,  1.34it/s][A05/02/2020 02:11:40 - INFO - __main__ -   [BRAINQA] Eval loss: 4.505
+
+Iteration:   4%|▍         | 389/8858 [04:29<1:46:18,  1.33it/s][A
+Iteration:   4%|▍         | 390/8858 [04:30<1:44:34,  1.35it/s][A
+Iteration:   4%|▍         | 391/8858 [04:31<1:45:00,  1.34it/s][A
+Iteration:   4%|▍         | 392/8858 [04:32<1:45:57,  1.33it/s][A
+Iteration:   4%|▍         | 393/8858 [04:32<1:46:01,  1.33it/s][A
+Iteration:   4%|▍         | 394/8858 [04:33<1:45:34,  1.34it/s][A
+Iteration:   4%|▍         | 395/8858 [04:34<1:45:26,  1.34it/s][A
+Iteration:   4%|▍         | 396/8858 [04:35<1:44:50,  1.35it/s][A
+Iteration:   4%|▍         | 397/8858 [04:35<1:45:16,  1.34it/s][A
+Iteration:   4%|▍         | 398/8858 [04:36<1:44:24,  1.35it/s][A05/02/2020 02:11:47 - INFO - __main__ -   [BRAINQA] Eval loss: 4.523
+
+Iteration:   5%|▍         | 399/8858 [04:37<1:43:18,  1.36it/s][A
+Iteration:   5%|▍         | 400/8858 [04:38<1:41:27,  1.39it/s][A
+Iteration:   5%|▍         | 401/8858 [04:38<1:39:56,  1.41it/s][A
+Iteration:   5%|▍         | 402/8858 [04:39<1:38:52,  1.43it/s][A
+Iteration:   5%|▍         | 403/8858 [04:40<1:38:52,  1.43it/s][A
+Iteration:   5%|▍         | 404/8858 [04:40<1:38:11,  1.43it/s][A
+Iteration:   5%|▍         | 405/8858 [04:41<1:37:44,  1.44it/s][A
+Iteration:   5%|▍         | 406/8858 [04:42<1:37:21,  1.45it/s][A
+Iteration:   5%|▍         | 407/8858 [04:42<1:36:45,  1.46it/s][A
+Iteration:   5%|▍         | 408/8858 [04:43<1:36:11,  1.46it/s][A05/02/2020 02:11:54 - INFO - __main__ -   [BRAINQA] Eval loss: 4.487
+
+Iteration:   5%|▍         | 409/8858 [04:44<1:36:02,  1.47it/s][A
+Iteration:   5%|▍         | 410/8858 [04:44<1:36:20,  1.46it/s][A
+Iteration:   5%|▍         | 411/8858 [04:45<1:36:27,  1.46it/s][A
+Iteration:   5%|▍         | 412/8858 [04:46<1:36:22,  1.46it/s][A
+Iteration:   5%|▍         | 413/8858 [04:46<1:36:30,  1.46it/s][A
+Iteration:   5%|▍         | 414/8858 [04:47<1:36:33,  1.46it/s][A
+Iteration:   5%|▍         | 415/8858 [04:48<1:36:33,  1.46it/s][A
+Iteration:   5%|▍         | 416/8858 [04:49<1:36:31,  1.46it/s][A
+Iteration:   5%|▍         | 417/8858 [04:49<1:36:29,  1.46it/s][A
+Iteration:   5%|▍         | 418/8858 [04:50<1:36:32,  1.46it/s][A05/02/2020 02:12:01 - INFO - __main__ -   [BRAINQA] Eval loss: 4.325
+
+Iteration:   5%|▍         | 419/8858 [04:51<1:36:38,  1.46it/s][A
+Iteration:   5%|▍         | 420/8858 [04:51<1:36:38,  1.46it/s][A
+Iteration:   5%|▍         | 421/8858 [04:52<1:36:38,  1.45it/s][A
+Iteration:   5%|▍         | 422/8858 [04:53<1:36:43,  1.45it/s][A
+Iteration:   5%|▍         | 423/8858 [04:53<1:36:42,  1.45it/s][A
+Iteration:   5%|▍         | 424/8858 [04:54<1:36:38,  1.45it/s][A
+Iteration:   5%|▍         | 425/8858 [04:55<1:36:35,  1.46it/s][A
+Iteration:   5%|▍         | 426/8858 [04:55<1:36:32,  1.46it/s][A
+Iteration:   5%|▍         | 427/8858 [04:56<1:36:30,  1.46it/s][A
+Iteration:   5%|▍         | 428/8858 [04:57<1:36:29,  1.46it/s][A05/02/2020 02:12:08 - INFO - __main__ -   [BRAINQA] Eval loss: 4.319
+
+Iteration:   5%|▍         | 429/8858 [04:57<1:36:31,  1.46it/s][A
+Iteration:   5%|▍         | 430/8858 [04:58<1:36:21,  1.46it/s][A
+Iteration:   5%|▍         | 431/8858 [04:59<1:35:56,  1.46it/s][A
+Iteration:   5%|▍         | 432/8858 [04:59<1:36:06,  1.46it/s][A
+Iteration:   5%|▍         | 433/8858 [05:00<1:36:10,  1.46it/s][A
+Iteration:   5%|▍         | 434/8858 [05:01<1:36:06,  1.46it/s][A
+Iteration:   5%|▍         | 435/8858 [05:02<1:36:06,  1.46it/s][A
+Iteration:   5%|▍         | 436/8858 [05:02<1:37:24,  1.44it/s][A
+Iteration:   5%|▍         | 437/8858 [05:03<1:37:04,  1.45it/s][A
+Iteration:   5%|▍         | 438/8858 [05:04<1:36:47,  1.45it/s][A05/02/2020 02:12:15 - INFO - __main__ -   [BRAINQA] Eval loss: 4.375
+
+Iteration:   5%|▍         | 439/8858 [05:04<1:36:45,  1.45it/s][A
+Iteration:   5%|▍         | 440/8858 [05:05<1:36:34,  1.45it/s][A
+Iteration:   5%|▍         | 441/8858 [05:06<1:36:32,  1.45it/s][A
+Iteration:   5%|▍         | 442/8858 [05:06<1:36:13,  1.46it/s][A
+Iteration:   5%|▌         | 443/8858 [05:07<1:36:22,  1.46it/s][A
+Iteration:   5%|▌         | 444/8858 [05:08<1:36:23,  1.45it/s][A
+Iteration:   5%|▌         | 445/8858 [05:08<1:36:24,  1.45it/s][A
+Iteration:   5%|▌         | 446/8858 [05:09<1:36:21,  1.46it/s][A
+Iteration:   5%|▌         | 447/8858 [05:10<1:36:25,  1.45it/s][A
+Iteration:   5%|▌         | 448/8858 [05:11<1:36:25,  1.45it/s][A05/02/2020 02:12:22 - INFO - __main__ -   [BRAINQA] Eval loss: 4.289
+
+Iteration:   5%|▌         | 449/8858 [05:11<1:36:33,  1.45it/s][A
+Iteration:   5%|▌         | 450/8858 [05:12<1:36:34,  1.45it/s][A
+Iteration:   5%|▌         | 451/8858 [05:13<1:36:28,  1.45it/s][A
+Iteration:   5%|▌         | 452/8858 [05:13<1:36:20,  1.45it/s][A
+Iteration:   5%|▌         | 453/8858 [05:14<1:36:16,  1.46it/s][A
+Iteration:   5%|▌         | 454/8858 [05:15<1:36:15,  1.46it/s][A
+Iteration:   5%|▌         | 455/8858 [05:15<1:36:13,  1.46it/s][A
+Iteration:   5%|▌         | 456/8858 [05:16<1:36:06,  1.46it/s][A
+Iteration:   5%|▌         | 457/8858 [05:17<1:35:26,  1.47it/s][A
+Iteration:   5%|▌         | 458/8858 [05:17<1:35:06,  1.47it/s][A05/02/2020 02:12:28 - INFO - __main__ -   [BRAINQA] Eval loss: 4.610
+
+Iteration:   5%|▌         | 459/8858 [05:18<1:36:11,  1.46it/s][A
+Iteration:   5%|▌         | 460/8858 [05:19<1:36:48,  1.45it/s][A
+Iteration:   5%|▌         | 461/8858 [05:19<1:37:08,  1.44it/s][A
+Iteration:   5%|▌         | 462/8858 [05:20<1:37:59,  1.43it/s][A
+Iteration:   5%|▌         | 463/8858 [05:21<1:38:06,  1.43it/s][A
+Iteration:   5%|▌         | 464/8858 [05:22<1:37:03,  1.44it/s][A
+Iteration:   5%|▌         | 465/8858 [05:22<1:36:48,  1.45it/s][A
+Iteration:   5%|▌         | 466/8858 [05:23<1:36:41,  1.45it/s][A
+Iteration:   5%|▌         | 467/8858 [05:24<1:36:24,  1.45it/s][A
+Iteration:   5%|▌         | 468/8858 [05:24<1:36:44,  1.45it/s][A05/02/2020 02:12:35 - INFO - __main__ -   [BRAINQA] Eval loss: 4.608
+
+Iteration:   5%|▌         | 469/8858 [05:25<1:37:01,  1.44it/s][A
+Iteration:   5%|▌         | 470/8858 [05:26<1:36:51,  1.44it/s][A
+Iteration:   5%|▌         | 471/8858 [05:26<1:36:37,  1.45it/s][A
+Iteration:   5%|▌         | 472/8858 [05:27<1:36:19,  1.45it/s][A
+Iteration:   5%|▌         | 473/8858 [05:28<1:37:00,  1.44it/s][A
+Iteration:   5%|▌         | 474/8858 [05:28<1:36:33,  1.45it/s][A
+Iteration:   5%|▌         | 475/8858 [05:29<1:36:23,  1.45it/s][A
+Iteration:   5%|▌         | 476/8858 [05:30<1:36:08,  1.45it/s][A
+Iteration:   5%|▌         | 477/8858 [05:31<1:36:00,  1.45it/s][A
+Iteration:   5%|▌         | 478/8858 [05:31<1:35:57,  1.46it/s][A05/02/2020 02:12:42 - INFO - __main__ -   [BRAINQA] Eval loss: 4.307
+
+Iteration:   5%|▌         | 479/8858 [05:32<1:36:17,  1.45it/s][A
+Iteration:   5%|▌         | 480/8858 [05:33<1:36:12,  1.45it/s][A
+Iteration:   5%|▌         | 481/8858 [05:33<1:35:32,  1.46it/s][A
+Iteration:   5%|▌         | 482/8858 [05:34<1:35:44,  1.46it/s][A
+Iteration:   5%|▌         | 483/8858 [05:35<1:35:40,  1.46it/s][A
+Iteration:   5%|▌         | 484/8858 [05:35<1:35:37,  1.46it/s][A
+Iteration:   5%|▌         | 485/8858 [05:36<1:36:15,  1.45it/s][A
+Iteration:   5%|▌         | 486/8858 [05:37<1:36:04,  1.45it/s][A
+Iteration:   5%|▌         | 487/8858 [05:37<1:35:59,  1.45it/s][A
+Iteration:   6%|▌         | 488/8858 [05:38<1:35:59,  1.45it/s][A05/02/2020 02:12:49 - INFO - __main__ -   [BRAINQA] Eval loss: 4.507
+
+Iteration:   6%|▌         | 489/8858 [05:39<1:36:09,  1.45it/s][A
+Iteration:   6%|▌         | 490/8858 [05:39<1:35:54,  1.45it/s][A
+Iteration:   6%|▌         | 491/8858 [05:40<1:36:01,  1.45it/s][A
+Iteration:   6%|▌         | 492/8858 [05:41<1:35:46,  1.46it/s][A
+Iteration:   6%|▌         | 493/8858 [05:42<1:35:56,  1.45it/s][A
+Iteration:   6%|▌         | 494/8858 [05:42<1:35:57,  1.45it/s][A
+Iteration:   6%|▌         | 495/8858 [05:43<1:36:04,  1.45it/s][A
+Iteration:   6%|▌         | 496/8858 [05:44<1:35:34,  1.46it/s][A
+Iteration:   6%|▌         | 497/8858 [05:44<1:35:44,  1.46it/s][A
+Iteration:   6%|▌         | 498/8858 [05:45<1:35:34,  1.46it/s][A05/02/2020 02:12:56 - INFO - __main__ -   [BRAINQA] Eval loss: 4.264
+
+Iteration:   6%|▌         | 499/8858 [05:46<1:35:27,  1.46it/s][A
+Iteration:   6%|▌         | 500/8858 [05:46<1:35:29,  1.46it/s][A
+Iteration:   6%|▌         | 501/8858 [05:47<1:35:33,  1.46it/s][A
+Iteration:   6%|▌         | 502/8858 [05:48<1:35:34,  1.46it/s][A
+Iteration:   6%|▌         | 503/8858 [05:48<1:35:35,  1.46it/s][A
+Iteration:   6%|▌         | 504/8858 [05:49<1:35:33,  1.46it/s][A
+Iteration:   6%|▌         | 505/8858 [05:50<1:35:31,  1.46it/s][A
+Iteration:   6%|▌         | 506/8858 [05:50<1:35:26,  1.46it/s][A
+Iteration:   6%|▌         | 507/8858 [05:51<1:35:32,  1.46it/s][A
+Iteration:   6%|▌         | 508/8858 [05:52<1:35:33,  1.46it/s][A05/02/2020 02:13:03 - INFO - __main__ -   [BRAINQA] Eval loss: 4.231
+
+Iteration:   6%|▌         | 509/8858 [05:53<1:35:39,  1.45it/s][A
+Iteration:   6%|▌         | 510/8858 [05:53<1:35:30,  1.46it/s][A
+Iteration:   6%|▌         | 511/8858 [05:54<1:35:30,  1.46it/s][A
+Iteration:   6%|▌         | 512/8858 [05:55<1:35:28,  1.46it/s][A
+Iteration:   6%|▌         | 513/8858 [05:55<1:35:24,  1.46it/s][A
+Iteration:   6%|▌         | 514/8858 [05:56<1:35:29,  1.46it/s][A
+Iteration:   6%|▌         | 515/8858 [05:57<1:35:21,  1.46it/s][A
+Iteration:   6%|▌         | 516/8858 [05:57<1:35:21,  1.46it/s][A
+Iteration:   6%|▌         | 517/8858 [05:58<1:35:22,  1.46it/s][A
+Iteration:   6%|▌         | 518/8858 [05:59<1:34:49,  1.47it/s][A05/02/2020 02:13:10 - INFO - __main__ -   [BRAINQA] Eval loss: 4.544
+
+Iteration:   6%|▌         | 519/8858 [05:59<1:35:10,  1.46it/s][A
+Iteration:   6%|▌         | 520/8858 [06:00<1:35:33,  1.45it/s][A
+Iteration:   6%|▌         | 521/8858 [06:01<1:35:29,  1.46it/s][A
+Iteration:   6%|▌         | 522/8858 [06:01<1:35:26,  1.46it/s][A
+Iteration:   6%|▌         | 523/8858 [06:02<1:35:23,  1.46it/s][A
+Iteration:   6%|▌         | 524/8858 [06:03<1:35:09,  1.46it/s][A
+Iteration:   6%|▌         | 525/8858 [06:03<1:35:10,  1.46it/s][A
+Iteration:   6%|▌         | 526/8858 [06:04<1:35:08,  1.46it/s][A
+Iteration:   6%|▌         | 527/8858 [06:05<1:35:04,  1.46it/s][A
+Iteration:   6%|▌         | 528/8858 [06:06<1:35:04,  1.46it/s][A05/02/2020 02:13:17 - INFO - __main__ -   [BRAINQA] Eval loss: 4.304
+
+Iteration:   6%|▌         | 529/8858 [06:06<1:35:09,  1.46it/s][A
+Iteration:   6%|▌         | 530/8858 [06:07<1:35:44,  1.45it/s][A
+Iteration:   6%|▌         | 531/8858 [06:08<1:35:20,  1.46it/s][A
+Iteration:   6%|▌         | 532/8858 [06:08<1:35:16,  1.46it/s][A
+Iteration:   6%|▌         | 533/8858 [06:09<1:35:15,  1.46it/s][A
+Iteration:   6%|▌         | 534/8858 [06:10<1:35:10,  1.46it/s][A
+Iteration:   6%|▌         | 535/8858 [06:10<1:34:59,  1.46it/s][A
+Iteration:   6%|▌         | 536/8858 [06:11<1:35:10,  1.46it/s][A
+Iteration:   6%|▌         | 537/8858 [06:12<1:35:12,  1.46it/s][A
+Iteration:   6%|▌         | 538/8858 [06:12<1:35:01,  1.46it/s][A05/02/2020 02:13:24 - INFO - __main__ -   [BRAINQA] Eval loss: 4.346
+
+Iteration:   6%|▌         | 539/8858 [06:13<1:35:00,  1.46it/s][A
+Iteration:   6%|▌         | 540/8858 [06:14<1:34:57,  1.46it/s][A
+Iteration:   6%|▌         | 541/8858 [06:14<1:34:58,  1.46it/s][A
+Iteration:   6%|▌         | 542/8858 [06:15<1:35:00,  1.46it/s][A
+Iteration:   6%|▌         | 543/8858 [06:16<1:34:49,  1.46it/s][A
+Iteration:   6%|▌         | 544/8858 [06:17<1:35:01,  1.46it/s][A
+Iteration:   6%|▌         | 545/8858 [06:17<1:34:59,  1.46it/s][A
+Iteration:   6%|▌         | 546/8858 [06:18<1:34:49,  1.46it/s][A
+Iteration:   6%|▌         | 547/8858 [06:19<1:34:57,  1.46it/s][A
+Iteration:   6%|▌         | 548/8858 [06:19<1:35:03,  1.46it/s][A05/02/2020 02:13:30 - INFO - __main__ -   [BRAINQA] Eval loss: 4.383
+
+Iteration:   6%|▌         | 549/8858 [06:20<1:35:07,  1.46it/s][A
+Iteration:   6%|▌         | 550/8858 [06:21<1:35:01,  1.46it/s][A
+Iteration:   6%|▌         | 551/8858 [06:21<1:35:03,  1.46it/s][A
+Iteration:   6%|▌         | 552/8858 [06:22<1:34:53,  1.46it/s][A
+Iteration:   6%|▌         | 553/8858 [06:23<1:35:00,  1.46it/s][A
+Iteration:   6%|▋         | 554/8858 [06:23<1:34:58,  1.46it/s][A
+Iteration:   6%|▋         | 555/8858 [06:24<1:34:59,  1.46it/s][A
+Iteration:   6%|▋         | 556/8858 [06:25<1:34:58,  1.46it/s][A
+Iteration:   6%|▋         | 557/8858 [06:25<1:35:00,  1.46it/s][A
+Iteration:   6%|▋         | 558/8858 [06:26<1:35:00,  1.46it/s][A05/02/2020 02:13:37 - INFO - __main__ -   [BRAINQA] Eval loss: 4.337
+
+Iteration:   6%|▋         | 559/8858 [06:27<1:35:02,  1.46it/s][A
+Iteration:   6%|▋         | 560/8858 [06:27<1:34:33,  1.46it/s][A
+Iteration:   6%|▋         | 561/8858 [06:28<1:34:43,  1.46it/s][A
+Iteration:   6%|▋         | 562/8858 [06:29<1:34:53,  1.46it/s][A
+Iteration:   6%|▋         | 563/8858 [06:30<1:35:48,  1.44it/s][A
+Iteration:   6%|▋         | 564/8858 [06:30<1:35:59,  1.44it/s][A
+Iteration:   6%|▋         | 565/8858 [06:31<1:35:39,  1.44it/s][A
+Iteration:   6%|▋         | 566/8858 [06:32<1:35:07,  1.45it/s][A
+Iteration:   6%|▋         | 567/8858 [06:32<1:34:57,  1.46it/s][A
+Iteration:   6%|▋         | 568/8858 [06:33<1:34:53,  1.46it/s][A05/02/2020 02:13:44 - INFO - __main__ -   [BRAINQA] Eval loss: 4.295
+
+Iteration:   6%|▋         | 569/8858 [06:34<1:34:48,  1.46it/s][A
+Iteration:   6%|▋         | 570/8858 [06:34<1:34:44,  1.46it/s][A
+Iteration:   6%|▋         | 571/8858 [06:35<1:34:42,  1.46it/s][A
+Iteration:   6%|▋         | 572/8858 [06:36<1:34:40,  1.46it/s][A
+Iteration:   6%|▋         | 573/8858 [06:36<1:34:42,  1.46it/s][A
+Iteration:   6%|▋         | 574/8858 [06:37<1:35:03,  1.45it/s][A
+Iteration:   6%|▋         | 575/8858 [06:38<1:34:46,  1.46it/s][A
+Iteration:   7%|▋         | 576/8858 [06:38<1:34:41,  1.46it/s][A
+Iteration:   7%|▋         | 577/8858 [06:39<1:34:42,  1.46it/s][A
+Iteration:   7%|▋         | 578/8858 [06:40<1:34:10,  1.47it/s][A05/02/2020 02:13:51 - INFO - __main__ -   [BRAINQA] Eval loss: 4.333
+
+Iteration:   7%|▋         | 579/8858 [06:41<1:33:53,  1.47it/s][A
+Iteration:   7%|▋         | 580/8858 [06:41<1:33:33,  1.47it/s][A
+Iteration:   7%|▋         | 581/8858 [06:42<1:34:28,  1.46it/s][A
+Iteration:   7%|▋         | 582/8858 [06:43<1:33:58,  1.47it/s][A
+Iteration:   7%|▋         | 583/8858 [06:43<1:34:19,  1.46it/s][A
+Iteration:   7%|▋         | 584/8858 [06:44<1:34:27,  1.46it/s][A
+Iteration:   7%|▋         | 585/8858 [06:45<1:34:31,  1.46it/s][A
+Iteration:   7%|▋         | 586/8858 [06:45<1:34:02,  1.47it/s][A
+Iteration:   7%|▋         | 587/8858 [06:46<1:33:56,  1.47it/s][A
+Iteration:   7%|▋         | 588/8858 [06:47<1:33:43,  1.47it/s][A05/02/2020 02:13:58 - INFO - __main__ -   [BRAINQA] Eval loss: 4.279
+
+Iteration:   7%|▋         | 589/8858 [06:47<1:33:44,  1.47it/s][A
+Iteration:   7%|▋         | 590/8858 [06:48<1:34:02,  1.47it/s][A
+Iteration:   7%|▋         | 591/8858 [06:49<1:34:08,  1.46it/s][A
+Iteration:   7%|▋         | 592/8858 [06:49<1:34:12,  1.46it/s][A
+Iteration:   7%|▋         | 593/8858 [06:50<1:34:17,  1.46it/s][A
+Iteration:   7%|▋         | 594/8858 [06:51<1:34:22,  1.46it/s][A
+Iteration:   7%|▋         | 595/8858 [06:51<1:34:17,  1.46it/s][A
+Iteration:   7%|▋         | 596/8858 [06:52<1:34:02,  1.46it/s][A
+Iteration:   7%|▋         | 597/8858 [06:53<1:34:10,  1.46it/s][A
+Iteration:   7%|▋         | 598/8858 [06:54<1:34:18,  1.46it/s][A05/02/2020 02:14:05 - INFO - __main__ -   [BRAINQA] Eval loss: 4.332
+
+Iteration:   7%|▋         | 599/8858 [06:54<1:34:25,  1.46it/s][A
+Iteration:   7%|▋         | 600/8858 [06:55<1:34:26,  1.46it/s][A
+Iteration:   7%|▋         | 601/8858 [06:56<1:34:26,  1.46it/s][A
+Iteration:   7%|▋         | 602/8858 [06:56<1:34:22,  1.46it/s][A
+Iteration:   7%|▋         | 603/8858 [06:57<1:34:19,  1.46it/s][A
+Iteration:   7%|▋         | 604/8858 [06:58<1:34:19,  1.46it/s][A
+Iteration:   7%|▋         | 605/8858 [06:58<1:34:18,  1.46it/s][A
+Iteration:   7%|▋         | 606/8858 [06:59<1:34:09,  1.46it/s][A
+Iteration:   7%|▋         | 607/8858 [07:00<1:34:15,  1.46it/s][A
+Iteration:   7%|▋         | 608/8858 [07:00<1:35:16,  1.44it/s][A05/02/2020 02:14:12 - INFO - __main__ -   [BRAINQA] Eval loss: 4.512
+
+Iteration:   7%|▋         | 609/8858 [07:01<1:35:30,  1.44it/s][A
+Iteration:   7%|▋         | 610/8858 [07:02<1:34:59,  1.45it/s][A
+Iteration:   7%|▋         | 611/8858 [07:02<1:34:45,  1.45it/s][A
+Iteration:   7%|▋         | 612/8858 [07:03<1:34:40,  1.45it/s][A
+Iteration:   7%|▋         | 613/8858 [07:04<1:34:36,  1.45it/s][A
+Iteration:   7%|▋         | 614/8858 [07:05<1:34:31,  1.45it/s][A
+Iteration:   7%|▋         | 615/8858 [07:05<1:34:26,  1.45it/s][A
+Iteration:   7%|▋         | 616/8858 [07:06<1:34:22,  1.46it/s][A
+Iteration:   7%|▋         | 617/8858 [07:07<1:34:06,  1.46it/s][A
+Iteration:   7%|▋         | 618/8858 [07:07<1:34:17,  1.46it/s][A05/02/2020 02:14:18 - INFO - __main__ -   [BRAINQA] Eval loss: 4.034
+
+Iteration:   7%|▋         | 619/8858 [07:08<1:34:19,  1.46it/s][A
+Iteration:   7%|▋         | 620/8858 [07:09<1:34:14,  1.46it/s][A
+Iteration:   7%|▋         | 621/8858 [07:09<1:34:11,  1.46it/s][A
+Iteration:   7%|▋         | 622/8858 [07:10<1:34:09,  1.46it/s][A
+Iteration:   7%|▋         | 623/8858 [07:11<1:34:09,  1.46it/s][A
+Iteration:   7%|▋         | 624/8858 [07:11<1:34:11,  1.46it/s][A
+Iteration:   7%|▋         | 625/8858 [07:12<1:34:15,  1.46it/s][A
+Iteration:   7%|▋         | 626/8858 [07:13<1:34:09,  1.46it/s][A
+Iteration:   7%|▋         | 627/8858 [07:13<1:34:06,  1.46it/s][A
+Iteration:   7%|▋         | 628/8858 [07:14<1:34:02,  1.46it/s][A05/02/2020 02:14:25 - INFO - __main__ -   [BRAINQA] Eval loss: 4.518
+
+Iteration:   7%|▋         | 629/8858 [07:15<1:34:12,  1.46it/s][A
+Iteration:   7%|▋         | 630/8858 [07:16<1:34:04,  1.46it/s][A
+Iteration:   7%|▋         | 631/8858 [07:16<1:34:00,  1.46it/s][A
+Iteration:   7%|▋         | 632/8858 [07:17<1:34:02,  1.46it/s][A
+Iteration:   7%|▋         | 633/8858 [07:18<1:34:01,  1.46it/s][A
+Iteration:   7%|▋         | 634/8858 [07:18<1:34:00,  1.46it/s][A
+Iteration:   7%|▋         | 635/8858 [07:19<1:34:00,  1.46it/s][A
+Iteration:   7%|▋         | 636/8858 [07:20<1:35:00,  1.44it/s][A
+Iteration:   7%|▋         | 637/8858 [07:20<1:34:46,  1.45it/s][A
+Iteration:   7%|▋         | 638/8858 [07:21<1:34:38,  1.45it/s][A05/02/2020 02:14:32 - INFO - __main__ -   [BRAINQA] Eval loss: 4.417
+
+Iteration:   7%|▋         | 639/8858 [07:22<1:34:36,  1.45it/s][A
+Iteration:   7%|▋         | 640/8858 [07:22<1:34:40,  1.45it/s][A
+Iteration:   7%|▋         | 641/8858 [07:23<1:34:25,  1.45it/s][A
+Iteration:   7%|▋         | 642/8858 [07:24<1:34:19,  1.45it/s][A
+Iteration:   7%|▋         | 643/8858 [07:24<1:34:17,  1.45it/s][A
+Iteration:   7%|▋         | 644/8858 [07:25<1:34:10,  1.45it/s][A
+Iteration:   7%|▋         | 645/8858 [07:26<1:34:03,  1.46it/s][A
+Iteration:   7%|▋         | 646/8858 [07:27<1:33:57,  1.46it/s][A
+Iteration:   7%|▋         | 647/8858 [07:27<1:33:54,  1.46it/s][A
+Iteration:   7%|▋         | 648/8858 [07:28<1:33:43,  1.46it/s][A05/02/2020 02:14:39 - INFO - __main__ -   [BRAINQA] Eval loss: 4.183
+
+Iteration:   7%|▋         | 649/8858 [07:29<1:33:46,  1.46it/s][A
+Iteration:   7%|▋         | 650/8858 [07:29<1:33:55,  1.46it/s][A
+Iteration:   7%|▋         | 651/8858 [07:30<1:33:54,  1.46it/s][A
+Iteration:   7%|▋         | 652/8858 [07:31<1:33:51,  1.46it/s][A
+Iteration:   7%|▋         | 653/8858 [07:31<1:34:32,  1.45it/s][A
+Iteration:   7%|▋         | 654/8858 [07:32<1:34:20,  1.45it/s][A
+Iteration:   7%|▋         | 655/8858 [07:33<1:34:10,  1.45it/s][A
+Iteration:   7%|▋         | 656/8858 [07:33<1:34:08,  1.45it/s][A
+Iteration:   7%|▋         | 657/8858 [07:34<1:35:24,  1.43it/s][A
+Iteration:   7%|▋         | 658/8858 [07:35<1:34:58,  1.44it/s][A05/02/2020 02:14:46 - INFO - __main__ -   [BRAINQA] Eval loss: 4.478
+
+Iteration:   7%|▋         | 659/8858 [07:35<1:34:40,  1.44it/s][A
+Iteration:   7%|▋         | 660/8858 [07:36<1:35:16,  1.43it/s][A
+Iteration:   7%|▋         | 661/8858 [07:37<1:35:45,  1.43it/s][A

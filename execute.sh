@@ -25,7 +25,7 @@ then
         --per_gpu_eval_batch_size=2  \
         --per_gpu_train_batch_size=2   \
         --save_steps 30000 \
-        --logging_steps 500 > $RUN_IN_BACKGROUND 2>&1 &
+        --logging_steps 10 > $RUN_IN_BACKGROUND 2>&1 &
 else
     python run_brainqa.py \
         --model_type bert \
