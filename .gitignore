@@ -32,3 +32,4 @@ separate_loss_opt_v1/*
 */nbest_predictions*
 front_brainqa_test/*
 shiggles/*
+index_collapse/*
