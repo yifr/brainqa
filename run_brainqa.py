@@ -783,6 +783,8 @@ def main():
     )
 
     model = BrainQA(args=args, config=config)
+    state_dict = torch.load(args.output_dir + '/checkpoint-40000/pytorch_model.bin')
+    model.load_state_dict(state_dict)
     #model = FrontalBrainQA(args=args, config=config)
     if args.train_vqvae_instead:
         vqvae_model = VQVAE(h_dim=256, 

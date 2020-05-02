@@ -11,7 +11,7 @@ if [ "$RUN_IN_BACKGROUND" != "FALSE" ]
 then
     nohup python run_brainqa.py \
         --model_type bert \
-        --model_name_or_path bert-base-uncased \
+        --model_name_or_path index_collapse/checkpoint-40000 \
         --do_train \
         --do_eval \
         --version_2_with_negative \
@@ -25,6 +25,7 @@ then
         --per_gpu_eval_batch_size=2  \
         --per_gpu_train_batch_size=2   \
         --save_steps 20000 \
+        --overwrite_output_dir \
         --logging_steps 10 > $RUN_IN_BACKGROUND 2>&1 &
 else
     python run_brainqa.py \
