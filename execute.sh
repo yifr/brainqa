@@ -24,7 +24,7 @@ then
         --output_dir $OUTPUT_DIR \
         --per_gpu_eval_batch_size=2  \
         --per_gpu_train_batch_size=2   \
-        --save_steps 30000 \
+        --save_steps 20000 \
         --logging_steps 10 > $RUN_IN_BACKGROUND 2>&1 &
 else
     python run_brainqa.py \
