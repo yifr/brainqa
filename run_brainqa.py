@@ -243,7 +243,7 @@ def train_vqvae(args, train_dataset, model, brainqa_model, tokenizer):
 
 def train(args, train_dataset, model, tokenizer):
     """ Train the model """
-    tb_writer = SummaryWriter()
+    tb_writer = SummaryWriter(comment=args.output_dir)
 
     args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
     train_sampler = RandomSampler(train_dataset)
@@ -354,7 +354,7 @@ def train(args, train_dataset, model, tokenizer):
             loss = bert_loss + vqvae_loss
             loss.backward()
 
-            logger.info('[BRAINQA] Loss: {}\t [VQVAE] Loss: {}\t [BERT] Loss: {}'.format(loss.item(), vqvae_loss.item(), bert_loss.item()))
+            # logger.info('[BRAINQA] Loss: {}\t [VQVAE] Loss: {}\t [BERT] Loss: {}'.format(loss.item(), vqvae_loss.item(), bert_loss.item()))
             tr_loss += loss.item()
             tr_vqvae_loss += vqvae_loss.item()
             if (step + 1) % args.gradient_accumulation_steps == 0: #CLCP
