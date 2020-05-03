@@ -29,17 +29,17 @@ class BrainQA(BertPreTrainedModel):
         self.bert_dec = BertModel(self.config_dec)
 
         # VQVAE for external memory
-        self.vqvae_model= VQVAE(h_dim=256, 
-                        res_h_dim=256, 
-                        n_res_layers=4, 
-                        n_embeddings=4096, 
-                        embedding_dim=256, 
+        self.vqvae_model= VQVAE(h_dim=256,
+                        res_h_dim=256,
+                        n_res_layers=4,
+                        n_embeddings=256,
+                        embedding_dim=256,
                         beta=2)
         # Question answer layer to output spans of question answers
         self.qa_outputs = nn.Linear(config.hidden_size, config.num_labels)
-        
+
         self.init_weights()
-    
+
     def forward(
         self,
         input_ids=None,
@@ -66,10 +66,10 @@ class BrainQA(BertPreTrainedModel):
             )
         last_hidden_state, pooler_output, enc_hidden_states = outputs_encoder
 
-        outputs_VQVAE = self.vqvae_model(last_hidden_state) 
-        
+        outputs_VQVAE = self.vqvae_model(last_hidden_state)
+
         #VQVAE returns: embedding_loss, x_hat, perplexity, z_q, e_indices
-        vq_embedding_loss, hidden_states_recon, vqvae_ppl, _, min_encoding_indices = outputs_VQVAE    
+        vq_embedding_loss, hidden_states_recon, vqvae_ppl, _, min_encoding_indices = outputs_VQVAE
 
         # Detach reconstructions from computation graph
         hidden_states_recon = hidden_states_recon.detach()
@@ -86,7 +86,7 @@ class BrainQA(BertPreTrainedModel):
 
         sequence_output, dec_pooler_output = outputs_decoder
 
-        # Compute logits 
+        # Compute logits
         logits = self.qa_outputs(sequence_output)
         start_logits, end_logits = logits.split(1, dim=-1)
         start_logits = start_logits.squeeze(-1)
@@ -107,12 +107,12 @@ class BrainQA(BertPreTrainedModel):
             loss_fct = CrossEntropyLoss(ignore_index=ignored_index)
             start_loss = loss_fct(start_logits, start_positions)
             end_loss = loss_fct(end_logits, end_positions)
-            total_loss = (start_loss + end_loss) / 2 
-            
+            total_loss = (start_loss + end_loss) / 2
+
             # Compute VQVAE loss
-            vq_recon_loss = torch.mean((hidden_states_recon - last_hidden_state)**2) # VQVAE divides this by variance of total training data 
-            vqvae_loss = vq_recon_loss + vq_embedding_loss       
-                        
+            vq_recon_loss = torch.mean((hidden_states_recon - last_hidden_state)**2) # VQVAE divides this by variance of total training data
+            vqvae_loss = vq_recon_loss + vq_embedding_loss
+
             outputs = (total_loss,vqvae_loss) + outputs
             if verbose:
                 log.info('VQVAE emb_loss: {}\tppl: {}'.format(vq_embedding_loss, vqvae_ppl))

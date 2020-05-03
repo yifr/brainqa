@@ -783,8 +783,6 @@ def main():
     )
 
     model = BrainQA(args=args, config=config)
-    state_dict = torch.load(args.output_dir + '/checkpoint-40000/pytorch_model.bin')
-    model.load_state_dict(state_dict)
     #model = FrontalBrainQA(args=args, config=config)
     if args.train_vqvae_instead:
         vqvae_model = VQVAE(h_dim=256, 
@@ -896,7 +894,7 @@ def main():
     if args.do_embeddings:
         model = BrainQA(args=args, config=config)
         #model = AutoModelForQuestionAnswering.from_pretrained('bert_baseline_test2/checkpoint-10000')
-        path_to_dict = './separate_loss_opt_v1/checkpoint-35000/pytorch_model.bin'
+        path_to_dict = './index_collapse/checkpoint-40000/pytorch_model.bin'
         state_dict = torch.load(path_to_dict)
         model.load_state_dict(state_dict)
         
