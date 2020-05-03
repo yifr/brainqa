@@ -37,7 +37,7 @@ class WrapText(mtext.Text):
     def _get_wrap_line_width(self):
         return self.width
 
-def emb_visualizer(model, dataset, tokenizer, args, embed_vis=True, latent_vis=False):
+def emb_visualizer(model, dataset, tokenizer, args, embed_vis=False, latent_vis=True):
     
     if not os.path.exists(args.output_dir):
         os.makedirs(args.output_dir)
@@ -52,122 +52,125 @@ def emb_visualizer(model, dataset, tokenizer, args, embed_vis=True, latent_vis=F
     print(args.eval_batch_size)
 
     fig = plt.figure(figsize=(16, 8))
-    title = 'cos_sim_embs_latents'
+    title = 'lv_std_quant_4096'
 
-    i = 0
-    for batch in tqdm(eval_dataloader, desc="Evaluating"):
-        model.eval()
-        batch = tuple(t.to(args.device) for t in batch)
-        with torch.no_grad():
-            inputs = {
-                "input_ids": batch[0],
-                "attention_mask": batch[1],
-                "token_type_ids": batch[2],
-            }
-            input_ids = batch[0]
-            print(input_ids.shape)
-            
-            # Get cosine similarity of embeddings
-            input_embs = model.bert_enc.embeddings(input_ids=input_ids)
+    np.random.seed()
+    batch_idx_to_plot = np.random.randint(0, len(eval_dataloader))
+    batch = None
+    for i, batch_option in enumerate(eval_dataloader):
+        if i == batch_idx_to_plot:
+            batch = batch_option
+            break
 
-            # VQVAE Reconstruction visualization
-            outputs_VQVAE = model.vqvae_model(input_embs) 
-            vq_embedding_loss, embeds_reconstructed, vqvae_ppl, vqvae_latent_states = outputs_VQVAE   
+    print('Selecting batch idx: %d' % batch_idx_to_plot)
+    batch = tuple(t.to(args.device) for t in batch)
 
-            if latent_vis:
-                idx = 5
-                ax1 = fig.add_subplot(121)
-                ax2 = fig.add_subplot(122)
-            
-                title = 'latent_reconstruction_d%02d' % idx
-                input_embs = input_embs.to('cpu')
-                embeds_reconstructed = embeds_reconstructed.to('cpu')
-                sentence = get_sentence(input_ids[idx], tokenizer)
-                wtxt = WrapText(0.2, 0.9, sentence, width=1200, fontsize=12, ha='left', va='top')
-                ax2.add_artist(wtxt)
+    model.eval()
+    with torch.no_grad():
+        input_ids = batch[0]
+        outputs_encoder = model.bert_enc(input_ids)
+        last_hidden_state, pooler_output, enc_hidden_states = outputs_encoder
 
-                ax2.legend()
+        outputs_VQVAE = model.vqvae_model(last_hidden_state)
 
-                print('Sentence: ', sentence)
-                bert_embedded = TSNE(n_components=2, init='pca', random_state=42).fit_transform(input_embs[idx])
-                vqvae_reconstructions = TSNE(n_components=2, init='pca', random_state=42).fit_transform(embeds_reconstructed[idx])
-                ax1.scatter(bert_embedded[:, 0], bert_embedded[:, 1], alpha=0.4, label='BERT Embeddings')
-                ax1.scatter(vqvae_reconstructions[:, 0], vqvae_reconstructions[:, 1], alpha=0.4, label='Reconstructed Embeddings')
-                ax1.legend()
+        #VQVAE returns: embedding_loss, x_hat, perplexity, z_q, e_indices
+        vq_embedding_loss, hidden_states_recon, vqvae_ppl, _, min_encoding_indices = outputs_VQVAE
 
-            elif embed_vis: 
-                cos_sims = cos_similarity(input_embs)            
-                topk = topk_embedding_sentences(cos_sims, 1, input_ids, tokenizer)
-                bottomk = topk_embedding_sentences(cos_sims, 1, input_ids, tokenizer, bottom=True)
+        if latent_vis:
+            idx = np.random.randint(0, 12)
+            print('Batch index: %d' % idx)
+            ax1 = fig.add_subplot(121)
+            ax2 = fig.add_subplot(122)
+        
+            title = title + '_b%d_i%02d' % (batch_idx_to_plot, idx)
+            last_hidden_state = last_hidden_state.to('cpu')
+            hidden_states_recon = hidden_states_recon.to('cpu')
+            sentence = get_sentence(input_ids[idx], tokenizer)
+            wtxt = WrapText(0.2, 0.9, sentence, width=1200, fontsize=12, ha='left', va='top')
+            ax2.add_artist(wtxt)
 
-                input_embs = input_embs.to('cpu')
+            ax2.legend()
 
-                sim_embs = fig.add_subplot(241)
-                sim_latents = fig.add_subplot(242)
-                sim_text_a = fig.add_subplot(243)
-                sim_text_b = fig.add_subplot(244)
+            print('Sentence: ', sentence)
+            bert_hs = TSNE(n_components=2, init='pca', random_state=42).fit_transform(last_hidden_state[idx])
+            vqvae_reconstructions = TSNE(n_components=2, init='pca', random_state=42).fit_transform(hidden_states_recon[idx])
+            ax1.scatter(bert_hs[:, 0], bert_hs[:, 1], alpha=0.4, cmap=plt.cm.RdGy, label='BERT Encoder Outputs')
+            ax1.scatter(vqvae_reconstructions[:, 0], vqvae_reconstructions[:, 1], alpha=0.4, cmap=plt.cm.RdGy, label='Reconstructed Encoder Outputs')
+            ax1.legend()
 
-                diff_embs = fig.add_subplot(245)
-                diff_latents = fig.add_subplot(246)
-                diff_text_a = fig.add_subplot(247)
-                diff_text_b = fig.add_subplot(248)
+        elif embed_vis: 
+            cos_sims = cos_similarity(enc_hidden_states)            
+            topk = topk_embedding_sentences(cos_sims, 1, input_ids, tokenizer)
+            bottomk = topk_embedding_sentences(cos_sims, 1, input_ids, tokenizer, bottom=True)
 
-                sim_embs.title.set_text('Most similar embeddings')
-                sim_latents.title.set_text('Corresponding VQVAE latent states')
-                sim_text_a.title.set_text('Corresponding input text (Passage 1)')
-                sim_text_b.title.set_text('Corresponding input text (Passage 2)')
+            enc_hidden_states = enc_hidden_states.to('cpu')
 
-                diff_embs.title.set_text('Least similar embeddings')
-                diff_latents.title.set_text('Corresponding VQVAE latent states')
-                diff_text_a.title.set_text('Corresponding input text (Passage 1)')
-                diff_text_b.title.set_text('Corresponding input text (Passage 2)')
+            sim_embs = fig.add_subplot(241)
+            sim_latents = fig.add_subplot(242)
+            sim_text_a = fig.add_subplot(243)
+            sim_text_b = fig.add_subplot(244)
 
-                for i, k in enumerate(topk.keys()):
-                    legend_text = 'INDEX: ' + str(k)  + ', ' + str(topk[k][0]) + ': ' + topk[k][1]
-                    print(legend_text)
-                    
-                    # Plot T-SNE visualization
-                    # Embeddings:
-                    embs_embedded = TSNE(n_components=2, init='pca', random_state=42).fit_transform(input_embs[k])
-                    sim_embs.scatter(embs_embedded[:, 0], embs_embedded[:, 1], alpha=0.4, label='Passage #%d'%(i+1))
+            diff_embs = fig.add_subplot(245)
+            diff_latents = fig.add_subplot(246)
+            diff_text_a = fig.add_subplot(247)
+            diff_text_b = fig.add_subplot(248)
 
-                    # Latents
-                    latents = vqvae_latent_states[k].to('cpu')
-                    latents_embedded = TSNE(n_components=2, init='pca', random_state=42).fit_transform(latents)
-                    sim_latents.scatter(latents_embedded[:, 0], latents_embedded[:, 1], alpha=0.4, label='Passage #%d'%(i+1))
+            sim_embs.title.set_text('Most similar embeddings')
+            sim_latents.title.set_text('Corresponding VQVAE latent states')
+            sim_text_a.title.set_text('Corresponding input text (Passage 1)')
+            sim_text_b.title.set_text('Corresponding input text (Passage 2)')
 
-                    # Sentence
-                    wtxt = WrapText(0.01, 0.99, topk[k][1], width=1200, fontsize=8, ha='left', va='top')
-                    if i == 1:
-                        sim_text_a.add_artist(wtxt)
-                    else:
-                        sim_text_b.add_artist(wtxt)
+            diff_embs.title.set_text('Least similar embeddings')
+            diff_latents.title.set_text('Corresponding VQVAE latent states')
+            diff_text_a.title.set_text('Corresponding input text (Passage 1)')
+            diff_text_b.title.set_text('Corresponding input text (Passage 2)')
 
-                sim_embs.legend(prop={'size': 6})
-                sim_latents.legend(prop={'size': 6})
+            for i, k in enumerate(topk.keys()):
+                legend_text = 'INDEX: ' + str(k)  + ', ' + str(topk[k][0]) + ': ' + topk[k][1]
+                print(legend_text)
+                
+                # Plot T-SNE visualization
+                # Embeddings:
+                embs_embedded = TSNE(n_components=2, init='pca', random_state=42).fit_transform(input_embs[k])
+                sim_embs.scatter(embs_embedded[:, 0], embs_embedded[:, 1], alpha=0.4, label='Passage #%d'%(i+1))
 
-                print('LEAST SIMILAR')
-                for i, k in enumerate(bottomk.keys()):
-                    # Plot T-SNE visualization
-                    # Embeddings:
-                    embs_embedded = TSNE(n_components=2, init='pca', random_state=42).fit_transform(input_embs[k])
-                    diff_embs.scatter(embs_embedded[:, 0], embs_embedded[:, 1], alpha=0.4, label='Passage #%d'%(i+1))
+                # Latents
+                latents = vqvae_latent_states[k].to('cpu')
+                latents_embedded = TSNE(n_components=2, init='pca', random_state=42).fit_transform(latents)
+                sim_latents.scatter(latents_embedded[:, 0], latents_embedded[:, 1], alpha=0.4, label='Passage #%d'%(i+1))
 
-                    # Latents
-                    latents = vqvae_latent_states[k].to('cpu')
-                    latents_embedded = TSNE(n_components=2, init='pca', random_state=42).fit_transform(latents)
-                    diff_latents.scatter(latents_embedded[:, 0], latents_embedded[:, 1], alpha=0.4, label='Passage #%d'%(i+1))
+                # Sentence
+                wtxt = WrapText(0.01, 0.99, topk[k][1], width=1200, fontsize=8, ha='left', va='top')
+                if i == 1:
+                    sim_text_a.add_artist(wtxt)
+                else:
+                    sim_text_b.add_artist(wtxt)
 
-                    # Sentence
-                    wtxt = WrapText(0.01, 0.99, bottomk[k][1], width=1200, fontsize=8, ha='left', va='top')
-                    if i == 1:
-                        diff_text_a.add_artist(wtxt)
-                    else:
-                        diff_text_b.add_artist(wtxt)
+            sim_embs.legend(prop={'size': 6})
+            sim_latents.legend(prop={'size': 6})
 
-                diff_embs.legend(prop={'size': 6})
-                diff_latents.legend(prop={'size': 6})
-        break
+            print('LEAST SIMILAR')
+            for i, k in enumerate(bottomk.keys()):
+                # Plot T-SNE visualization
+                # Embeddings:
+                embs_embedded = TSNE(n_components=2, init='pca', random_state=42).fit_transform(input_embs[k])
+                diff_embs.scatter(embs_embedded[:, 0], embs_embedded[:, 1], alpha=0.4, label='Passage #%d'%(i+1))
+
+                # Latents
+                latents = vqvae_latent_states[k].to('cpu')
+                latents_embedded = TSNE(n_components=2, init='pca', random_state=42).fit_transform(latents)
+                diff_latents.scatter(latents_embedded[:, 0], latents_embedded[:, 1], alpha=0.4, label='Passage #%d'%(i+1))
+
+                # Sentence
+                wtxt = WrapText(0.01, 0.99, bottomk[k][1], width=1200, fontsize=8, ha='left', va='top')
+                if i == 1:
+                    diff_text_a.add_artist(wtxt)
+                else:
+                    diff_text_b.add_artist(wtxt)
+
+            diff_embs.legend(prop={'size': 6})
+            diff_latents.legend(prop={'size': 6})
+
 
     plt.legend(prop={'size': 10}, loc='center left', bbox_to_anchor=(1, 0.5))
     #plt.title('Comparing BERT Embeddings and their VQVAE Reconstructions')

@@ -87,19 +87,17 @@ class VectorQuantizer(nn.Module):
 
 class VectorQuantizerRandomRestart(nn.Module):
     """
-    Discretization bottleneck part of the VQ-VAE. Updates embeddings using Exponential Moving Average.
+    Discretization bottleneck part of the VQ-VAE. 
 
     Inputs:
     - n_e : number of embeddings
     - e_dim : dimension of embedding
     - lambda : decay parameter 
 
-    To 
-
-    c_j = gamma * c_j + (1 - gamma) \sum_l 1[z_q(y_l) = e_j],
-    e_j = gamma * e_j + (1 - gamma) \sum_l 1[z_q(y_l) = e_j]enc(y_l)/c_j,
-
-    where 1[.] equals 1 if its argument is true
+    This Quantizer solves the issue of index collapse
+    using a random restart strategy for the discrete latent space.
+    If the mean usage of a latent index falls below a threshold  
+    it is randomly reassigned to an encoder output.   
     """
 
     def __init__(self, n_e, e_dim, beta, restart_threshold=1.0):

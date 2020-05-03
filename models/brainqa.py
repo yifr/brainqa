@@ -29,11 +29,13 @@ class BrainQA(BertPreTrainedModel):
         self.bert_dec = BertModel(self.config_dec)
 
         # VQVAE for external memory
+        n_embeddings = 4096
         self.vqvae_model= VQVAE(h_dim=256,
                         res_h_dim=256,
                         n_res_layers=4,
-                        n_embeddings=4096,
+                        n_embeddings=n_embeddings,
                         embedding_dim=256,
+                        restart=False,
                         beta=2)
         # Question answer layer to output spans of question answers
         self.qa_outputs = nn.Linear(config.hidden_size, config.num_labels)
