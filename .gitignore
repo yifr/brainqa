@@ -139,6 +139,7 @@ cython_debug/
 
 # Local project files
 std_quant_4096/*
+std_quant_256/*
 cached_dev_bert-base-uncased_256
 cached_train_bert-base-uncased_256
 random_restart_4096/*

@@ -28,15 +28,15 @@ class BrainQA(BertPreTrainedModel):
         self.config_dec = BertConfig.from_dict(self.config_dec)
         self.bert_dec = BertModel(self.config_dec)
 
-        # VQVAE for external memory
-        n_embeddings = 4096
-        self.vqvae_model= VQVAE(h_dim=256,
-                        res_h_dim=256,
-                        n_res_layers=4,
-                        n_embeddings=n_embeddings,
-                        embedding_dim=256,
-                        restart=False,
-                        beta=2)
+        # # VQVAE for external memory
+        # n_embeddings = 4096
+        # self.vqvae_model= VQVAE(h_dim=256,
+        #                 res_h_dim=256,
+        #                 n_res_layers=4,
+        #                 n_embeddings=n_embeddings,
+        #                 embedding_dim=256,
+        #                 restart=False,
+        #                 beta=2)
         # Question answer layer to output spans of question answers
         self.qa_outputs = nn.Linear(config.hidden_size, config.num_labels)
 
@@ -68,13 +68,14 @@ class BrainQA(BertPreTrainedModel):
             )
         last_hidden_state, pooler_output, enc_hidden_states = outputs_encoder
 
-        outputs_VQVAE = self.vqvae_model(last_hidden_state)
+        # outputs_VQVAE = self.vqvae_model(last_hidden_state)
 
-        #VQVAE returns: embedding_loss, x_hat, perplexity, z_q, e_indices
-        vq_embedding_loss, hidden_states_recon, vqvae_ppl, _, min_encoding_indices = outputs_VQVAE
+        # #VQVAE returns: embedding_loss, x_hat, perplexity, z_q, e_indices
+        # vq_embedding_loss, hidden_states_recon, vqvae_ppl, _, min_encoding_indices = outputs_VQVAE
 
-        # Detach reconstructions from computation graph
-        hidden_states_recon = hidden_states_recon.detach()
+        # # Detach reconstructions from computation graph
+        # hidden_states_recon = hidden_states_recon.detach()
+        min_encoding_indices = torch.zeros(4096, 256)
 
         outputs_decoder = self.bert_dec(
                 input_ids=input_ids,
@@ -111,9 +112,10 @@ class BrainQA(BertPreTrainedModel):
             end_loss = loss_fct(end_logits, end_positions)
             total_loss = (start_loss + end_loss) / 2
 
-            # Compute VQVAE loss
-            vq_recon_loss = torch.mean((hidden_states_recon - last_hidden_state)**2) # VQVAE divides this by variance of total training data
-            vqvae_loss = vq_recon_loss + vq_embedding_loss
+            # # Compute VQVAE loss
+            # vq_recon_loss = torch.mean((hidden_states_recon - last_hidden_state)**2) # VQVAE divides this by variance of total training data
+            # vqvae_loss = vq_recon_loss + vq_embedding_loss
+            vqvae_loss = torch.zeros(1,1)
 
             outputs = (total_loss,vqvae_loss) + outputs
             if verbose:
