@@ -122,7 +122,7 @@ class VectorQuantizerRandomRestart(nn.Module):
             n_repeats = (self.n_e + d - 1) // d
             std = 0.01 / np.sqrt(ew)
             x = x.repeat(n_repeats, 1)
-            x = x + t.randn_like(x) * std
+            x = x + torch.randn_like(x) * std
         return x
 
     def update_embed_idx(self, z_enc, z_quant_onehot, mu=.8):
