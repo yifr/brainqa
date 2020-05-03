@@ -114,7 +114,7 @@ class VectorQuantizerRandomRestart(nn.Module):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.restart_threshold = restart_threshold
         self.k_sum = self.embedding.weight.data.to(self.device)
-        self.k_elem = torch.ones(1536, device=self.device)
+        self.k_elem = torch.ones(self.n_e, device=self.device)
 
     def _tile(self, x):
         d, ew = x.shape
@@ -127,14 +127,14 @@ class VectorQuantizerRandomRestart(nn.Module):
 
     def update_embed_idx(self, z_enc, z_quant_onehot, mu=.8):
         with torch.no_grad():
-            _k_elem = z_quant_onehot.sum(dim=-1)
-            log.info('z_quant shape: {} \tz_enc shape: {}'.format(z_quant_onehot.shape, z_enc.shape))
+            _k_elem = z_quant_onehot.sum(dim=0)
+            #log.info('z_quant shape: {} \tz_enc shape: {}'.format(z_quant_onehot.shape, z_enc.shape))
             _k_sum = torch.matmul(z_quant_onehot.t(), z_enc)
             y = self._tile(z_enc)
             _k_rand = y[torch.randperm(y.shape[0])][:self.n_e]
 
             old_embedding_weights = self.embedding.weight.data
-            log.info('k_elem shape: {} \t_k_elem shape: {}'.format(self.k_elem.shape, _k_elem.shape))
+            #log.info('k_elem shape: {} \t_k_elem shape: {}'.format(self.k_elem.shape, _k_elem.shape))
             self.k_sum = mu * self.k_sum + (1. - mu) * _k_sum
             self.k_elem = mu * self.k_elem + (1. - mu) * _k_elem
 
@@ -182,7 +182,7 @@ class VectorQuantizerRandomRestart(nn.Module):
         # get quantized latent vectors
         z_q = torch.matmul(min_encodings, self.embedding.weight).view(z.shape)
 
-        log.info('Z_flatten shape: {} \t Min_enc shape: {} \t Z shape: {}'. format(z_flattened.shape, min_encodings.shape, z.shape))
+        #log.info('Z_flatten shape: {} \t Min_enc shape: {} \t Z shape: {}'. format(z_flattened.shape, min_encodings.shape, z.shape))
         #update embeddings if necessary (random restart)
         self.update_embed_idx(z_flattened.float(), min_encodings.float())
 

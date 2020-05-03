@@ -18,7 +18,7 @@ then
         --train_file $SQUAD_DIR/train-v2.0.json \
         --predict_file $SQUAD_DIR/dev-v2.0.json \
         --learning_rate 3e-5 \
-        --num_train_epochs 4 \
+        --num_train_epochs 5 \
         --max_seq_length 256 \
         --doc_stride 128 \
         --output_dir $OUTPUT_DIR \
@@ -38,7 +38,7 @@ else
         --train_file $SQUAD_DIR/train-v2.0.json \
         --predict_file $SQUAD_DIR/dev-v2.0.json \
         --learning_rate 3e-5 \
-        --num_train_epochs 4 \
+        --num_train_epochs 5 \
         --max_seq_length 256 \
         --doc_stride 128 \
         --output_dir $OUTPUT_DIR \
