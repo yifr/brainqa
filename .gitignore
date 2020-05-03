@@ -144,3 +144,4 @@ cached_dev_bert-base-uncased_256
 cached_train_bert-base-uncased_256
 random_restart_4096/*
 random_restart_256/*
+bert_baseline/*
