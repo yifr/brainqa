@@ -29,7 +29,7 @@ class BrainQA(BertPreTrainedModel):
         self.bert_dec = BertModel(self.config_dec)
 
         # VQVAE for external memory
-        n_embeddings = 4096
+        n_embeddings = 256
         self.vqvae_model= VQVAE(h_dim=256,
                         res_h_dim=256,
                         n_res_layers=4,
