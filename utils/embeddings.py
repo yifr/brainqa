@@ -52,7 +52,7 @@ def emb_visualizer(model, dataset, tokenizer, args, embed_vis=False, latent_vis=
     print(args.eval_batch_size)
 
     fig = plt.figure(figsize=(16, 8))
-    title = 'lv_std_quant_4096'
+    title = args.output_dir
 
     np.random.seed()
     batch_idx_to_plot = np.random.randint(0, len(eval_dataloader))

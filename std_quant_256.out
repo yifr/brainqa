@@ -1,0 +1,550 @@
+2020-05-03 10:46:21.960495: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer.so.6'; dlerror: libnvinfer.so.6: cannot open shared object file: No such file or directory
+2020-05-03 10:46:21.960719: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer_plugin.so.6'; dlerror: libnvinfer_plugin.so.6: cannot open shared object file: No such file or directory
+2020-05-03 10:46:21.960742: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:30] Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+05/03/2020 10:46:25 - WARNING - __main__ -   Device: cuda, n_gpu: 8
+05/03/2020 10:46:25 - INFO - transformers.configuration_utils -   loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-config.json from cache at /cortex/users/jif24/.cache/torch/transformers/4dad0251492946e18ac39290fcfe91b89d370fee250efe9521476438fe8ca185.7156163d5fdc189c3016baca0775ffce230789d7fa2a42ef516483e4ca884517
+05/03/2020 10:46:25 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "_num_labels": 2,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": null,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": true,
+  "eos_token_id": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "min_length": 0,
+  "model_type": "bert",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30522,
+  "xla_device": null
+}
+
+05/03/2020 10:46:25 - INFO - transformers.configuration_utils -   loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-config.json from cache at /cortex/users/jif24/.cache/torch/transformers/4dad0251492946e18ac39290fcfe91b89d370fee250efe9521476438fe8ca185.7156163d5fdc189c3016baca0775ffce230789d7fa2a42ef516483e4ca884517
+05/03/2020 10:46:25 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "_num_labels": 2,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": null,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": false,
+  "eos_token_id": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "min_length": 0,
+  "model_type": "bert",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30522,
+  "xla_device": null
+}
+
+05/03/2020 10:46:25 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt from cache at /cortex/users/jif24/.cache/torch/transformers/26bc1ad6c0ac742e9b52263248f6d0f00068293b33709fae12320c0e35ccfbbb.542ce4285a40d23a559526243235df47c5f75c197f04f37d1a0c124c32c9a084
+05/03/2020 10:46:25 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "_num_labels": 2,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": null,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": true,
+  "eos_token_id": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "min_length": 0,
+  "model_type": "bert",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": true,
+  "output_past": true,
+  "pad_token_id": 0,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30522,
+  "xla_device": null
+}
+
+05/03/2020 10:46:25 - INFO - transformers.modeling_utils -   loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-pytorch_model.bin from cache at /cortex/users/jif24/.cache/torch/transformers/aa1ef1aede4482d0dbcd4d52baad8ae300e60902e88fcb0bebdec09afd232066.36ca03ab34a1a5d5fa7bc3d03d55c4fa650fed07220e2eeebc06ce58d0e9a157
+05/03/2020 10:46:28 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "_num_labels": 2,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": null,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": true,
+  "eos_token_id": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": true,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "min_length": 0,
+  "model_type": "bert",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30522,
+  "xla_device": null
+}
+
+05/03/2020 10:46:35 - INFO - __main__ -   Training/evaluation parameters Namespace(adam_epsilon=1e-08, cache_dir='', config_name='', data_dir=None, device=device(type='cuda'), do_embeddings=False, do_eval=True, do_interpolate=False, do_lower_case=False, do_train=True, doc_stride=128, eval_all_checkpoints=False, eval_checkpoints=False, evaluate_during_training=False, gradient_accumulation_steps=1, lang_id=0, learning_rate=3e-05, logging_steps=10, max_answer_length=30, max_grad_norm=1.0, max_query_length=64, max_seq_length=256, max_steps=-1, model_name_or_path='bert-base-uncased', model_type='bert', n_best_size=20, n_gpu=8, no_cuda=False, null_score_diff_threshold=0.0, num_train_epochs=5.0, output_dir='std_quant_256', overwrite_cache=False, overwrite_output_dir=True, per_gpu_eval_batch_size=2, per_gpu_train_batch_size=2, predict_file='/ml/jif24/squad/dev-v2.0.json', save_steps=20000, seed=42, server_ip='', server_port='', tokenizer_name='', train_file='/ml/jif24/squad/train-v2.0.json', train_vqvae_instead=False, verbose_logging=False, version_2_with_negative=True, warmup_steps=0, weight_decay=0.0)
+05/03/2020 10:46:35 - INFO - __main__ -   Loading features from cached file ./cached_train_bert-base-uncased_256
+05/03/2020 10:47:00 - INFO - __main__ -   ***** Running training *****
+05/03/2020 10:47:00 - INFO - __main__ -     Num examples = 141725
+05/03/2020 10:47:00 - INFO - __main__ -     Num Epochs = 5
+05/03/2020 10:47:00 - INFO - __main__ -     Instantaneous batch size per GPU = 2
+05/03/2020 10:47:00 - INFO - __main__ -     Total train batch size (w. parallel, distributed & accumulation) = 16
+05/03/2020 10:47:00 - INFO - __main__ -     Gradient Accumulation steps = 1
+05/03/2020 10:47:00 - INFO - __main__ -     Total optimization steps = 44290
+Epoch:   0%|          | 0/5 [00:00<?, ?it/s]
+Iteration:   0%|          | 0/8858 [00:00<?, ?it/s][A
+Iteration:   0%|          | 1/8858 [00:00<1:54:45,  1.29it/s][A
+Iteration:   0%|          | 2/8858 [00:01<1:48:46,  1.36it/s][A
+Iteration:   0%|          | 3/8858 [00:02<1:44:57,  1.41it/s][A
+Iteration:   0%|          | 4/8858 [00:02<1:42:00,  1.45it/s][A
+Iteration:   0%|          | 5/8858 [00:03<1:39:55,  1.48it/s][A
+Iteration:   0%|          | 6/8858 [00:04<1:38:28,  1.50it/s][A
+Iteration:   0%|          | 7/8858 [00:04<1:37:37,  1.51it/s][A
+Iteration:   0%|          | 8/8858 [00:05<1:36:57,  1.52it/s][A/cortex/users/jif24/brainqa/venv/lib/python3.6/site-packages/torch/optim/lr_scheduler.py:224: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+05/03/2020 10:47:06 - INFO - __main__ -   [BRAINQA] Eval loss: 4.603
+
+Iteration:   0%|          | 9/8858 [00:05<1:36:30,  1.53it/s][A
+Iteration:   0%|          | 10/8858 [00:06<1:36:11,  1.53it/s][A
+Iteration:   0%|          | 11/8858 [00:07<1:36:51,  1.52it/s][A
+Iteration:   0%|          | 12/8858 [00:07<1:36:29,  1.53it/s][A
+Iteration:   0%|          | 13/8858 [00:08<1:36:28,  1.53it/s][A
+Iteration:   0%|          | 14/8858 [00:09<1:36:03,  1.53it/s][A
+Iteration:   0%|          | 15/8858 [00:09<1:35:47,  1.54it/s][A
+Iteration:   0%|          | 16/8858 [00:10<1:35:25,  1.54it/s][A
+Iteration:   0%|          | 17/8858 [00:11<1:35:28,  1.54it/s][A
+Iteration:   0%|          | 18/8858 [00:11<1:35:27,  1.54it/s][A05/03/2020 10:47:12 - INFO - __main__ -   [BRAINQA] Eval loss: 4.753
+
+Iteration:   0%|          | 19/8858 [00:12<1:35:23,  1.54it/s][A
+Iteration:   0%|          | 20/8858 [00:13<1:35:25,  1.54it/s][A
+Iteration:   0%|          | 21/8858 [00:13<1:35:35,  1.54it/s][A
+Iteration:   0%|          | 22/8858 [00:14<1:35:50,  1.54it/s][A
+Iteration:   0%|          | 23/8858 [00:15<1:35:39,  1.54it/s][A
+Iteration:   0%|          | 24/8858 [00:15<1:35:42,  1.54it/s][A
+Iteration:   0%|          | 25/8858 [00:16<1:35:39,  1.54it/s][A
+Iteration:   0%|          | 26/8858 [00:16<1:35:48,  1.54it/s][A
+Iteration:   0%|          | 27/8858 [00:17<1:35:40,  1.54it/s][A
+Iteration:   0%|          | 28/8858 [00:18<1:35:45,  1.54it/s][A05/03/2020 10:47:19 - INFO - __main__ -   [BRAINQA] Eval loss: 4.453
+
+Iteration:   0%|          | 29/8858 [00:18<1:35:50,  1.54it/s][A
+Iteration:   0%|          | 30/8858 [00:19<1:35:55,  1.53it/s][A
+Iteration:   0%|          | 31/8858 [00:20<1:36:01,  1.53it/s][A
+Iteration:   0%|          | 32/8858 [00:20<1:35:31,  1.54it/s][A
+Iteration:   0%|          | 33/8858 [00:21<1:35:18,  1.54it/s][A
+Iteration:   0%|          | 34/8858 [00:22<1:35:33,  1.54it/s][A
+Iteration:   0%|          | 35/8858 [00:22<1:35:43,  1.54it/s][A
+Iteration:   0%|          | 36/8858 [00:23<1:35:49,  1.53it/s][A
+Iteration:   0%|          | 37/8858 [00:24<1:36:03,  1.53it/s][A
+Iteration:   0%|          | 38/8858 [00:24<1:36:07,  1.53it/s][A05/03/2020 10:47:25 - INFO - __main__ -   [BRAINQA] Eval loss: 4.750
+
+Iteration:   0%|          | 39/8858 [00:25<1:36:18,  1.53it/s][A
+Iteration:   0%|          | 40/8858 [00:26<1:36:23,  1.52it/s][A
+Iteration:   0%|          | 41/8858 [00:26<1:36:21,  1.52it/s][A
+Iteration:   0%|          | 42/8858 [00:27<1:36:22,  1.52it/s][A
+Iteration:   0%|          | 43/8858 [00:28<1:36:20,  1.52it/s][A
+Iteration:   0%|          | 44/8858 [00:28<1:36:25,  1.52it/s][A
+Iteration:   1%|          | 45/8858 [00:29<1:36:26,  1.52it/s][A
+Iteration:   1%|          | 46/8858 [00:30<1:36:27,  1.52it/s][A
+Iteration:   1%|          | 47/8858 [00:30<1:36:24,  1.52it/s][A
+Iteration:   1%|          | 48/8858 [00:31<1:36:21,  1.52it/s][A05/03/2020 10:47:32 - INFO - __main__ -   [BRAINQA] Eval loss: 4.542
+
+Iteration:   1%|          | 49/8858 [00:32<1:36:32,  1.52it/s][A
+Iteration:   1%|          | 50/8858 [00:32<1:36:38,  1.52it/s][A
+Iteration:   1%|          | 51/8858 [00:33<1:36:39,  1.52it/s][A
+Iteration:   1%|          | 52/8858 [00:34<1:36:35,  1.52it/s][A
+Iteration:   1%|          | 53/8858 [00:34<1:36:45,  1.52it/s][A
+Iteration:   1%|          | 54/8858 [00:35<1:36:42,  1.52it/s][A
+Iteration:   1%|          | 55/8858 [00:35<1:36:18,  1.52it/s][A
+Iteration:   1%|          | 56/8858 [00:36<1:36:25,  1.52it/s][A
+Iteration:   1%|          | 57/8858 [00:37<1:36:30,  1.52it/s][A
+Iteration:   1%|          | 58/8858 [00:37<1:36:37,  1.52it/s][A05/03/2020 10:47:39 - INFO - __main__ -   [BRAINQA] Eval loss: 4.842
+
+Iteration:   1%|          | 59/8858 [00:38<1:36:45,  1.52it/s][A
+Iteration:   1%|          | 60/8858 [00:39<1:36:49,  1.51it/s][A
+Iteration:   1%|          | 61/8858 [00:39<1:36:47,  1.51it/s][A
+Iteration:   1%|          | 62/8858 [00:40<1:36:40,  1.52it/s][A
+Iteration:   1%|          | 63/8858 [00:41<1:36:50,  1.51it/s][A
+Iteration:   1%|          | 64/8858 [00:41<1:36:13,  1.52it/s][A
+Iteration:   1%|          | 65/8858 [00:42<1:35:52,  1.53it/s][A
+Iteration:   1%|          | 66/8858 [00:43<1:35:35,  1.53it/s][A
+Iteration:   1%|          | 67/8858 [00:43<1:35:26,  1.54it/s][A
+Iteration:   1%|          | 68/8858 [00:44<1:36:02,  1.53it/s][A05/03/2020 10:47:45 - INFO - __main__ -   [BRAINQA] Eval loss: 4.422
+
+Iteration:   1%|          | 69/8858 [00:45<1:36:31,  1.52it/s][A
+Iteration:   1%|          | 70/8858 [00:45<1:36:47,  1.51it/s][A
+Iteration:   1%|          | 71/8858 [00:46<1:39:10,  1.48it/s][A
+Iteration:   1%|          | 72/8858 [00:47<1:40:35,  1.46it/s][A
+Iteration:   1%|          | 73/8858 [00:48<1:42:08,  1.43it/s][A
+Iteration:   1%|          | 74/8858 [00:48<1:42:51,  1.42it/s][A
+Iteration:   1%|          | 75/8858 [00:49<1:43:32,  1.41it/s][A
+Iteration:   1%|          | 76/8858 [00:50<1:43:51,  1.41it/s][A
+Iteration:   1%|          | 77/8858 [00:50<1:43:51,  1.41it/s][A
+Iteration:   1%|          | 78/8858 [00:51<1:44:14,  1.40it/s][A05/03/2020 10:47:52 - INFO - __main__ -   [BRAINQA] Eval loss: 4.937
+
+Iteration:   1%|          | 79/8858 [00:52<1:44:40,  1.40it/s][A
+Iteration:   1%|          | 80/8858 [00:53<1:44:42,  1.40it/s][A
+Iteration:   1%|          | 81/8858 [00:53<1:43:25,  1.41it/s][A
+Iteration:   1%|          | 82/8858 [00:54<1:41:35,  1.44it/s][A
+Iteration:   1%|          | 83/8858 [00:55<1:40:20,  1.46it/s][A
+Iteration:   1%|          | 84/8858 [00:55<1:39:25,  1.47it/s][A
+Iteration:   1%|          | 85/8858 [00:56<1:38:21,  1.49it/s][A
+Iteration:   1%|          | 86/8858 [00:57<1:37:59,  1.49it/s][A
+Iteration:   1%|          | 87/8858 [00:57<1:37:37,  1.50it/s][A
+Iteration:   1%|          | 88/8858 [00:58<1:37:17,  1.50it/s][A05/03/2020 10:47:59 - INFO - __main__ -   [BRAINQA] Eval loss: 4.802
+
+Iteration:   1%|          | 89/8858 [00:59<1:38:56,  1.48it/s][A
+Iteration:   1%|          | 90/8858 [00:59<1:40:51,  1.45it/s][A
+Iteration:   1%|          | 91/8858 [01:00<1:39:40,  1.47it/s][A
+Iteration:   1%|          | 92/8858 [01:01<1:39:02,  1.48it/s][A
+Iteration:   1%|          | 93/8858 [01:01<1:38:13,  1.49it/s][A
+Iteration:   1%|          | 94/8858 [01:02<1:37:39,  1.50it/s][A
+Iteration:   1%|          | 95/8858 [01:03<1:37:18,  1.50it/s][A
+Iteration:   1%|          | 96/8858 [01:03<1:37:13,  1.50it/s][A
+Iteration:   1%|          | 97/8858 [01:04<1:37:03,  1.50it/s][A
+Iteration:   1%|          | 98/8858 [01:05<1:37:11,  1.50it/s][A05/03/2020 10:48:06 - INFO - __main__ -   [BRAINQA] Eval loss: 4.796
+
+Iteration:   1%|          | 99/8858 [01:05<1:37:18,  1.50it/s][A
+Iteration:   1%|          | 100/8858 [01:06<1:37:24,  1.50it/s][A
+Iteration:   1%|          | 101/8858 [01:07<1:37:20,  1.50it/s][A
+Iteration:   1%|          | 102/8858 [01:07<1:37:25,  1.50it/s][A
+Iteration:   1%|          | 103/8858 [01:08<1:37:24,  1.50it/s][A
+Iteration:   1%|          | 104/8858 [01:09<1:37:37,  1.49it/s][A
+Iteration:   1%|          | 105/8858 [01:09<1:37:17,  1.50it/s][A
+Iteration:   1%|          | 106/8858 [01:10<1:37:30,  1.50it/s][A
+Iteration:   1%|          | 107/8858 [01:11<1:37:28,  1.50it/s][A
+Iteration:   1%|          | 108/8858 [01:11<1:37:19,  1.50it/s][A05/03/2020 10:48:12 - INFO - __main__ -   [BRAINQA] Eval loss: 4.221
+
+Iteration:   1%|          | 109/8858 [01:12<1:37:14,  1.50it/s][A
+Iteration:   1%|          | 110/8858 [01:13<1:37:36,  1.49it/s][A
+Iteration:   1%|▏         | 111/8858 [01:13<1:37:16,  1.50it/s][A
+Iteration:   1%|▏         | 112/8858 [01:14<1:37:24,  1.50it/s][A
+Iteration:   1%|▏         | 113/8858 [01:15<1:37:29,  1.49it/s][A
+Iteration:   1%|▏         | 114/8858 [01:15<1:37:20,  1.50it/s][A
+Iteration:   1%|▏         | 115/8858 [01:16<1:37:25,  1.50it/s][A
+Iteration:   1%|▏         | 116/8858 [01:17<1:37:12,  1.50it/s][A
+Iteration:   1%|▏         | 117/8858 [01:17<1:37:17,  1.50it/s][A
+Iteration:   1%|▏         | 118/8858 [01:18<1:37:16,  1.50it/s][A05/03/2020 10:48:19 - INFO - __main__ -   [BRAINQA] Eval loss: 4.876
+
+Iteration:   1%|▏         | 119/8858 [01:19<1:37:35,  1.49it/s][A
+Iteration:   1%|▏         | 120/8858 [01:19<1:37:57,  1.49it/s][A
+Iteration:   1%|▏         | 121/8858 [01:20<1:38:02,  1.49it/s][A
+Iteration:   1%|▏         | 122/8858 [01:21<1:37:53,  1.49it/s][A
+Iteration:   1%|▏         | 123/8858 [01:21<1:37:50,  1.49it/s][A
+Iteration:   1%|▏         | 124/8858 [01:22<1:37:18,  1.50it/s][A
+Iteration:   1%|▏         | 125/8858 [01:23<1:37:29,  1.49it/s][A
+Iteration:   1%|▏         | 126/8858 [01:23<1:37:00,  1.50it/s][A
+Iteration:   1%|▏         | 127/8858 [01:24<1:37:15,  1.50it/s][A
+Iteration:   1%|▏         | 128/8858 [01:25<1:36:53,  1.50it/s][A05/03/2020 10:48:26 - INFO - __main__ -   [BRAINQA] Eval loss: 4.797
+
+Iteration:   1%|▏         | 129/8858 [01:25<1:37:13,  1.50it/s][A
+Iteration:   1%|▏         | 130/8858 [01:26<1:37:28,  1.49it/s][A
+Iteration:   1%|▏         | 131/8858 [01:27<1:37:41,  1.49it/s][A
+Iteration:   1%|▏         | 132/8858 [01:27<1:37:41,  1.49it/s][A
+Iteration:   2%|▏         | 133/8858 [01:28<1:37:42,  1.49it/s][A
+Iteration:   2%|▏         | 134/8858 [01:29<1:37:50,  1.49it/s][A
+Iteration:   2%|▏         | 135/8858 [01:29<1:37:56,  1.48it/s][A
+Iteration:   2%|▏         | 136/8858 [01:30<1:37:58,  1.48it/s][A
+Iteration:   2%|▏         | 137/8858 [01:31<1:38:03,  1.48it/s][A
+Iteration:   2%|▏         | 138/8858 [01:31<1:37:54,  1.48it/s][A05/03/2020 10:48:32 - INFO - __main__ -   [BRAINQA] Eval loss: 4.448
+
+Iteration:   2%|▏         | 139/8858 [01:32<1:37:50,  1.49it/s][A
+Iteration:   2%|▏         | 140/8858 [01:33<1:39:20,  1.46it/s][A
+Iteration:   2%|▏         | 141/8858 [01:34<1:41:30,  1.43it/s][A
+Iteration:   2%|▏         | 142/8858 [01:34<1:42:27,  1.42it/s][A
+Iteration:   2%|▏         | 143/8858 [01:35<1:42:45,  1.41it/s][A
+Iteration:   2%|▏         | 144/8858 [01:36<1:43:15,  1.41it/s][A
+Iteration:   2%|▏         | 145/8858 [01:36<1:43:57,  1.40it/s][A
+Iteration:   2%|▏         | 146/8858 [01:37<1:45:08,  1.38it/s][A
+Iteration:   2%|▏         | 147/8858 [01:38<1:44:48,  1.39it/s][A
+Iteration:   2%|▏         | 148/8858 [01:39<1:45:48,  1.37it/s][A05/03/2020 10:48:40 - INFO - __main__ -   [BRAINQA] Eval loss: 4.565
+
+Iteration:   2%|▏         | 149/8858 [01:39<1:45:57,  1.37it/s][A
+Iteration:   2%|▏         | 150/8858 [01:40<1:45:41,  1.37it/s][A
+Iteration:   2%|▏         | 151/8858 [01:41<1:43:18,  1.40it/s][A
+Iteration:   2%|▏         | 152/8858 [01:41<1:41:40,  1.43it/s][A
+Iteration:   2%|▏         | 153/8858 [01:42<1:41:03,  1.44it/s][A
+Iteration:   2%|▏         | 154/8858 [01:43<1:39:43,  1.45it/s][A
+Iteration:   2%|▏         | 155/8858 [01:43<1:39:04,  1.46it/s][A
+Iteration:   2%|▏         | 156/8858 [01:44<1:38:34,  1.47it/s][A
+Iteration:   2%|▏         | 157/8858 [01:45<1:38:19,  1.47it/s][A
+Iteration:   2%|▏         | 158/8858 [01:45<1:38:12,  1.48it/s][A05/03/2020 10:48:46 - INFO - __main__ -   [BRAINQA] Eval loss: 4.700
+
+Iteration:   2%|▏         | 159/8858 [01:46<1:38:12,  1.48it/s][A
+Iteration:   2%|▏         | 160/8858 [01:47<1:39:28,  1.46it/s][A
+Iteration:   2%|▏         | 161/8858 [01:48<1:40:53,  1.44it/s][A
+Iteration:   2%|▏         | 162/8858 [01:48<1:41:12,  1.43it/s][A
+Iteration:   2%|▏         | 163/8858 [01:49<1:41:57,  1.42it/s][A
+Iteration:   2%|▏         | 164/8858 [01:50<1:40:42,  1.44it/s][A
+Iteration:   2%|▏         | 165/8858 [01:50<1:39:49,  1.45it/s][A
+Iteration:   2%|▏         | 166/8858 [01:51<1:42:57,  1.41it/s][A
+Iteration:   2%|▏         | 167/8858 [01:52<1:42:14,  1.42it/s][A
+Iteration:   2%|▏         | 168/8858 [01:52<1:42:21,  1.42it/s][A05/03/2020 10:48:54 - INFO - __main__ -   [BRAINQA] Eval loss: 4.462
+
+Iteration:   2%|▏         | 169/8858 [01:53<1:41:51,  1.42it/s][A
+Iteration:   2%|▏         | 170/8858 [01:54<1:41:06,  1.43it/s][A
+Iteration:   2%|▏         | 171/8858 [01:55<1:40:45,  1.44it/s][A
+Iteration:   2%|▏         | 172/8858 [01:55<1:40:34,  1.44it/s][A
+Iteration:   2%|▏         | 173/8858 [01:56<1:39:25,  1.46it/s][A
+Iteration:   2%|▏         | 174/8858 [01:57<1:38:46,  1.47it/s][A
+Iteration:   2%|▏         | 175/8858 [01:57<1:38:25,  1.47it/s][A
+Iteration:   2%|▏         | 176/8858 [01:58<1:38:11,  1.47it/s][A
+Iteration:   2%|▏         | 177/8858 [01:59<1:37:48,  1.48it/s][A
+Iteration:   2%|▏         | 178/8858 [01:59<1:37:44,  1.48it/s][A05/03/2020 10:49:00 - INFO - __main__ -   [BRAINQA] Eval loss: 4.731
+
+Iteration:   2%|▏         | 179/8858 [02:00<1:37:47,  1.48it/s][A
+Iteration:   2%|▏         | 180/8858 [02:01<1:37:41,  1.48it/s][A
+Iteration:   2%|▏         | 181/8858 [02:01<1:37:01,  1.49it/s][A
+Iteration:   2%|▏         | 182/8858 [02:02<1:36:34,  1.50it/s][A
+Iteration:   2%|▏         | 183/8858 [02:03<1:36:11,  1.50it/s][A
+Iteration:   2%|▏         | 184/8858 [02:03<1:36:34,  1.50it/s][A
+Iteration:   2%|▏         | 185/8858 [02:04<1:36:51,  1.49it/s][A
+Iteration:   2%|▏         | 186/8858 [02:05<1:37:05,  1.49it/s][A
+Iteration:   2%|▏         | 187/8858 [02:05<1:37:12,  1.49it/s][A
+Iteration:   2%|▏         | 188/8858 [02:06<1:37:06,  1.49it/s][A05/03/2020 10:49:07 - INFO - __main__ -   [BRAINQA] Eval loss: 4.657
+
+Iteration:   2%|▏         | 189/8858 [02:07<1:37:10,  1.49it/s][A
+Iteration:   2%|▏         | 190/8858 [02:07<1:37:21,  1.48it/s][A
+Iteration:   2%|▏         | 191/8858 [02:08<1:37:22,  1.48it/s][A
+Iteration:   2%|▏         | 192/8858 [02:09<1:37:25,  1.48it/s][A
+Iteration:   2%|▏         | 193/8858 [02:09<1:37:27,  1.48it/s][A
+Iteration:   2%|▏         | 194/8858 [02:10<1:37:32,  1.48it/s][A
+Iteration:   2%|▏         | 195/8858 [02:11<1:37:34,  1.48it/s][A
+Iteration:   2%|▏         | 196/8858 [02:11<1:37:36,  1.48it/s][A
+Iteration:   2%|▏         | 197/8858 [02:12<1:37:34,  1.48it/s][A
+Iteration:   2%|▏         | 198/8858 [02:13<1:36:54,  1.49it/s][A05/03/2020 10:49:14 - INFO - __main__ -   [BRAINQA] Eval loss: 4.601
+
+Iteration:   2%|▏         | 199/8858 [02:13<1:36:31,  1.50it/s][A
+Iteration:   2%|▏         | 200/8858 [02:14<1:36:10,  1.50it/s][A
+Iteration:   2%|▏         | 201/8858 [02:15<1:36:32,  1.49it/s][A
+Iteration:   2%|▏         | 202/8858 [02:15<1:36:48,  1.49it/s][A
+Iteration:   2%|▏         | 203/8858 [02:16<1:37:03,  1.49it/s][A
+Iteration:   2%|▏         | 204/8858 [02:17<1:38:24,  1.47it/s][A
+Iteration:   2%|▏         | 205/8858 [02:18<1:40:25,  1.44it/s][A
+Iteration:   2%|▏         | 206/8858 [02:18<1:42:07,  1.41it/s][A
+Iteration:   2%|▏         | 207/8858 [02:19<1:43:24,  1.39it/s][A
+Iteration:   2%|▏         | 208/8858 [02:20<1:43:01,  1.40it/s][A05/03/2020 10:49:21 - INFO - __main__ -   [BRAINQA] Eval loss: 4.586
+
+Iteration:   2%|▏         | 209/8858 [02:20<1:44:22,  1.38it/s][A
+Iteration:   2%|▏         | 210/8858 [02:21<1:44:49,  1.38it/s][A
+Iteration:   2%|▏         | 211/8858 [02:22<1:45:10,  1.37it/s][A
+Iteration:   2%|▏         | 212/8858 [02:23<1:45:31,  1.37it/s][A
+Iteration:   2%|▏         | 213/8858 [02:23<1:44:47,  1.37it/s][A
+Iteration:   2%|▏         | 214/8858 [02:24<1:43:42,  1.39it/s][A
+Iteration:   2%|▏         | 215/8858 [02:25<1:41:48,  1.41it/s][A
+Iteration:   2%|▏         | 216/8858 [02:25<1:40:31,  1.43it/s][A
+Iteration:   2%|▏         | 217/8858 [02:26<1:39:32,  1.45it/s][A
+Iteration:   2%|▏         | 218/8858 [02:27<1:38:51,  1.46it/s][A05/03/2020 10:49:28 - INFO - __main__ -   [BRAINQA] Eval loss: 4.594
+
+Iteration:   2%|▏         | 219/8858 [02:27<1:38:28,  1.46it/s][A
+Iteration:   2%|▏         | 220/8858 [02:28<1:38:04,  1.47it/s][A
+Iteration:   2%|▏         | 221/8858 [02:29<1:37:50,  1.47it/s][A
+Iteration:   3%|▎         | 222/8858 [02:29<1:37:40,  1.47it/s][A
+Iteration:   3%|▎         | 223/8858 [02:30<1:39:41,  1.44it/s][A
+Iteration:   3%|▎         | 224/8858 [02:31<1:40:38,  1.43it/s][A
+Iteration:   3%|▎         | 225/8858 [02:32<1:41:34,  1.42it/s][A
+Iteration:   3%|▎         | 226/8858 [02:32<1:39:53,  1.44it/s][A
+Iteration:   3%|▎         | 227/8858 [02:33<1:38:58,  1.45it/s][A
+Iteration:   3%|▎         | 228/8858 [02:34<1:41:57,  1.41it/s][A05/03/2020 10:49:35 - INFO - __main__ -   [BRAINQA] Eval loss: 4.651
+
+Iteration:   3%|▎         | 229/8858 [02:34<1:40:38,  1.43it/s][A
+Iteration:   3%|▎         | 230/8858 [02:35<1:39:33,  1.44it/s][A
+Iteration:   3%|▎         | 231/8858 [02:36<1:38:49,  1.45it/s][A
+Iteration:   3%|▎         | 232/8858 [02:36<1:38:23,  1.46it/s][A
+Iteration:   3%|▎         | 233/8858 [02:37<1:38:04,  1.47it/s][A
+Iteration:   3%|▎         | 234/8858 [02:38<1:37:45,  1.47it/s][A
+Iteration:   3%|▎         | 235/8858 [02:38<1:37:33,  1.47it/s][A
+Iteration:   3%|▎         | 236/8858 [02:39<1:37:22,  1.48it/s][A
+Iteration:   3%|▎         | 237/8858 [02:40<1:37:19,  1.48it/s][A
+Iteration:   3%|▎         | 238/8858 [02:40<1:37:15,  1.48it/s][A05/03/2020 10:49:42 - INFO - __main__ -   [BRAINQA] Eval loss: 4.570
+
+Iteration:   3%|▎         | 239/8858 [02:41<1:37:11,  1.48it/s][A
+Iteration:   3%|▎         | 240/8858 [02:42<1:37:07,  1.48it/s][A
+Iteration:   3%|▎         | 241/8858 [02:43<1:36:54,  1.48it/s][A
+Iteration:   3%|▎         | 242/8858 [02:43<1:37:37,  1.47it/s][A
+Iteration:   3%|▎         | 243/8858 [02:44<1:36:56,  1.48it/s][A
+Iteration:   3%|▎         | 244/8858 [02:45<1:37:01,  1.48it/s][A
+Iteration:   3%|▎         | 245/8858 [02:45<1:37:01,  1.48it/s][A
+Iteration:   3%|▎         | 246/8858 [02:46<1:36:58,  1.48it/s][A
+Iteration:   3%|▎         | 247/8858 [02:47<1:37:02,  1.48it/s][A
+Iteration:   3%|▎         | 248/8858 [02:47<1:37:02,  1.48it/s][A05/03/2020 10:49:48 - INFO - __main__ -   [BRAINQA] Eval loss: 4.414
+
+Iteration:   3%|▎         | 249/8858 [02:48<1:37:05,  1.48it/s][A
+Iteration:   3%|▎         | 250/8858 [02:49<1:38:08,  1.46it/s][A
+Iteration:   3%|▎         | 251/8858 [02:49<1:37:47,  1.47it/s][A
+Iteration:   3%|▎         | 252/8858 [02:50<1:37:30,  1.47it/s][A
+Iteration:   3%|▎         | 253/8858 [02:51<1:37:28,  1.47it/s][A
+Iteration:   3%|▎         | 254/8858 [02:51<1:37:06,  1.48it/s][A
+Iteration:   3%|▎         | 255/8858 [02:52<1:37:02,  1.48it/s][A
+Iteration:   3%|▎         | 256/8858 [02:53<1:36:57,  1.48it/s][A
+Iteration:   3%|▎         | 257/8858 [02:53<1:37:05,  1.48it/s][A
+Iteration:   3%|▎         | 258/8858 [02:54<1:36:57,  1.48it/s][A05/03/2020 10:49:55 - INFO - __main__ -   [BRAINQA] Eval loss: 4.493
+
+Iteration:   3%|▎         | 259/8858 [02:55<1:37:02,  1.48it/s][A
+Iteration:   3%|▎         | 260/8858 [02:55<1:37:04,  1.48it/s][A
+Iteration:   3%|▎         | 261/8858 [02:56<1:36:41,  1.48it/s][A
+Iteration:   3%|▎         | 262/8858 [02:57<1:36:49,  1.48it/s][A
+Iteration:   3%|▎         | 263/8858 [02:57<1:36:47,  1.48it/s][A
+Iteration:   3%|▎         | 264/8858 [02:58<1:36:47,  1.48it/s][A
+Iteration:   3%|▎         | 265/8858 [02:59<1:36:46,  1.48it/s][A
+Iteration:   3%|▎         | 266/8858 [02:59<1:36:46,  1.48it/s][A
+Iteration:   3%|▎         | 267/8858 [03:00<1:36:46,  1.48it/s][A
+Iteration:   3%|▎         | 268/8858 [03:01<1:36:48,  1.48it/s][A05/03/2020 10:50:02 - INFO - __main__ -   [BRAINQA] Eval loss: 4.392
+
+Iteration:   3%|▎         | 269/8858 [03:01<1:36:47,  1.48it/s][A
+Iteration:   3%|▎         | 270/8858 [03:02<1:36:47,  1.48it/s][A
+Iteration:   3%|▎         | 271/8858 [03:03<1:36:53,  1.48it/s][A
+Iteration:   3%|▎         | 272/8858 [03:03<1:36:22,  1.48it/s][A
+Iteration:   3%|▎         | 273/8858 [03:04<1:36:25,  1.48it/s][A
+Iteration:   3%|▎         | 274/8858 [03:05<1:36:43,  1.48it/s][A
