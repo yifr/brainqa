@@ -23,20 +23,20 @@ class BrainQA(BertPreTrainedModel):
         self.bert_enc = BertModel.from_pretrained(args.model_name_or_path, config=self.config_enc)
 
         # Set up BERT decoder
-        self.config_dec = config.to_dict()
-        self.config_dec['is_decoder'] = True
-        self.config_dec = BertConfig.from_dict(self.config_dec)
-        self.bert_dec = BertModel(self.config_dec)
+        # self.config_dec = config.to_dict()
+        # self.config_dec['is_decoder'] = True
+        # self.config_dec = BertConfig.from_dict(self.config_dec)
+        # self.bert_dec = BertModel(self.config_dec)
 
         # # VQVAE for external memory
-        # n_embeddings = 4096
-        # self.vqvae_model= VQVAE(h_dim=256,
-        #                 res_h_dim=256,
-        #                 n_res_layers=4,
-        #                 n_embeddings=n_embeddings,
-        #                 embedding_dim=256,
-        #                 restart=False,
-        #                 beta=2)
+        n_embeddings = 4096
+        self.vqvae_model= VQVAE(h_dim=256,
+                        res_h_dim=256,
+                        n_res_layers=4,
+                        n_embeddings=n_embeddings,
+                        embedding_dim=256,
+                        restart=False,
+                        beta=2)
         # Question answer layer to output spans of question answers
         self.qa_outputs = nn.Linear(config.hidden_size, config.num_labels)
 
@@ -68,29 +68,29 @@ class BrainQA(BertPreTrainedModel):
             )
         last_hidden_state, pooler_output, enc_hidden_states = outputs_encoder
 
-        # outputs_VQVAE = self.vqvae_model(last_hidden_state)
+        outputs_VQVAE = self.vqvae_model(last_hidden_state)
 
-        # #VQVAE returns: embedding_loss, x_hat, perplexity, z_q, e_indices
-        # vq_embedding_loss, hidden_states_recon, vqvae_ppl, _, min_encoding_indices = outputs_VQVAE
+        #VQVAE returns: embedding_loss, x_hat, perplexity, z_q, e_indices
+        vq_embedding_loss, hidden_states_recon, vqvae_ppl, _, min_encoding_indices = outputs_VQVAE
 
-        # # Detach reconstructions from computation graph
-        # hidden_states_recon = hidden_states_recon.detach()
-        min_encoding_indices = torch.zeros(4096, 256)
+        # Detach reconstructions from computation graph
+        hidden_states_recon = hidden_states_recon.detach()
+        
 
-        outputs_decoder = self.bert_dec(
-                input_ids=input_ids,
-                attention_mask=attention_mask,
-                token_type_ids=token_type_ids,
-                position_ids=position_ids,
-                head_mask=head_mask,
-                inputs_embeds=inputs_embeds,
-                encoder_hidden_states = last_hidden_state
-            )
+        # outputs_decoder = self.bert_dec(
+        #         input_ids=input_ids,
+        #         attention_mask=attention_mask,
+        #         token_type_ids=token_type_ids,
+        #         position_ids=position_ids,
+        #         head_mask=head_mask,
+        #         inputs_embeds=inputs_embeds,
+        #         encoder_hidden_states = last_hidden_state
+        #     )
 
-        sequence_output, dec_pooler_output = outputs_decoder
+        # sequence_output, dec_pooler_output = outputs_decoder
 
         # Compute logits
-        logits = self.qa_outputs(sequence_output)
+        logits = self.qa_outputs(hidden_states_recon)
         start_logits, end_logits = logits.split(1, dim=-1)
         start_logits = start_logits.squeeze(-1)
         end_logits = end_logits.squeeze(-1)
@@ -113,9 +113,9 @@ class BrainQA(BertPreTrainedModel):
             total_loss = (start_loss + end_loss) / 2
 
             # # Compute VQVAE loss
-            # vq_recon_loss = torch.mean((hidden_states_recon - last_hidden_state)**2) # VQVAE divides this by variance of total training data
-            # vqvae_loss = vq_recon_loss + vq_embedding_loss
-            vqvae_loss = torch.zeros(1,1)
+            vq_recon_loss = torch.mean((hidden_states_recon - last_hidden_state)**2) # VQVAE divides this by variance of total training data
+            vqvae_loss = vq_recon_loss + vq_embedding_loss
+            #vqvae_loss = torch.zeros(1,1)
 
             outputs = (total_loss,vqvae_loss) + outputs
             if verbose:
