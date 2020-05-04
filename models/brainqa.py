@@ -35,7 +35,7 @@ class BrainQA(BertPreTrainedModel):
                         n_res_layers=4,
                         n_embeddings=n_embeddings,
                         embedding_dim=256,
-                        restart=False,
+                        restart=True,
                         beta=2)
         # Question answer layer to output spans of question answers
         self.qa_outputs = nn.Linear(config.hidden_size, config.num_labels)
@@ -70,12 +70,8 @@ class BrainQA(BertPreTrainedModel):
 
         outputs_VQVAE = self.vqvae_model(last_hidden_state)
 
-        #VQVAE returns: embedding_loss, x_hat, perplexity, z_q, e_indices
+        # #VQVAE returns: embedding_loss, x_hat, perplexity, z_q, e_indices
         vq_embedding_loss, hidden_states_recon, vqvae_ppl, _, min_encoding_indices = outputs_VQVAE
-
-        # Detach reconstructions from computation graph
-        hidden_states_recon = hidden_states_recon.detach()
-        
 
         # outputs_decoder = self.bert_dec(
         #         input_ids=input_ids,
@@ -90,19 +86,20 @@ class BrainQA(BertPreTrainedModel):
         # sequence_output, dec_pooler_output = outputs_decoder
 
         # Compute logits
-        logits = self.qa_outputs(hidden_states_recon)
+        logits = self.qa_outputs(last_hidden_state)
         start_logits, end_logits = logits.split(1, dim=-1)
         start_logits = start_logits.squeeze(-1)
         end_logits = end_logits.squeeze(-1)
 
+
         outputs = (start_logits, end_logits, min_encoding_indices) #+ outputs_encoder_vqvae[2:]
-        if start_positions is not None and end_positions is not N one:
+        if start_positions is not None and end_positions is not None:
             # If we are on multi-GPU, split add a dimension
             if len(start_positions.size()) > 1:
                 start_positions = start_positions.squeeze(-1)
             if len(end_positions.size()) > 1:
                 end_positions = end_positions.squeeze(-1)
-            # sometimes the start/end positions are outside our model inputs, we ignore these terms
+            # sometimes the start/end positions are     outside our model inputs, we ignore these terms
             ignored_index = start_logits.size(1)
             start_positions.clamp_(0, ignored_index)
             end_positions.clamp_(0, ignored_index)
@@ -115,7 +112,6 @@ class BrainQA(BertPreTrainedModel):
             # # Compute VQVAE loss
             vq_recon_loss = torch.mean((hidden_states_recon - last_hidden_state)**2) # VQVAE divides this by variance of total training data
             vqvae_loss = vq_recon_loss + vq_embedding_loss
-            #vqvae_loss = torch.zeros(1,1)
 
             outputs = (total_loss,vqvae_loss) + outputs
             if verbose:

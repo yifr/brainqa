@@ -145,3 +145,6 @@ cached_train_bert-base-uncased_256
 random_restart_4096/*
 random_restart_256/*
 bert_baseline/*
+with_vqvae/*
+with_vqvae_rr_4096/*
+no_vqvae/*

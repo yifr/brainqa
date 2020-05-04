@@ -50,7 +50,7 @@ class VQVAE(nn.Module):
         self.e_indices = e_indices
 
         x_hat = self.decoder(z_q)
-
+        
         if verbose:
             print('original data shape:', x.shape)
             print('encoded data shape:', z_e.shape)
