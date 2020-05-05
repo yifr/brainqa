@@ -32,9 +32,29 @@ Our model addresses issues in VQ-VAE such as index collapse:
 
 However, we find that all in all, the model performs significantly worse than baseline. 
 
+## Data
+Data used for this model comes from SQuAD2.0. You can download the training and development set here:
+https://rajpurkar.github.io/SQuAD-explorer/
+
+## Dependencies
+Python 3.*
+PyTorch v1.4.0
+Variety of other usual suspects:
+Matplotlib, numpy, etc...
+
 ## Usage
-To run our model, clone the repository and run `./execute.sh desired_output_directory`. To run the model in the background 
+
+### Training:
+To train the model, clone the repository and run `./execute.sh desired_output_directory`. To run the model in the background 
 simply provide an additional argument to indicate a file to log progress to: 
+
 `./execute.sh desired_output_directory log_file.out`. 
+
+### Testing:
+You can evaluate performance on the development data by running `./evaluate.sh path_to_output_directory`. If you have multiple checkpoints saved this will evaluate all of them. You can evaluate just the last one by removing the `--eval_all_checkpoints` flag in the `evaluate.sh` script.
+
+
+### Visualization
+If you want to visualize the VQ-VAE reconstructions of BERT encoder outputs, simply run `./visualize.sh path_to_output_directory`. This code is the least developed/general purpose, so you may need to tweak some things to get it working for your use case.
 
 
