@@ -7,7 +7,7 @@ a series of incredible discoveries demonstrated the critical role that the hippo
 and memory. One of the most interesting properties of this brain region are the unique neural firing patterns of cells 
 known as "place cells" - neurons that fire at specific locations in an environment. 
 
-![Place Cells Video](https://res.cloudinary.com/marcomontalbano/image/upload/v1588639592/video_to_markdown/images/youtube--ZNEEvfZz4hU-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=ZNEEvfZz4hU "place_cells")
+![Place Cell Recording](media/place_cells.gif)
 
 Inspired by computational models that demonstrate how this neural activity can be recreated by clustering algorithms,
 we seek to adapt these ideas for the purpose of improving natural language processing tasks. Specifically, current models
