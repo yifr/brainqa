@@ -1,5 +1,6 @@
 # BrainQA
-Cognitively inspired architecture for QA neural network with a "concept" bottleneck.
+Cognitively inspired architecture for QA neural network with a "concept" bottleneck. Created in conjunction with @joepace. 
+
 
 ## Background 
 Deep inside the mammalian cortex is a small, sea-horse shaped structure called the "hippocampus". In the 1950's and onward,
