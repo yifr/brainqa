@@ -20,9 +20,20 @@ A diagram of our model is pictured here:
 
 We pass reconstructed encoder outputs from a pre-trained BERT model into a VQ-VAE model, which forms clusters of 
 semantically related concepts. We then pass those reconstructions into a BERT Decoder, which outputs to a linear layer
-from which we can collect start and end logits for question-answer spans
+from which we can collect start and end logits for question-answer spans.
+
+Our model addresses issues in VQ-VAE such as index collapse:
+
+**Vanilla VQ-VAE:**
+![Index Collapse](media/index_collapse.png)
+**Random Restart:**
+![Random Restart](media/random_restart.png)
+
+However, we find that all in all, the model performs significantly worse than baseline. 
 
 ## Usage
 To run our model, clone the repository and run `./execute.sh desired_output_directory`. To run the model in the background 
 simply provide an additional argument to indicate a file to log progress to: 
 `./execute.sh desired_output_directory log_file.out`. 
+
+
