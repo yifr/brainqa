@@ -54,7 +54,11 @@ simply provide an additional argument to indicate a file to log progress to:
 `./execute.sh desired_output_directory log_file.out`. 
 
 ### Testing:
-You can evaluate performance on the development data by running `./evaluate.sh path_to_output_directory`. If you have multiple checkpoints saved this will evaluate all of them. You can evaluate just the last one by removing the `--eval_all_checkpoints` flag in the `evaluate.sh` script.
+You can evaluate performance on the development data by running `./evaluate.sh path_to_output_directory`. If you have multiple checkpoints saved this will evaluate all of them. You can evaluate just the last one by removing the 
+
+`--eval_all_checkpoints` 
+
+flag in the `evaluate.sh` script.
 
 
 ### Visualization
