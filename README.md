@@ -4,7 +4,7 @@ Cognitively inspired architecture for QA neural network with a "concept" bottlen
 ## Background 
 Deep inside the mammalian cortex is a small, sea-horse shaped structure called the "hippocampus". In the 1950's and onward,
 a series of incredible discoveries demonstrated the critical role that the hippocampus plays in tasks such as navigation 
-and memory. One of the most interesting properties of this brain region are the unique neural firing patterns of cells 
+and memory. One of the most interesting properties of this brain region is the unique neural firing pattern of cells 
 known as "place cells" - neurons that fire at specific locations in an environment. 
 
 ![Place Cell Recording](media/place_cells.gif)
