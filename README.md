@@ -38,8 +38,11 @@ https://rajpurkar.github.io/SQuAD-explorer/
 
 ## Dependencies
 Python 3.*
+
 PyTorch v1.4.0
+
 Variety of other usual suspects:
+
 Matplotlib, numpy, etc...
 
 ## Usage
