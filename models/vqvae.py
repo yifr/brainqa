@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 #Need to change to word embeddings
 class VQVAE(nn.Module):
     def __init__(self, h_dim, res_h_dim, n_res_layers,
-                 n_embeddings, embedding_dim, beta, restart=True, save_img_embedding_map=False):
+                 n_embeddings, embedding_dim, beta, restart=True):
         super(VQVAE, self).__init__()
         # encode image into continuous latent space
         self.encoder = Encoder(in_dim=256, h_dim=h_dim, n_res_layers=n_res_layers, res_h_dim=res_h_dim)
@@ -33,10 +33,6 @@ class VQVAE(nn.Module):
         #E_indices used in sampling, just save last to rep last latent state
         self.e_indices = None
 
-        if save_img_embedding_map:
-            self.img_to_embedding_map = {i: [] for i in range(n_embeddings)}
-        else:
-            self.img_to_embedding_map = None
 
     def forward(self, x, verbose=False):
         #log.info('Embeddings shape: {}'.format(x.shape))

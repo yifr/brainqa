@@ -38,14 +38,12 @@ class VectorQuantizer(nn.Module):
 
         z.shape = (batch, channel, height, width)
 
-        quantization pipeline:
-
-            1. get encoder input (B,C,H,W)
-            2. flatten input to (B*H*W,C)
-
+        quantization pipeline: 
+            1. Flatten input 
+            2. Get embedding distance
+            3. Embed input 
+            4. Compute loss
         """
-        #CHANGING PERMUTES z = z.permute(0, 2, 3, 1).contiguous()
-        # reshape z -> (batch, height, width, channel) and flatten
         z = z.permute(0, 2, 1).contiguous()
         z_flattened = z.view(-1, self.e_dim)
         # log.info("Z-Flattened shape: {}".format(z_flattened.shape))
@@ -79,7 +77,6 @@ class VectorQuantizer(nn.Module):
         perplexity = torch.exp(-torch.sum(e_mean * torch.log(e_mean + 1e-10)))
 
         # reshape back to match original input shape
-        #z_q = z_q.permute(0, 3, 1, 2).contiguous()
         z_q = z_q.permute(0, 2, 1).contiguous()
 
         return loss, z_q, perplexity, min_encodings, min_encoding_indices
@@ -131,7 +128,6 @@ class VectorQuantizerRandomRestart(nn.Module):
             y = self._tile(z_enc)
             _k_rand = y[torch.randperm(y.shape[0])][:self.n_e]
 
-            old_embedding_weights = self.embedding.weight.data
             #log.info('k_elem shape: {} \t_k_elem shape: {}'.format(self.k_elem.shape, _k_elem.shape))
             self.k_sum = mu * self.k_sum + (1. - mu) * _k_sum
             self.k_elem = mu * self.k_elem + (1. - mu) * _k_elem
@@ -144,18 +140,7 @@ class VectorQuantizerRandomRestart(nn.Module):
 
     def forward(self, z):
         """
-        Inputs the output of the encoder network z and maps it to a discrete 
-        one-hot vector that is the index of the closest embedding vector e_j
-
-        z (continuous) -> z_q (discrete)
-
-        z.shape = (batch, channel, height, width)
-
-        quantization pipeline:
-
-            1. get encoder input (B,C,H,W)
-            2. flatten input to (B*H*W,C)
-
+        Same as regular VectorQuantization but with an update check
         """
         #CHANGING PERMUTES z = z.permute(0, 2, 3, 1).contiguous()
         # reshape z -> (batch, height, width, channel) and flatten
@@ -196,7 +181,6 @@ class VectorQuantizerRandomRestart(nn.Module):
         perplexity = torch.exp(-torch.sum(e_mean * torch.log(e_mean + 1e-10)))
 
         # reshape back to match original input shape
-        #z_q = z_q.permute(0, 3, 1, 2).contiguous()
         z_q = z_q.permute(0, 2, 1).contiguous()
 
         
